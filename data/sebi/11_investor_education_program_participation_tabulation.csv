@@ -1,0 +1,7 @@
+Country,Year,Current Investment,"Non Participant Investors (UOM:Number), Scaling Factor:1","Percentage Of Non Participant Investors (UOM:%(Percentage)), Scaling Factor:1","Participant Investors (UOM:Number), Scaling Factor:1","Percentage Of Participant Investors (UOM:%(Percentage)), Scaling Factor:1","Totals (UOM:Number), Scaling Factor:1"
+India,"Calendar Year (Jan - Dec), 2015",Mutual Funds,1591,66.20,814,33.80,2405
+India,"Calendar Year (Jan - Dec), 2015",Equities,1376,65.80,715,34.20,2091
+India,"Calendar Year (Jan - Dec), 2015",Derivatives,243,84.10,46,15.90,289
+India,"Calendar Year (Jan - Dec), 2015",Debentures,645,75.90,205,24.10,850
+India,"Calendar Year (Jan - Dec), 2015",Commodity Futures,126,85.70,21,14.30,147
+India,"Calendar Year (Jan - Dec), 2015",All Investors,2982,67.80,1418,32.20,4400

@@ -1,0 +1,6 @@
+Country,Year,Rank,"Stock Or Bond Of Known Company (UOM:%(Percentage)), Scaling Factor:1","Primarily Invest In Mutual Fund (UOM:%(Percentage)), Scaling Factor:1","Observe Markets In Detail (UOM:%(Percentage)), Scaling Factor:1","Use Well - Established Brokers (UOM:%(Percentage)), Scaling Factor:1","Invest In Small Parts (UOM:%(Percentage)), Scaling Factor:1"
+India,"Calendar Year (Jan - Dec), 2015",1,21,30,30,6,13
+India,"Calendar Year (Jan - Dec), 2015",2,13,27,18,21,21
+India,"Calendar Year (Jan - Dec), 2015",3,24,13,21,18,24
+India,"Calendar Year (Jan - Dec), 2015",4,9,7,24,36,24
+India,"Calendar Year (Jan - Dec), 2015",5,28,29,12,9,22

@@ -1,0 +1,10 @@
+Country,Year,Occupation,"Percentage Of Non Investors (UOM:%(Percentage)), Scaling Factor:1","Percentage Of Urban Investors (UOM:%(Percentage)), Scaling Factor:1"
+India,"Calendar Year (Jan - Dec), 2015",Service ( Government ),76.90,23.10
+India,"Calendar Year (Jan - Dec), 2015",Business ( Shop Owner ),80.70,19.30
+India,"Calendar Year (Jan - Dec), 2015",Other Business,83.70,16.30
+India,"Calendar Year (Jan - Dec), 2015",Service ( Private ),89.40,10.60
+India,"Calendar Year (Jan - Dec), 2015",Retired,91.50,8.50
+India,"Calendar Year (Jan - Dec), 2015",Agriculture,95.70,4.30
+India,"Calendar Year (Jan - Dec), 2015",Others ( Specify ),96.40,3.70
+India,"Calendar Year (Jan - Dec), 2015",Self Employed,96.80,3.20
+India,"Calendar Year (Jan - Dec), 2015",Total,85.40,14.60

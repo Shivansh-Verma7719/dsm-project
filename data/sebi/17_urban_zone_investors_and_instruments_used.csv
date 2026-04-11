@@ -1,0 +1,21 @@
+Country,Year,Instrument,Zone,"Number Of Investors (UOM:Number), Scaling Factor:1"
+India,"Calendar Year (Jan - Dec), 2015",Mutual Funds,East,633
+India,"Calendar Year (Jan - Dec), 2015",Mutual Funds,North,859
+India,"Calendar Year (Jan - Dec), 2015",Mutual Funds,South,212
+India,"Calendar Year (Jan - Dec), 2015",Mutual Funds,West,1832
+India,"Calendar Year (Jan - Dec), 2015",Equities,East,143
+India,"Calendar Year (Jan - Dec), 2015",Equities,North,804
+India,"Calendar Year (Jan - Dec), 2015",Equities,South,157
+India,"Calendar Year (Jan - Dec), 2015",Equities,West,1837
+India,"Calendar Year (Jan - Dec), 2015",Debentures,East,37
+India,"Calendar Year (Jan - Dec), 2015",Debentures,North,218
+India,"Calendar Year (Jan - Dec), 2015",Debentures,South,88
+India,"Calendar Year (Jan - Dec), 2015",Debentures,West,913
+India,"Calendar Year (Jan - Dec), 2015",Derivatives,East,0
+India,"Calendar Year (Jan - Dec), 2015",Derivatives,North,212
+India,"Calendar Year (Jan - Dec), 2015",Derivatives,South,5
+India,"Calendar Year (Jan - Dec), 2015",Derivatives,West,294
+India,"Calendar Year (Jan - Dec), 2015",Commodity Futures,East,163
+India,"Calendar Year (Jan - Dec), 2015",Commodity Futures,North,143
+India,"Calendar Year (Jan - Dec), 2015",Commodity Futures,South,19
+India,"Calendar Year (Jan - Dec), 2015",Commodity Futures,West,44

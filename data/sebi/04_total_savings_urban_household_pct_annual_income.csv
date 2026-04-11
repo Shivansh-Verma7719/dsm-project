@@ -1,0 +1,13 @@
+Country,Year,Urban Household Savings,Urban Household Monthly Income,"Number Of Households (UOM:Number), Scaling Factor:1"
+India,"Calendar Year (Jan - Dec), 2015",< 40 Percentage of annual income,Below 20000,10569
+India,"Calendar Year (Jan - Dec), 2015",< 40 Percentage of annual income,20000-50000,8833
+India,"Calendar Year (Jan - Dec), 2015",< 40 Percentage of annual income,50000-1 Lakh,2920
+India,"Calendar Year (Jan - Dec), 2015",< 40 Percentage of annual income,Above 1 Lakh,5513
+India,"Calendar Year (Jan - Dec), 2015",40 Percentage - 60 Percentage of annual income,Below 20000,1506
+India,"Calendar Year (Jan - Dec), 2015",40 Percentage - 60 Percentage of annual income,20000-50000,3660
+India,"Calendar Year (Jan - Dec), 2015",40 Percentage - 60 Percentage of annual income,50000-1 Lakh,624
+India,"Calendar Year (Jan - Dec), 2015",40 Percentage - 60 Percentage of annual income,Above 1 Lakh,843
+India,"Calendar Year (Jan - Dec), 2015",> 60 Percentage of annual income,Below 20000,341
+India,"Calendar Year (Jan - Dec), 2015",> 60 Percentage of annual income,20000-50000,771
+India,"Calendar Year (Jan - Dec), 2015",> 60 Percentage of annual income,50000-1 Lakh,143
+India,"Calendar Year (Jan - Dec), 2015",> 60 Percentage of annual income,Above 1 Lakh,569

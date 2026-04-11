@@ -1,0 +1,36 @@
+Country,State,Year,"Rural Districts (UOM:Number), Scaling Factor:1","Sample Rural Districts (UOM:Number), Scaling Factor:1","Sample Rural Villages (UOM:Number), Scaling Factor:1","Listed Households In Rural Areas (UOM:Number), Scaling Factor:1","Sample Households In Rural Areas (UOM:Number), Scaling Factor:1","Towns In Urban Areas (UOM:Number), Scaling Factor:1","Sample Towns In Urban Areas (UOM:Number), Scaling Factor:1","Pin Code Areas In Urban Areas (UOM:Number), Scaling Factor:1","Listed Households In Urban Areas (UOM:Number), Scaling Factor:1","Sample Households In Urban Areas (UOM:Number), Scaling Factor:1"
+India,Andaman and Nicobar Islands,"Calendar Year (Jan - Dec), 2015",3,1,1,150,30,5,1,25,1875,384
+India,Andhra Pradesh,"Calendar Year (Jan - Dec), 2015",8.06517533838846811267,1.86119430885887725677,6.20398102952959085590,907.64242462017914221817,181.77664416521701207787,124.25986323081107371440,1.55324829038513842143,38.83120725962846053575,2912.34054447213454018125,942.30396283365064233420
+India,Arunachal Pradesh,"Calendar Year (Jan - Dec), 2015",17,4,8,1200,240,27,1,25,1875,641
+India,Assam,"Calendar Year (Jan - Dec), 2015",27,7,21,3150,630,226,3,75,5625,641
+India,Bihar,"Calendar Year (Jan - Dec), 2015",38,10,29,4275,855,203,3,75,5625,641
+India,Chandigarh,"Calendar Year (Jan - Dec), 2015",1,1,1,150,30,7,1,25,1875,641
+India,Chhattisgarh,"Calendar Year (Jan - Dec), 2015",27,7,14,2100,420,205,2,50,3750,641
+India,Delhi,"Calendar Year (Jan - Dec), 2015",11,3,6,825,165,145,1,25,1875,1179
+India,Goa,"Calendar Year (Jan - Dec), 2015",2,1,1,150,30,71,2,50,3750,641
+India,Gujarat,"Calendar Year (Jan - Dec), 2015",33,8,24,3600,720,385,4,100,7500,3204
+India,Haryana,"Calendar Year (Jan - Dec), 2015",21,5,16,2363,473,165,2,50,3750,641
+India,Himachal Pradesh,"Calendar Year (Jan - Dec), 2015",12,3,6,900,180,61,3,75,5625,641
+India,Jammu and Kashmir,"Calendar Year (Jan - Dec), 2015",21.48717599582727098024,5.86013890795289208552,16.60372690586652757564,2417.30729953056798527700,483.46145990611359705540,129.61590123853780187988,1.96387729149299699818,49.09693228732492495450,3682.26992154936937158750,629.42267192350553791669
+India,Jharkhand,"Calendar Year (Jan - Dec), 2015",24,6,12,1800,360,229,3,75,5625,641
+India,Karnataka,"Calendar Year (Jan - Dec), 2015",30,8,24,3600,720,371,3,75,5625,2461
+India,Kerala,"Calendar Year (Jan - Dec), 2015",14,4,0,1200,240,532,2,50,3750,1282
+India,Ladakh,"Calendar Year (Jan - Dec), 2015",0.51282400417272901976,0.13986109204710791448,0.39627309413347242436,57.69270046943201472300,11.53854009388640294460,2.38409876146219812012,0.03612270850700300182,0.90306771267507504550,67.73007845063062841250,11.57732807649446208331
+India,Madhya Pradesh,"Calendar Year (Jan - Dec), 2015",51,13,39,5850,1170,509,3,75,5625,1282
+India,Maharashtra,"Calendar Year (Jan - Dec), 2015",36,9,27,4050,810,537,5,125,9375,3742
+India,Manipur,"Calendar Year (Jan - Dec), 2015",9,2,4,600,120,58,1,25,1875,641
+India,Meghalaya,"Calendar Year (Jan - Dec), 2015",11,3,6,900,180,22,1,25,1875,641
+India,Mizoram,"Calendar Year (Jan - Dec), 2015",8,2,4,600,120,23,1,25,1875,641
+India,Nagaland,"Calendar Year (Jan - Dec), 2015",11,3,6,825,165,26,1,25,1875,641
+India,Odisha,"Calendar Year (Jan - Dec), 2015",30,8,24,3600,720,238,2,50,3750,641
+India,Puducherry,"Calendar Year (Jan - Dec), 2015",4,1,1,150,30,11,1,14,1031,353
+India,Punjab,"Calendar Year (Jan - Dec), 2015",22,6,17,2475,495,236,3,75,5625,1922
+India,Rajasthan,"Calendar Year (Jan - Dec), 2015",33,8,24,3600,720,320,3,75,5625,1282
+India,Sikkim,"Calendar Year (Jan - Dec), 2015",4,1,1,150,30,9,1,25,1875,641
+India,Tamil Nadu,"Calendar Year (Jan - Dec), 2015",32,8,24,3600,720,1109,2,50,3750,1820
+India,Telangana,"Calendar Year (Jan - Dec), 2015",4.93482466161153188733,1.13880569114112274323,3.79601897047040914410,555.35757537982085778183,111.22335583478298792213,115.74013676918892628560,1.44675170961486157857,36.16879274037153946425,2712.65945552786545981875,877.69603716634935766580
+India,The Dadra and Nagar Haveli and Daman and Diu,"Calendar Year (Jan - Dec), 2015",3.00000000000000000000,2.00000000000000000000,2.00000000000000000000,300.00000000000000000000,60.00000000000000000000,14.00000000000000000000,2.00000000000000000000,50.00000000000000000000,3750.00000000000000000000,512.00000000000000000000
+India,Tripura,"Calendar Year (Jan - Dec), 2015",8,2,4,600,120,42,1,25,1875,641
+India,Uttar Pradesh,"Calendar Year (Jan - Dec), 2015",75,19,56,8438,1688,937,5,125,9375,1922
+India,Uttarakhand,"Calendar Year (Jan - Dec), 2015",13,3,7,975,195,121,2,50,3750,641
+India,West Bengal,"Calendar Year (Jan - Dec), 2015",19,5,10,1500,300,921,3,75,5625,1820

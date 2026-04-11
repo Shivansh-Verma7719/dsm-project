@@ -1,0 +1,13 @@
+Country,Year,Monthly Income,Debt,"Number Of Households (UOM:Number), Scaling Factor:1"
+India,"Calendar Year (Jan - Dec), 2015",Below Rs. 20000,< 40 % of annual income,4892
+India,"Calendar Year (Jan - Dec), 2015",Below Rs. 20000,40 % -60 % of annual income,3733
+India,"Calendar Year (Jan - Dec), 2015",Below Rs. 20000,> 60 % of annual income,3791
+India,"Calendar Year (Jan - Dec), 2015",Rs. 20000 - Rs. 50000,< 40 % of annual income,7580
+India,"Calendar Year (Jan - Dec), 2015",Rs. 20000 - Rs. 50000,40 % -60 % of annual income,3993
+India,"Calendar Year (Jan - Dec), 2015",Rs. 20000 - Rs. 50000,> 60 % of annual income,1691
+India,"Calendar Year (Jan - Dec), 2015",Rs. 50000 - 1 Lakh,< 40 % of annual income,2751
+India,"Calendar Year (Jan - Dec), 2015",Rs. 50000 - 1 Lakh,40 % -60 % of annual income,605
+India,"Calendar Year (Jan - Dec), 2015",Rs. 50000 - 1 Lakh,> 60 % of annual income,331
+India,"Calendar Year (Jan - Dec), 2015",Above 1 Lakh,< 40 % of annual income,5619
+India,"Calendar Year (Jan - Dec), 2015",Above 1 Lakh,40 % -60 % of annual income,894
+India,"Calendar Year (Jan - Dec), 2015",Above 1 Lakh,> 60 % of annual income,412

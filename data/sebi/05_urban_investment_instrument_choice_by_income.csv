@@ -1,0 +1,21 @@
+Country,Year,Type Of Investors,Range,Income Range,"Number Of Investors (UOM:Number), Scaling Factor:1","Percentage To Total Investors (UOM:%(Percentage)), Scaling Factor:1"
+India,"Financial Year (Apr - Mar), 2015",Mutual Fund Investor,I,"Less than 20,000",729,70.6
+India,"Financial Year (Apr - Mar), 2015",Mutual Fund Investor,II,"20,000 to 50,000",2161,66.8
+India,"Financial Year (Apr - Mar), 2015",Mutual Fund Investor,III,"50,000 to 1 lakh",195,40.8
+India,"Financial Year (Apr - Mar), 2015",Mutual Fund Investor,IV,Above 1 lakh,451,74.1
+India,"Financial Year (Apr - Mar), 2015",Equity Investor,I,"Less than 20,000",665,64.4
+India,"Financial Year (Apr - Mar), 2015",Equity Investor,II,"20,000 to 50,000",1626,50.2
+India,"Financial Year (Apr - Mar), 2015",Equity Investor,III,"50,000 to 1 lakh",336,70.3
+India,"Financial Year (Apr - Mar), 2015",Equity Investor,IV,Above 1 lakh,314,51.6
+India,"Financial Year (Apr - Mar), 2015",Debt Investor,I,"Less than 20,000",311,30.1
+India,"Financial Year (Apr - Mar), 2015",Debt Investor,II,"20,000 to 50,000",732,22.6
+India,"Financial Year (Apr - Mar), 2015",Debt Investor,III,"50,000 to 1 lakh",54,11.3
+India,"Financial Year (Apr - Mar), 2015",Debt Investor,IV,Above 1 lakh,159,26.1
+India,"Financial Year (Apr - Mar), 2015",Total Investors,I,"Less than 20,000",1033,100.0
+India,"Financial Year (Apr - Mar), 2015",Total Investors,II,"20,000 to 50,000",3236,100.0
+India,"Financial Year (Apr - Mar), 2015",Total Investors,III,"50,000 to 1 lakh",478,100.0
+India,"Financial Year (Apr - Mar), 2015",Total Investors,IV,Above 1 lakh,609,100.0
+India,"Financial Year (Apr - Mar), 2015",Total Respondents,I,"Less than 20,000",12688,
+India,"Financial Year (Apr - Mar), 2015",Total Respondents,II,"20,000 to 50,000",13403,
+India,"Financial Year (Apr - Mar), 2015",Total Respondents,III,"50,000 to 1 lakh",3721,
+India,"Financial Year (Apr - Mar), 2015",Total Respondents,IV,Above 1 lakh,6944,

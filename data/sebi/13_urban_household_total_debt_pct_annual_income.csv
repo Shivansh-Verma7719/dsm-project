@@ -1,0 +1,4 @@
+Country,Year,Debt,"Frequency (UOM:Number), Scaling Factor:1","Percentage Of Annual Income (UOM:%(Percentage)), Scaling Factor:1"
+India,"Calendar Year (Jan - Dec), 2015",< 40 % of annual income,21238,57.50
+India,"Calendar Year (Jan - Dec), 2015",40 % - 60 % of annual income,9279,25.00
+India,"Calendar Year (Jan - Dec), 2015",> 60 % of annual income,6239,16.50

@@ -1,0 +1,6 @@
+Country,Year,Name Of Instrument,"Mean Score Of Risk By Type Of Instrument (UOM:%(Percentage)), Scaling Factor:1","Mean Score Of Return By Type Of Instrument (UOM:%(Percentage)), Scaling Factor:1","Mean Score Of Time Horizon By Type Of Instrument (UOM:%(Percentage)), Scaling Factor:1"
+India,"Calendar Year (Jan - Dec), 2015",Equities,3.3,3.3,2.9
+India,"Calendar Year (Jan - Dec), 2015",Mutual Funds,2.7,2.7,2.9
+India,"Calendar Year (Jan - Dec), 2015",Debentures,1.9,2.0,2.3
+India,"Calendar Year (Jan - Dec), 2015",Derivatives,2.2,2.1,2.1
+India,"Calendar Year (Jan - Dec), 2015",Commodity Futures,2.2,2.1,2.0

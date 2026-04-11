@@ -1,0 +1,17 @@
+Country,Year,Type Of Investor,Age Group,"Number Of Investors (UOM:Number), Scaling Factor:1","Percentage Of Total Investors (UOM:%(Percentage)), Scaling Factor:1"
+India,"Calendar Year (Jan - Dec), 2015",Mutual Fund Investor,1 to 7 Years,22,68.8
+India,"Calendar Year (Jan - Dec), 2015",Mutual Fund Investor,8 to 10 Years,273,61.3
+India,"Calendar Year (Jan - Dec), 2015",Mutual Fund Investor,11 to 15 Years,1299,55.9
+India,"Calendar Year (Jan - Dec), 2015",Mutual Fund Investor,More than 15 Years,1939,76.0
+India,"Calendar Year (Jan - Dec), 2015",Equity Investor,1 to 7 Years,9,28.1
+India,"Calendar Year (Jan - Dec), 2015",Equity Investor,8 to 10 Years,108,24.3
+India,"Calendar Year (Jan - Dec), 2015",Equity Investor,11 to 15 Years,1155,49.7
+India,"Calendar Year (Jan - Dec), 2015",Equity Investor,More than 15 Years,1667,65.3
+India,"Calendar Year (Jan - Dec), 2015",Debt Investor,1 to 7 Years,0,0.0
+India,"Calendar Year (Jan - Dec), 2015",Debt Investor,8 to 10 Years,90,20.2
+India,"Calendar Year (Jan - Dec), 2015",Debt Investor,11 to 15 Years,470,20.2
+India,"Calendar Year (Jan - Dec), 2015",Debt Investor,More than 15 Years,696,27.3
+India,"Calendar Year (Jan - Dec), 2015",Total Investors,1 to 7 Years,32,100.0
+India,"Calendar Year (Jan - Dec), 2015",Total Investors,8 to 10 Years,445,100.0
+India,"Calendar Year (Jan - Dec), 2015",Total Investors,11 to 15 Years,2324,100.0
+India,"Calendar Year (Jan - Dec), 2015",Total Investors,More than 15 Years,2551,100.0
