@@ -1,0 +1,10 @@
+.env
+venv/
+.claude/
+__pycache__/
+.DS_Store
+*.pyc
+outputs/charts/*.png
+db/*.db
+node_modules/
+.next/
