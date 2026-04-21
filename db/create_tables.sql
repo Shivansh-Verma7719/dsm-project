@@ -209,6 +209,42 @@ CREATE TABLE public."sebi_education_instrument" (
 );
 ALTER TABLE public."sebi_education_instrument" DISABLE ROW LEVEL SECURITY;
 
+DROP TABLE IF EXISTS public."state_layer" CASCADE;
+CREATE TABLE public."state_layer" (
+  id bigserial primary key,
+  "state_code" bigint,
+  "state_name" text,
+  "total_population" bigint,
+  "total_households" bigint,
+  "n_districts" bigint,
+  "urban_population" bigint,
+  "rural_population" bigint,
+  "area_sqkm" double precision,
+  "pop_per_sqkm" double precision,
+  "total_towns" bigint,
+  "total_villages" bigint,
+  "literate_persons_2011" bigint,
+  "total_workers_2011" bigint,
+  "graduate_above_2011" bigint,
+  "permanent_houses_2001" double precision,
+  "per_capita_income_2011" bigint,
+  "total_ucc" bigint,
+  "investors_last_year" bigint,
+  "investors_last_5yr" bigint,
+  "investors_pre_2021" bigint,
+  "investors_per_lakh" double precision
+);
+ALTER TABLE public."state_layer" DISABLE ROW LEVEL SECURITY;
+
+DROP TABLE IF EXISTS public."savings_instruments_urban" CASCADE;
+CREATE TABLE public."savings_instruments_urban" (
+  id bigserial primary key,
+  "instrument" text,
+  "category" text,
+  "pct_urban_hh" double precision
+);
+ALTER TABLE public."savings_instruments_urban" DISABLE ROW LEVEL SECURITY;
+
 DROP TABLE IF EXISTS public."census_districts" CASCADE;
 CREATE TABLE public."census_districts" (
   id bigserial primary key,

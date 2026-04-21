@@ -7,46 +7,11 @@ CENSUS_CSV = DATA_DIR / "census" / "district_census_consolidated.csv"
 PCA_XLSX = DATA_DIR / "census" / "DDW_PCA0000_2011_Indiastatedist.xlsx"
 C08_XLSX = DATA_DIR / "census" / "DDW-0000C-08.xlsx"
 NSE_CSV = DATA_DIR / "state_investors_nse.csv"
+NSDP_CSV = DATA_DIR / "state_per_capita_nsdp_2011.csv"
 OUT_CSV = DATA_DIR / "state_layer.csv"
 
-# GSDP per capita 2011-12 at current prices (Rs), source: CSO/MoSPI
-GSDP_PER_CAPITA = {
-    1:  44923,   # Jammu & Kashmir
-    2:  72752,   # Himachal Pradesh
-    3:  78766,   # Punjab
-    4:  130766,  # Chandigarh
-    5:  68609,   # Uttarakhand
-    6:  107127,  # Haryana
-    7:  207054,  # Delhi
-    8:  48433,   # Rajasthan
-    9:  31087,   # Uttar Pradesh
-    10: 22555,   # Bihar
-    11: 141827,  # Sikkim
-    12: 85921,   # Arunachal Pradesh
-    13: 66929,   # Nagaland
-    14: 36291,   # Manipur
-    15: 70740,   # Mizoram
-    16: 53422,   # Tripura
-    17: 56296,   # Meghalaya
-    18: 33195,   # Assam
-    19: 56642,   # West Bengal
-    20: 37891,   # Jharkhand
-    21: 38219,   # Odisha
-    22: 47768,   # Chhattisgarh
-    23: 40754,   # Madhya Pradesh
-    24: 100144,  # Gujarat
-    25: 229064,  # Daman & Diu
-    26: 159002,  # Dadra & Nagar Haveli
-    27: 101576,  # Maharashtra
-    28: 69440,   # Andhra Pradesh
-    29: 82004,   # Karnataka
-    30: 181858,  # Goa
-    31: 79696,   # Lakshadweep
-    32: 107441,  # Kerala
-    33: 90824,   # Tamil Nadu
-    34: 104373,  # Puducherry
-    35: 79633,   # Andaman & Nicobar
-}
+# Fallback for UTs that don't publish SDP estimates (Daman & Diu, Dadra & NH, Lakshadweep)
+NSDP_FALLBACK = {25: 229064, 26: 159002, 31: 79696}
 
 STATE_NAMES = {
     1: "Jammu & Kashmir", 2: "Himachal Pradesh", 3: "Punjab",
@@ -106,22 +71,20 @@ def build_c08_table(path: Path) -> pd.DataFrame:
     raw = pd.read_excel(path, header=None)
     states = raw[(raw[2] == "000") & (raw[4] == "Total") & (raw[5] == "All ages")].copy()
     states = states[[1, 6, 9, 39]].copy()
-    states.columns = ["state_code", "total_pop_7plus", "illiterate", "graduate_above"]
-    for col in ["total_pop_7plus", "illiterate", "graduate_above"]:
+    states.columns = ["state_code", "total_pop_7plus", "illiterate", "graduate_above_2011"]
+    for col in ["total_pop_7plus", "illiterate", "graduate_above_2011"]:
         states[col] = pd.to_numeric(states[col], errors="coerce")
     states["state_code"] = pd.to_numeric(states["state_code"], errors="coerce").astype(int)
-    states["literate_2011"] = states["total_pop_7plus"] - states["illiterate"]
-    states["graduate_pct_2011"] = (states["graduate_above"] / states["literate_2011"] * 100).round(2)
-    return states[["state_code", "graduate_pct_2011"]]
+    return states[["state_code", "graduate_above_2011"]]
 
 
 def build_pca_table(path: Path) -> pd.DataFrame:
     raw = pd.read_excel(path, header=0)
     states = raw[(raw["Level"] == "STATE") & (raw["TRU"] == "Total")].copy()
     states = states.rename(columns={"State": "state_code"})
-    states["literacy_rate_2011"] = (states["P_LIT"] / states["TOT_P"] * 100).round(2)
-    states["worker_participation_rate_2011"] = (states["TOT_WORK_P"] / states["TOT_P"] * 100).round(2)
-    return states[["state_code", "literacy_rate_2011", "worker_participation_rate_2011"]]
+    states["literate_persons_2011"] = states["P_LIT"].astype(int)
+    states["total_workers_2011"] = states["TOT_WORK_P"].astype(int)
+    return states[["state_code", "literate_persons_2011", "total_workers_2011"]]
 
 
 def build_nse_table(path: Path) -> pd.DataFrame:
@@ -164,26 +127,29 @@ def build() -> None:
         .reset_index()
     )
 
-    agg["urban_pct"] = (agg["urban_population"] / agg["total_population"] * 100).round(2)
     agg["pop_per_sqkm"] = (agg["total_population"] / agg["area_sqkm"]).round(1)
-    agg["towns_per_lakh"] = (agg["total_towns"] / agg["total_population"] * 100_000).round(2)
-    total_houses = agg["permanent_house"] + agg["semi_permanent_house"] + agg["temporary_house"]
-    agg["permanent_house_pct"] = (agg["permanent_house"] / total_houses * 100).round(2)
-    agg["graduate_pct_2001"] = (agg["graduate_and_above"] / agg["total_educated"] * 100).round(2)
+    agg = agg.rename(columns={"permanent_house": "permanent_houses_2001"})
 
     pca = build_pca_table(PCA_XLSX)
     c08 = build_c08_table(C08_XLSX)
     nse = build_nse_table(NSE_CSV)
 
+    nsdp = pd.read_csv(NSDP_CSV)
+    fallback_rows = pd.DataFrame([
+        {"state_code": code, "per_capita_income_2011": val}
+        for code, val in NSDP_FALLBACK.items()
+    ])
+    nsdp = pd.concat([nsdp[["state_code", "per_capita_income_2011"]], fallback_rows], ignore_index=True)
+
     meta_df = pd.DataFrame([
-        {"state_code": code, "state_name": name, "gsdp_per_capita_2011": gsdp}
+        {"state_code": code, "state_name": name}
         for code, name in STATE_NAMES.items()
-        for gsdp in [GSDP_PER_CAPITA[code]]
     ])
 
     state = agg.merge(pca, on="state_code", how="left")
     state = state.merge(c08, on="state_code", how="left")
     state = state.merge(meta_df, on="state_code", how="left")
+    state = state.merge(nsdp, on="state_code", how="left")
     state = state.merge(nse, on="state_code", how="left")
 
     state["investors_per_lakh"] = (
@@ -193,14 +159,14 @@ def build() -> None:
     final_cols = [
         "state_code", "state_name",
         "total_population", "total_households", "n_districts",
-        "urban_population", "rural_population", "urban_pct",
+        "urban_population", "rural_population",
         "area_sqkm", "pop_per_sqkm",
-        "total_towns", "towns_per_lakh", "total_villages",
-        "literacy_rate_2011",
-        "worker_participation_rate_2011",
-        "graduate_pct_2011",
-        "permanent_house_pct",
-        "gsdp_per_capita_2011",
+        "total_towns", "total_villages",
+        "literate_persons_2011",
+        "total_workers_2011",
+        "graduate_above_2011",
+        "permanent_houses_2001",
+        "per_capita_income_2011",
         "total_ucc", "investors_last_year", "investors_last_5yr",
         "investors_pre_2021", "investors_per_lakh",
     ]
@@ -209,8 +175,8 @@ def build() -> None:
 
     print(f"Written: {OUT_CSV} ({len(state)} rows x {len(state.columns)} cols)")
     print()
-    print(state[["state_name", "urban_pct", "literacy_rate_2011",
-                 "worker_participation_rate_2011", "gsdp_per_capita_2011",
+    print(state[["state_name", "literate_persons_2011", "total_workers_2011",
+                 "graduate_above_2011", "per_capita_income_2011",
                  "investors_per_lakh"]].to_string(index=False))
 
 
