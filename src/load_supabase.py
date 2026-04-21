@@ -72,6 +72,12 @@ def run() -> None:
     load_csv("sebi_education_participation", SEBI_DIR / "education_participation.csv")
     load_csv("sebi_education_instrument", SEBI_DIR / "education_instrument_choice.csv")
 
+    print("\nLoading state layer...")
+    load_csv("state_layer", DATA_DIR / "state_layer.csv")
+
+    print("\nLoading savings instruments...")
+    load_csv("savings_instruments_urban", SEBI_DIR / "savings_instruments_all_urban.csv")
+
     print("\nLoading census district table...")
     df = pd.read_csv(CENSUS_DIR / "district_census_consolidated.csv", low_memory=False)
     df = df.drop(columns=["pincodes"], errors="ignore")
