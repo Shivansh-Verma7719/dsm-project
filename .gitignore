@@ -8,3 +8,5 @@ outputs/charts/*.png
 db/*.db
 node_modules/
 .next/
+methodology.md
+PLAN.md

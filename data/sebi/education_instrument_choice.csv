@@ -1,0 +1,5 @@
+education_level,years_schooling,mf_pct,equity_pct,debt_pct,n_investors
+Primary,1-7,68.8,28.1,0.0,32
+Secondary,8-10,61.3,24.3,20.2,445
+Higher Secondary,11-15,55.9,49.7,20.2,2324
+Graduate and Above,>15,76.0,65.3,27.3,2551
