@@ -30,34 +30,8 @@ INSERT INTO states VALUES
 (35,'Puducherry','South')
 ON CONFLICT DO NOTHING;
 
--- ── Lookup: education levels ──────────────────────────────────
-CREATE TABLE IF NOT EXISTS education_levels (
-    education_id smallint PRIMARY KEY,
-    bucket       text     NOT NULL,
-    years_min    smallint,
-    years_max    smallint
-);
-
-INSERT INTO education_levels VALUES
-(1,'Not Literate',0,0),(2,'Primary',1,7),(3,'Secondary',8,10),
-(4,'Higher Secondary',11,15),(5,'Graduate and Above',16,NULL)
-ON CONFLICT DO NOTHING;
-
--- ── Lookup: income bands ──────────────────────────────────────
-CREATE TABLE IF NOT EXISTS income_bands (
-    income_id      smallint PRIMARY KEY,
-    label          text     NOT NULL,
-    monthly_min_rs integer,
-    monthly_max_rs integer,
-    midpoint_rs    integer
-);
-
-INSERT INTO income_bands VALUES
-(1,'Less than 20,000',  5001,  20000,  12500),
-(2,'20,000 to 50,000', 20001,  50000,  35000),
-(3,'50,000 to 1 lakh', 50001, 100000,  75000),
-(4,'Above 1 lakh',    100001,   NULL, 150000)
-ON CONFLICT DO NOTHING;
+-- ── Reference: education ordinal (not used as FK; stored inline as years) ────
+-- Not Literate=0, Primary=6, Secondary=9, Higher Secondary=12, Graduate=16
 
 -- ============================================================
 -- Main respondent fact table
@@ -82,9 +56,9 @@ CREATE TABLE IF NOT EXISTS respondents (
     family_type         smallint,              -- Q5A (1=Nuclear 2=Joint 3=Other)
     life_stage          smallint,              -- Life_Stage (coded)
     nccs_class          smallint,              -- SECNEW (New Consumer Classification System A1-E2)
-    education_id        smallint REFERENCES education_levels(education_id),  -- Q3D
+    education_years     smallint,              -- Q3D → years of schooling (0/6/9/12/16)
     occupation_raw      smallint,              -- Q14 (raw numeric code)
-    income_id           smallint REFERENCES income_bands(income_id),         -- Q10
+    monthly_income_rs   integer,               -- Q10 → band midpoint in Rs. (12500/35000/75000/150000)
     annual_hh_income_id smallint,              -- Q10A (coded annual HH income band)
     internet_plan_type  smallint,              -- QC1 (1=No internet 2=Mobile data 3=Broadband etc.)
     has_demat_account   boolean,               -- Q29
@@ -342,8 +316,8 @@ CREATE INDEX IF NOT EXISTS idx_resp_is_investor      ON respondents(is_investor)
 CREATE INDEX IF NOT EXISTS idx_resp_state            ON respondents(state_id);
 CREATE INDEX IF NOT EXISTS idx_resp_zone             ON respondents(zone);
 CREATE INDEX IF NOT EXISTS idx_resp_urban            ON respondents(is_urban);
-CREATE INDEX IF NOT EXISTS idx_resp_education        ON respondents(education_id);
-CREATE INDEX IF NOT EXISTS idx_resp_income           ON respondents(income_id);
+CREATE INDEX IF NOT EXISTS idx_resp_education        ON respondents(education_years);
+CREATE INDEX IF NOT EXISTS idx_resp_income           ON respondents(monthly_income_rs);
 CREATE INDEX IF NOT EXISTS idx_resp_occupation       ON respondents(occupation_raw);
 CREATE INDEX IF NOT EXISTS idx_resp_gender           ON respondents(gender);
 CREATE INDEX IF NOT EXISTS idx_resp_nccs             ON respondents(nccs_class);
@@ -351,10 +325,10 @@ CREATE INDEX IF NOT EXISTS idx_resp_life_stage       ON respondents(life_stage);
 
 -- Composite: most frequent analysis joins
 CREATE INDEX IF NOT EXISTS idx_resp_state_investor   ON respondents(state_id, is_investor);
-CREATE INDEX IF NOT EXISTS idx_resp_edu_investor     ON respondents(education_id, is_investor);
-CREATE INDEX IF NOT EXISTS idx_resp_income_investor  ON respondents(income_id, is_investor);
+CREATE INDEX IF NOT EXISTS idx_resp_edu_investor     ON respondents(education_years, is_investor);
+CREATE INDEX IF NOT EXISTS idx_resp_income_investor  ON respondents(monthly_income_rs, is_investor);
 CREATE INDEX IF NOT EXISTS idx_resp_urban_investor   ON respondents(is_urban, is_investor);
-CREATE INDEX IF NOT EXISTS idx_resp_edu_income       ON respondents(education_id, income_id);
+CREATE INDEX IF NOT EXISTS idx_resp_edu_income       ON respondents(education_years, monthly_income_rs);
 CREATE INDEX IF NOT EXISTS idx_resp_year_investor    ON respondents(survey_year, is_investor);
 CREATE INDEX IF NOT EXISTS idx_resp_zone_urban       ON respondents(zone, is_urban);
 CREATE INDEX IF NOT EXISTS idx_resp_gender_investor  ON respondents(gender, is_investor);
@@ -364,11 +338,11 @@ CREATE INDEX IF NOT EXISTS idx_resp_familiarity      ON respondents(stock_market
 CREATE INDEX IF NOT EXISTS idx_resp_risk_tolerance   ON respondents(risk_tolerance_preference, is_investor);
 
 -- Instrument-specific (partial — only rows that matter)
-CREATE INDEX IF NOT EXISTS idx_resp_holds_equity     ON respondents(education_id, income_id)
+CREATE INDEX IF NOT EXISTS idx_resp_holds_equity     ON respondents(education_years, monthly_income_rs)
     WHERE holds_equity_shares = true;
-CREATE INDEX IF NOT EXISTS idx_resp_holds_mf         ON respondents(education_id, income_id)
+CREATE INDEX IF NOT EXISTS idx_resp_holds_mf         ON respondents(education_years, monthly_income_rs)
     WHERE holds_mf_etf = true;
-CREATE INDEX IF NOT EXISTS idx_resp_iep              ON respondents(iep_attended, education_id)
+CREATE INDEX IF NOT EXISTS idx_resp_iep              ON respondents(iep_attended, education_years)
     WHERE is_investor = true;
 CREATE INDEX IF NOT EXISTS idx_resp_aware_mf         ON respondents(state_id, is_urban)
     WHERE aware_mf_sip = false;

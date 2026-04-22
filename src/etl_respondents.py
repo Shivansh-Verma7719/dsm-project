@@ -28,48 +28,35 @@ YEAR = 2025
 def _nd(s):
     return str(s).replace("–", "-").replace("—", "-").strip()
 
-EDU_MAP = {
-    _nd("Illiterate"):                          1,
-    _nd("School - upto 4 years"):               1,
-    _nd("School - 5 to 9 years"):               2,
-    _nd("10th Grade / Secondary Board (e.g., SSC/CBSE/ICSE)"): 3,
-    _nd("12th Grade / Higher Secondary Board (e.g., HSC/ISC)"): 4,
-    _nd("Some College (incl. a Diploma but not Grad.)"):        4,
-}
-
+# education → years of schooling (midpoint of each bracket)
 def map_edu(val):
     if pd.isna(val):
         return None
-    v = str(val).strip()
-    # exact match with normalized dashes first
-    found = EDU_MAP.get(_nd(v))
-    if found:
-        return found
-    # keyword fallback (covers en-dash variants)
-    v_lower = v.lower()
-    if "illiterate" in v_lower or ("school" in v_lower and "upto 4" in v_lower):
-        return 1
-    if "school" in v_lower and "5 to 9" in v_lower:
-        return 2
-    if "10th" in v_lower or "secondary board" in v_lower:
-        return 3
-    if "12th" in v_lower or "higher secondary" in v_lower or "some college" in v_lower:
-        return 4
-    if "graduate" in v_lower or "postgraduate" in v_lower:
-        return 5
+    v = str(val).strip().lower()
+    if "illiterate" in v or ("school" in v and "upto 4" in v):
+        return 0   # Not Literate
+    if "school" in v and "5 to 9" in v:
+        return 6   # Primary (midpoint 1-7 yrs)
+    if "10th" in v or "secondary board" in v:
+        return 9   # Secondary (midpoint 8-10 yrs)
+    if "12th" in v or "higher secondary" in v or "some college" in v:
+        return 12  # Higher Secondary (midpoint 11-15 yrs)
+    if "graduate" in v or "postgraduate" in v:
+        return 16  # Graduate and Above
     return None
 
+# income → monthly midpoint in Rs.
 INC_MAP = {
-    "Rs. 5,001 - Rs. 10,000":   1,
-    "Rs.10,001 - Rs. 15,000":   1,
-    "Rs.15,001 - Rs. 20,000":   1,
-    "Rs.20,001 - Rs. 30,000":   2,
-    "Rs.30,001 - Rs. 40,000":   2,
-    "Rs.40,001 - Rs. 50,000":   2,
-    "Rs.50,001 - Rs. 60,000":   3,
-    "Rs.60,001 - Rs. 80,000":   3,
-    "Rs.80,001 - Rs. 1,00,000": 3,
-    "Above Rs. 1,00,000":       4,
+    "Rs. 5,001 - Rs. 10,000":    7500,
+    "Rs.10,001 - Rs. 15,000":   12500,
+    "Rs.15,001 - Rs. 20,000":   17500,
+    "Rs.20,001 - Rs. 30,000":   25000,
+    "Rs.30,001 - Rs. 40,000":   35000,
+    "Rs.40,001 - Rs. 50,000":   45000,
+    "Rs.50,001 - Rs. 60,000":   55000,
+    "Rs.60,001 - Rs. 80,000":   70000,
+    "Rs.80,001 - Rs. 1,00,000": 90000,
+    "Above Rs. 1,00,000":      150000,
 }
 
 def map_inc(val):
@@ -378,9 +365,9 @@ def build_row(r, cols):
         "family_type":    FAMILY_MAP.get(str(r.get("Q5A", "")).strip()),
         "life_stage":     _int(r.get("Life_Stage")),
         "nccs_class":     _int(r.get("SECNEW")),
-        "education_id":   map_edu(r.get("Q3D")),
-        "occupation_raw": _int(r.get("Q14")) if str(r.get("Q14","")).isdigit() else None,
-        "income_id":      map_inc(r.get("Q10")),
+        "education_years":  map_edu(r.get("Q3D")),
+        "occupation_raw":   _int(r.get("Q14")) if str(r.get("Q14","")).isdigit() else None,
+        "monthly_income_rs": map_inc(r.get("Q10")),
         "annual_hh_income_id": _int(r.get("Q10A")),
         "internet_plan_type":  _int(r.get("QC1")),
         "has_demat_account":   _int(r.get("Q29")) == 1 if r.get("Q29") is not None else None,
