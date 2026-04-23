@@ -1,0 +1,448 @@
+Resp_ID_DP
+UniqueId_DP
+Selected_State:
+UrbanRural: Urban-Rural Classification
+Q1: Gender
+SECNEW: NCCS
+Zone_DP:
+QFL: Final Investor â€“ Non-Investor Classification
+Selected_Class:
+AOL_Var_Centre: Centre
+CWE: CWE. And can you now tell me who is the chief wage earner in the family i.e., the one who contributes the &lt;u&gt;most to the household expense&lt;/u&gt;?
+Q3d: Q3d. Can you please tell me your education level?
+Q5a: Q5a. Can you please tell me about your Family Type?
+Q8: &lt;font color='Red'&gt; INTERVIEWER TO CHOOSE THE RESPONSE BASED ON OBSERVATION AND THEN CODE. DO NOT ASK THE RESPONDENT &lt;/font&gt; Q8. Can you now tell me, what is the type of house that you live in?
+Q9: Q9. Which of the following best describes the living arrangement for the house in which you stay currently?
+Q10: &lt;font color='Red'&gt; SHOW SCREEN TO RESPONDENT &lt;/font&gt; Q10. Among the following broad groups, where does your &lt;u&gt;Monthly Household Income&lt;/u&gt; from all sources before tax fall? Please consider income of all the
+Q10a: &lt;font color='Red'&gt; SHOW SCREEN TO RESPONDENT &lt;/font&gt; Q10a. And among the following broad groups, where does your &lt;u&gt;Monthly Personal Income&lt;/u&gt; from all sources before tax fall? Please consider only your in
+Q11: Q11. What is your mother tongue?
+Q12: Q12. Which faith or spiritual practice do you personally follow or identify with? &lt;font color='Red'&gt; ASK THIS QUESTION ONLY IF THE RELIGION REMAINS UNCLEAR EVEN AFTER CODING THE NAME OF THE RESPONDENT. OTHERWISE, INTERVIEWER CAN DIRECTLY PROCEE
+Q13: Q13. What is your marital status?
+Q13a: Could you please indicate if any (or all) of your children are financially dependent on you? By financial dependence, we mean they rely on you for financial support to cover their monthly expenses
+Q14: Q14. What is your current primary occupation?
+QC1: What type of Internet / data plan does your household have?
+QRT: Which of the following best describes your preference when considering returns from investments?
+Q21a: Which of the following financial product(s) are you aware of?
+Q29: Do you have a Demat account / Share Market trading account?
+INT_TYPE: &lt;font style='font-weight:bold'&gt; Type of Interview &lt;/font&gt;
+QLISTMAIN: QLISTMAIN. Please select the applicable option based on the respondent’s willingness and qualification
+Weight (Group 2)(Main)
+Weight (Sample)
+Life_Stage
+CON_ISEC: ISEC
+Q24a: Could you please tell me if you have ever invested in these products in the past
+Futures & Options (F&O) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Stocks / Shares : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Gold Exchange Trade Funds (Gold ETF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+National Pension System (NPS) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Life insurance / Unit Linked Insurance Plans (ULIPS) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Chit Fund : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Real Estate as an Investment (excluding where you are staying) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Corporate Bonds : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Fixed Deposits / Recurring Deposit / Bank Savings Account : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Sovereign Gold Bond (SGB) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Employees Provident Fund (EPF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Portfolio Management Services (PMS) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Gold - Physical form / Sovereign Gold Bond (SGB) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Alternate Investment Fund (AIF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Specialized Investment Fund (SIF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+MF_ETF : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Q23a: Future Consideration for Selective Financial Products Not Invested in Currently
+Q25a: Which of the following financial products will you never consider investing in the future?
+Q1A: Are you aware of the entities that are directly involved in regulating or operating the securities market in India?
+Are well regulated : Q1B
+Are strong enough to handle ups and downs in the markets : Q1B
+Offer new avenues and instrument to invest : Q1B
+Are accessible to investors like me : Q1B
+Offer good opportunities for wealth creation : Q1B
+Are easy and convenient to invest in : Q1B
+'Monthly Expenses (e.g., rent, utilities, groceries, transportation, medical)' : Q1M_1: TOTAL
+'Savings (e.g., savings accounts, emergency funds)' : Q1M_1: TOTAL
+'Loan Repayments (e.g., home loan EMIs, personal loan repayments, car loan installments, credit card bills)' : Q1M_1: TOTAL
+'Investments (e.g., stocks, mutual funds, real estate, gold, retirement products)' : Q1M_1: TOTAL
+'Other Expenses (e.g., dining out, travel, hobbies, entertainment, luxury purchases)' : Q1M_1: TOTAL
+Futures & Options (F&O) : Q2M_1: TOTAL
+Stocks / Shares : Q2M_1: TOTAL
+Gold Exchange Trade Funds (Gold ETF) : Q2M_1: TOTAL
+National Pension System (NPS) : Q2M_1: TOTAL
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Q2M_1: TOTAL
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Q2M_1: TOTAL
+Chit Fund : Q2M_1: TOTAL
+Real Estate as an Investment (excluding where you are staying) : Q2M_1: TOTAL
+Corporate Bonds : Q2M_1: TOTAL
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Q2M_1: TOTAL
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Q2M_1: TOTAL
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Q2M_1: TOTAL
+Sovereign Gold Bond (SGB) : Q2M_1: TOTAL
+Employees Provident Fund (EPF) : Q2M_1: TOTAL
+Portfolio Management Services (PMS) : Q2M_1: TOTAL
+Gold - Physical form / Sovereign Gold Bond (SGB) : Q2M_1: TOTAL
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Q2M_1: TOTAL
+Alternate Investment Fund (AIF) : Q2M_1: TOTAL
+Specialized Investment Fund (SIF) : Q2M_1: TOTAL
+MF+ETF : Q2M_1: TOTAL
+Buying a house : Q6_RANK
+Children's education : Q6_RANK
+Planning for retirement : Q6_RANK
+Building an emergency fund : Q6_RANK
+Growing wealth : Q6_RANK
+'Saving for a major expense (e.g., purchasing car, vacation)' : Q6_RANK
+Generating passive income : Q6_RANK
+Supporting family members : Q6_RANK
+Achieving financial independence : Q6_RANK
+My child's marriage : Q6_RANK
+Optimizing tax savings and benefits : Q6_RANK
+Earning money actively on a daily basis : Q6_RANK
+Others : Q6_RANK
+Futures & Options (F&O) : Q7 Investment Duration Classification
+Stocks / Shares : Q7 Investment Duration Classification
+Gold Exchange Trade Funds (Gold ETF) : Q7 Investment Duration Classification
+National Pension System (NPS) : Q7 Investment Duration Classification
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Q7 Investment Duration Classification
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Q7 Investment Duration Classification
+Chit Fund : Q7 Investment Duration Classification
+Real Estate as an Investment (excluding where you are staying) : Q7 Investment Duration Classification
+Corporate Bonds : Q7 Investment Duration Classification
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Q7 Investment Duration Classification
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Q7 Investment Duration Classification
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Q7 Investment Duration Classification
+Sovereign Gold Bond (SGB) : Q7 Investment Duration Classification
+Employees Provident Fund (EPF) : Q7 Investment Duration Classification
+Portfolio Management Services (PMS) : Q7 Investment Duration Classification
+Gold - Physical form / Sovereign Gold Bond (SGB) : Q7 Investment Duration Classification
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Q7 Investment Duration Classification
+Alternate Investment Fund (AIF) : Q7 Investment Duration Classification
+Specialized Investment Fund (SIF) : Q7 Investment Duration Classification
+MF_ETF : Q7 Investment Duration Classification
+Short Term : Q8 Definition of Short/Mid/Long Term
+Mid Term : Q8 Definition of Short/Mid/Long Term
+Long Term : Q8 Definition of Short/Mid/Long Term
+Q10M: Q10 Reaction to Market Downturn
+Q10M_PostCode:
+Q11M: Q11. How familiar are you with investing in stock markets?
+Q12M: Q12. Suppose the rate of return on your savings is 5% per year guaranteed and inflation is 6% per year. After a year, with this savings, do you think you will be able to buy...?
+Q13M:
+Futures & Options (F&O) : Q14_RANK
+Stocks / Shares : Q14_RANK
+Gold Exchange Trade Funds (Gold ETF) : Q14_RANK
+National Pension System (NPS) : Q14_RANK
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Q14_RANK
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Q14_RANK
+Chit Fund : Q14_RANK
+Real Estate as an Investment (excluding where you are staying) : Q14_RANK
+Corporate Bonds : Q14_RANK
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Q14_RANK
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Q14_RANK
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Q14_RANK
+Sovereign Gold Bond (SGB) : Q14_RANK
+Employees Provident Fund (EPF) : Q14_RANK
+Portfolio Management Services (PMS) : Q14_RANK
+Gold - Physical form / Sovereign Gold Bond (SGB) : Q14_RANK
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Q14_RANK
+Alternate Investment Fund (AIF) : Q14_RANK
+Specialized Investment Fund (SIF) : Q14_RANK
+MF+ETF : Q14_RANK
+Futures & Options (F&O) : Q15_RANK
+Stocks / Shares : Q15_RANK
+Gold Exchange Trade Funds (Gold ETF) : Q15_RANK
+National Pension System (NPS) : Q15_RANK
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Q15_RANK
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Q15_RANK
+Chit Fund : Q15_RANK
+Real Estate as an Investment (excluding where you are staying) : Q15_RANK
+Corporate Bonds : Q15_RANK
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Q15_RANK
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Q15_RANK
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Q15_RANK
+Sovereign Gold Bond (SGB) : Q15_RANK
+Employees Provident Fund (EPF) : Q15_RANK
+Portfolio Management Services (PMS) : Q15_RANK
+Gold - Physical form / Sovereign Gold Bond (SGB) : Q15_RANK
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Q15_RANK
+Alternate Investment Fund (AIF) : Q15_RANK
+Specialized Investment Fund (SIF) : Q15_RANK
+MF+ETF : Q15_RANK
+Direct plans in mutual funds have a lower expense ratio than regular plans : Period of Last Investment for Selective Products
+A portion of investments in pension/provident funds is invested in the stock market : Period of Last Investment for Selective Products
+The concept of compounding is beneficial in the short term : Period of Last Investment for Selective Products
+KYC can be completed online : Period of Last Investment for Selective Products
+Need to open a Demat account to invest in securities in addition to trading account : Period of Last Investment for Selective Products
+Investment options that offer high returns are also associated with high-risk : Period of Last Investment for Selective Products
+Investments across different asset classes increase risk : Period of Last Investment for Selective Products
+'CAS (Consolidated Account statement) provides overview of investments in Securities/stock market.E.g. Equity, Mutual Funds, Bonds, Government Securities, NPS, NIR, etc. investment held in demat and folio form' : Period of Last Investment for Selective Products
+BSDA (Basic service demat account) allows you to have a demat account with nil or negligible charges when your investment holdings are below a certain amount : Period of Last Investment for Selective Products
+Q16M: Q16. In case of any grievances whom would you approach first?
+Q17M: Q17. Are you aware of SEBI’s grievance redressal mechanism (SCORES Website (www.scores.gov. in) / Toll Free Helpline No. (1800 266 7575 or 1800 22 7575)/ SEBI Offices)
+Q20AM: Q20A. There are Investor Education Programmes run by prominent institutions/Industry Associations (SEBI, NISM, Stock Exchanges, Depositories, AMFI, etc.) Please let me know if you have attended any of these investor education programs
+Q20BM: &lt;font color='Red'&gt; READ OUT OPTION &lt;/font&gt; Q20B. According to you, what is the effectiveness of the awareness programmes in your investment decision making?
+Q20CM: &lt;font color='Red'&gt; READ OUT OPTION &lt;/font&gt; Q20C. Please let me know what your preferred medium would be to receive the investor education program? Select top 3
+Q20DM: &lt;font color='Red'&gt; READ OUT OPTION &lt;/font&gt; Q20D. Could you please share your preferred format for receiving the investor education program? Select top 3
+Q20E: Q20E. In which language would you prefer these investor education programmes to be conducted?
+Q20F: Q20F. Which topics should be covered in these investor education programs to enhance financial awareness and decision-making?
+SS_B1: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; B1. What sources did you reach- out / use to gather information when you first decided to invest in stocks or shares? Please select top 3  &lt;font color='Red'&gt; MULTI CODING &
+SS_B2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; B2. Could you please tell me your reasons for deciding to start investments in stocks/shares? Please select top 3 reasons &lt;font color=' Red'&gt; MULTI CODIN
+SS_B3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; B3. What are your usual sources to gather information related to Stocks/ Shares? Please select top 3  &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+SS_B4: B4. You mentioned that you follow Social Media Influencers to get information for stocks/ shares. Which platform do you use to follow them? &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+SS_B5: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; B5. How credible do you find the financial influencers you follow on social media? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+SS_B6: Role of financial influencers in decision making
+SS_B7: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; B7. When you invest in stocks/shares, what types of information do you look for? Top 3 &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+SS_B10: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; B10. Could you please tell me what your current reasons are for investing in stocks/shares? Please select your top 3 reasons &lt;font color=' Red'&gt; MULTI CODING &lt;/font&gt;
+SS_B11: B11. Please tell me how frequently you invest in stock/shares? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+SS_B12: B12. Could you please tell me what you think are the expected returns for stock/ shares? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+SS_B13: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; B13. What challenges do you face before/ while making fresh investment in stock/shares? Please select your top 3 challenges faced &lt;font color=' Red'&gt; MULTI CODING &lt;/fon
+SS_B14: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; B14. What challenges do you face after&lt;/ b&gt; making investment in stock/shares? Please select your top 3 challenges faced &lt;font color='Red'&gt; MULTI CODING &lt
+SS_B15: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; B15. You have not invested in stock/shares in the last 1 year. Could you please tell me what are the reasons for not investing in stock/shares anymore?  Please select top 3 reasons&lt;/b&
+FO_C1: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; C1. What sources did you reach- out to / use to gather information when you first decided to invest in Future & Options? Please select top 3  &lt;font color='Red'&gt; MULTI CODIN
+FO_C2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; C2. Could you please tell me the reasons for deciding to invest in Future & Options? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/fon
+FO_C3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; C3. What are your usual sources to gather information related to Future & Options? Please select top 3  &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+FO_C4: C4. You mentioned that you follow Social Media Influencers to get information for Future & Options. Which platform do you use to follow them? &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+FO_C5: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; C5. How credible do you find the financial influencers you follow on social media? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+FO_C6: &lt;font color='Red'&gt; READ OUT OPTIONS FROM THE SCREEN &lt;/font&gt; C6. You mentioned that you follow financial influencers on social media, select the most appropriate option. &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+FO_C7: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; C7. When you invest in Future & Options, what types of information do you look for? Top 3 &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+FO_C10: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; C10. Could you please tell me what your current reasons are for investing in F&Os? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+FO_C11: C11. Please tell me how frequently you invest in Futures & Options? &lt;font color=' Red'&gt; SINGLE CODING &lt;/font&gt;
+FO_C12: C12. Could you please tell me what you think are the expected returns for Futures & Options? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+FO_C13: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; C13. What challenges do you face before/ while making fresh investment in Futures & Options? Please select your top 3 challenges faced &lt;font color='Red'&gt; MULTI CODING &lt;
+FO_C14: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; C14. What challenges do you face after&lt;/ b&gt; making investment in Futures & Options? Please select your top 3 challenges faced &lt;font color=' Red'&gt; MULTI CODI
+FO_C15: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; C15. You have not invested in Futures & Options in the last 1 year. Could you please tell me what the reasons are for not investing in futures & options anymore? Please select top 3 reaso
+REIT_InvIT_E1: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; E1. What sources did you reach out to / use to gather information when you first decided to invest in REITs and/or InvITs? Please select top 3  &lt;font color='Red'&gt; M
+REIT_InvIT_E2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; E2. Could you please tell me your reasons for deciding to start investments in REITs and/or InvITs? Please select top 3 reasons &lt;font color='Red'&gt
+REIT_InvIT_E3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; E3. What are your usual sources to gather information related to REITs and/or InvITs? Please select top 3  &lt;font color=' Red'&gt; MULTI CODING &lt;/font&gt;
+REIT_InvIT_E4: E4. You mentioned that you follow Social Media Influencers to get information for REITs and/or InvITs. Which platform do you use to follow them? &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+REIT_InvIT_E5: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; E5. How credible do you find the financial influencers you follow on social media? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+REIT_InvIT_E6: &lt;font color='Red'&gt; READ OUT OPTIONS FROM THE SCREEN &lt;/font&gt; E6. You mentioned that you follow financial influencers on social media, select the most appropriate option. &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+REIT_InvIT_E7: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; E7. When you invest in REITs and/or InvITs, what types of information do you look for? Top 3 &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+REIT_InvIT_E10: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; E10. Could you please tell me what your current reasons are for investing in REITs and/or InvITs? Please select top 3 reasons &lt; font color='Red'&gt; MULTI CODING &lt;
+REIT_InvIT_E11: E11. Please tell me how frequently you invest in REITs and/or InvITs? &lt; font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+REIT_InvIT_E12: E12. Could you please tell me what you think are the expected returns for REITs and/or InvITs? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+REIT_InvIT_E13: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; E13. What challenges do you face before/while making fresh investment in REITs and/or InvITs? Please select your top 3 challenges faced &lt;font color='Red'&gt; MULTI CO
+REIT_InvIT_E14: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; E14. What challenges do you face after making investment in REITs and/or InvITs? Please select your top 3 challenges faced&lt;/ b&gt; &lt;font color='Red'&gt; M
+REIT_InvIT_E15: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; E15. You have not invested in REITS AND/OR INVITS in the last 1 year. Could you please tell me what the reasons are for not investing in REITS AND/OR INVITS anymore? Please select
+GC_Bonds_F1: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; F1. What sources did you reach out to / use to gather information when you first decided to invest in Corporate bonds? Please select top 3 &lt;/ b&gt; &lt;font color='Red'&gt; MULTI
+GC_Bonds_F2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; F2. Could you please tell me your reasons for deciding to start investments in Corporate bonds? Please select top 3 reasons &lt;font color='Red'&gt; MULT
+GC_Bonds_F3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; F3. What are your usual sources to gather information related to Corporate bonds? Please select top 3  &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+GC_Bonds_F4: F4. You mentioned that you follow Social Media Influencers to get information for Corporate bonds. Which platform do you use to follow them? &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+GC_Bonds_F5: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; F5. How credible do you find the financial influencers you follow on social media? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+GC_Bonds_F6: &lt;font color='Red'&gt; READ OUT OPTIONS FROM THE SCREEN &lt;/font&gt; F6. You mentioned that you follow financial influencers on social media, select the most appropriate option. &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+GC_Bonds_F7: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; F7. When you invest in Corporate bonds, what types of information do you look for? Top 3 &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+GC_Bonds_F10: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; F10. Could you please tell me what your current reasons are for investing in Corporate bonds? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&g
+GC_Bonds_F11: F11. Please tell me how frequently you invest in Corporate bonds? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+GC_Bonds_F12: F12. Could you please tell me what you think are the expected returns for Corporate bonds? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+GC_Bonds_F13: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; F13. What challenges do you face before/while making fresh investment in Corporate bonds? Please select your top 3 challenges faced &lt; font color='Red'&gt; MULTI CODING
+GC_Bonds_F14: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; F14. What challenges do you face after making investment in Corporate bonds? Please select your top 3 challenges faced &lt;font color='Red'&gt; MULTI CO
+GC_Bonds_F15: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; F15. You have not invested in Corporate bonds in the last 1 year. Could you please tell me what the reasons are for not investing in Corporate bonds anymore? Please select top 3 rea
+AIF_G1: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; G1. What sources did you reach out to / use to gather information when you first decided to invest in Alternative Investment Fund (AIF)? Please select top 3  &lt;font color='Red
+AIF_G2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; G2. Could you please tell me your reasons for deciding to start investments in Alternative Investment Fund (AIF)? Please select top 3 reasons&lt;/ b&gt; &lt;font color=
+AIF_G3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; G3. What are your usual sources to gather information related to Alternative Investment Fund (AIF)? Please select top 3  &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+AIF_G4: G4. You mentioned that you follow Social Media Influencers to get information for Alternative Investment Fund (AIF). Which platform do you use to follow them? &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+AIF_G5: G5. How credible do you find the financial influencers you follow on social media? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+AIF_G6: &lt;font color='Red'&gt; READ OUT OPTIONS FROM THE SCREEN &lt;/font&gt; G6. You mentioned that you follow financial influencers on social media, select the most appropriate option. &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+AIF_G7: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; G7. When you invest in Alternative Investment Fund (AIF), what types of information do you look for? Top 3 &lt;font color='Red'&gt; MULTI CODING &lt;/ font&gt;
+AIF_G10: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; G10. Could you please tell me what your current reasons are for investing in Alternative Investment Fund (AIF)? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODIN
+AIF_G11: G11. Please tell me how frequently you invest in Alternative Investment Fund (AIF)? &lt; font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+AIF_G12: G12. Could you please tell me what you think are the expected returns for Alternative Investment Fund (AIF)? &lt;font color='Red'&gt; SINGLE CODING &lt;/font&gt;
+AIF_G13: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; G13. What challenges do you face before/ while making fresh investment in Alternative Investment Fund (AIF)? Please select your top 3 challenges faced &lt;font color='Red'&gt;
+AIF_G14: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; G14. What challenges do you face  after making investment in Alternative Investment Fund (AIF)? Please select your top 3 challenges faced &lt;font color='Red
+AIF_G15: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; G15. You have not invested in Alternative Investment Fund (AIF) in the last 1 year. Could you please tell me what the reasons are for not investing in Alternative Investment Fund (AIF) anymore? &
+SS_BB1: What are your primary reasons for considering investing in stock market products
+SS_BB2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; BB2. What are your reasons for not investing in stocks/shares? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+SS_BB3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; BB3. What factors would encourage you to consider investing in stocks/shares that you currently do not invest in? Please select top 3 reasons &lt; font color='Red'&gt; MULTI COD
+SS_BB4: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; BB4. What were the reasons you stopped investing in stock/shares? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+FO_CC1: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; CC1. What are your primary reasons for considering investing in F&Os ? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+FO_CC2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; CC2. What are your reasons for not investing in F&Os? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+FO_CC3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; CC3. What factors would encourage you to consider investing in F&Os that you currently do not invest in? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/f
+FO_CC4: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; CC4. What were the reasons you stopped investing in futures & options? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+RI_EE1: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; EE1. What are your primary reasons for considering investing in REITS AND/OR INVITS? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+RI_EE2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; EE2. What are your reasons for not investing in REITS AND/OR INVITS? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/ font&gt;
+RI_EE3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; EE3. What factors would encourage you to consider investing in REITS AND/OR INVITS that you currently do not invest in? Please select top 3 reasons&lt;/ b&gt; &lt;font color='Red'&gt; MUL
+RI_EE4: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; EE4. What were the reasons you stopped investing in REITS AND/OR INVITS? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/ font&gt;
+GC_FF1: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; FF1. What are your primary reasons for considering investing in Corporate Bonds? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+GC_FF2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; FF2. What are your reasons for not investing in Corporate Bonds? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+GC_FF3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; FF3. What factors would encourage you to consider investing in Corporate Bonds that you currently do not invest in? Please select top 3 reasons &lt; font color='Red'&gt; MULTI C
+GC_FF4: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; FF4. What were the reasons you stopped investing in Corporate Bonds? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+AIF_GG1: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; GG1. What are your primary reasons for considering investing Alternative Investment Fund (AIF)? Please select top 3 reasons &lt;font color=' Red'&gt; MULTI CODING &lt;/font&gt;
+AIF_GG2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; GG2. What are your reasons for not investing in Alternative Investment Fund (AIF) ? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+AIF_GG3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; GG3. What factors would encourage you to consider investing in Alternative Investment Fund (AIF) that you currently do not invest in? Please select top 3 reasons &lt;font color
+AIF_GG4: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; GG4. What were the reasons you stopped investing in Alternative Investment Fund (AIF)? Please select top 3 reasons &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+M1a: M1a. How often do you watch Television?
+M1b: M1b. How often do you listen to radio / FM?
+M1c: M1c. How often do you read newspapers/magazines?
+M1d: M1d. How often do you use internet?
+M2: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; M2. From the list below please select all the genres/categories of TV channels that you watch &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+M3: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; M3. In which of these time bands do you listen to the Radio?
+M4: &lt;font color='Red'&gt; READ OUT THE OPTIONS &lt;/font&gt; M4. In which language do you typically read newspapers/magazine?
+M5: &lt;font color='Red'&gt; READ OUT THE OPTIONS &lt;/font&gt; M5. Do you read newspaper/magazine online or offline?
+M7: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; M7. Can you please let us know which of the following activities have you done using internet/data in the &lt;u&gt;last one month&lt;/u&gt;? &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+M8: M8. Which apps/website do you use to watch videos on demand/OTT? &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+M9: M9. Which social media apps/website do you use? &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+M10: &lt;font color='Red'&gt; SHOW SCREEN &lt;/font&gt; M10. Which of the below financial activities do you perform on the internet? &lt;font color='Red'&gt; MULTI CODING &lt;/font&gt;
+'Monthly Expenses (e.g., rent, utilities, groceries, transportation, medical)' : Q1M: Allocation of monthly income
+'Savings (e.g., savings accounts, emergency funds)' : Q1M: Allocation of monthly income
+'Loan Repayments (e.g., home loan EMIs, personal loan repayments, car loan installments, credit card bills)' : Q1M: Allocation of monthly income
+'Investments (e.g., stocks, mutual funds, real estate, gold, retirement products)' : Q1M: Allocation of monthly income
+'Other Expenses (e.g., dining out, travel, hobbies, entertainment, luxury purchases)' : Q1M: Allocation of monthly income
+Futures & Options (F&O) : Q2M: Percentage you invest across the following investment products
+Stocks / Shares : Q2M: Percentage you invest across the following investment products
+Gold Exchange Trade Funds (Gold ETF) : Q2M: Percentage you invest across the following investment products
+National Pension System (NPS) : Q2M: Percentage you invest across the following investment products
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Q2M: Percentage you invest across the following investment products
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Q2M: Percentage you invest across the following investment products
+Chit Fund : Q2M: Percentage you invest across the following investment products
+Real Estate as an Investment (excluding where you are staying) : Q2M: Percentage you invest across the following investment products
+Corporate Bonds : Q2M: Percentage you invest across the following investment products
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Q2M: Percentage you invest across the following investment products
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Q2M: Percentage you invest across the following investment products
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Q2M: Percentage you invest across the following investment products
+Sovereign Gold Bond (SGB) : Q2M: Percentage you invest across the following investment products
+Employees Provident Fund (EPF) : Q2M: Percentage you invest across the following investment products
+Portfolio Management Services (PMS) : Q2M: Percentage you invest across the following investment products
+Gold - Physical form / Sovereign Gold Bond (SGB) : Q2M: Percentage you invest across the following investment products
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Q2M: Percentage you invest across the following investment products
+Alternate Investment Fund (AIF) : Q2M: Percentage you invest across the following investment products
+Specialized Investment Fund (SIF) : Q2M: Percentage you invest across the following investment products
+MF+ETF : Q2M: Percentage you invest across the following investment products
+MAIN COMPLETE
+Q22A_All: Which of the following financial products do you currently hold investments in
+Mutual Funds (One-time Lumpsum / SIP) : Q4M:Sources of Awareness
+Exchange Trade Funds (ETF) / Gold Exchange Trade Funds (Gold ETF) : Q5M: Media of Awareness
+Futures & Options (F&O) : Q4M:Sources of Awareness
+Futures & Options (F&O) : Q5M: Media of Awareness
+Stocks / Shares : Q4M:Sources of Awareness
+Stocks / Shares : Q5M: Media of Awareness
+Gold Exchange Trade Funds (Gold ETF) : Q4M:Sources of Awareness
+Gold Exchange Trade Funds (Gold ETF) : Q5M: Media of Awareness
+National Pension System (NPS) : Q4M:Sources of Awareness
+National Pension System (NPS) : Q5M: Media of Awareness
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Q4M:Sources of Awareness
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Q5M: Media of Awareness
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Q4M:Sources of Awareness
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Q5M: Media of Awareness
+Chit Fund : Q4M:Sources of Awareness
+Chit Fund : Q5M: Media of Awareness
+Real Estate as an Investment (excluding where you are staying) : Q4M:Sources of Awareness
+Real Estate as an Investment (excluding where you are staying) : Q5M: Media of Awareness
+Corporate Bonds : Q4M:Sources of Awareness
+Corporate Bonds : Q5M: Media of Awareness
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Q4M:Sources of Awareness
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Q5M: Media of Awareness
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Q4M:Sources of Awareness
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Q5M: Media of Awareness
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Q4M:Sources of Awareness
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Q5M: Media of Awareness
+Sovereign Gold Bond (SGB) : Q4M:Sources of Awareness
+Sovereign Gold Bond (SGB) : Q5M: Media of Awareness
+Employees Provident Fund (EPF) : Q4M:Sources of Awareness
+Employees Provident Fund (EPF) : Q5M: Media of Awareness
+Portfolio Management Services (PMS) : Q4M:Sources of Awareness
+Portfolio Management Services (PMS) : Q5M: Media of Awareness
+Gold - Physical form / Sovereign Gold Bond (SGB) : Q4M:Sources of Awareness
+Gold - Physical form / Sovereign Gold Bond (SGB) : Q5M: Media of Awareness
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Q4M:Sources of Awareness
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Q5M: Media of Awareness
+Alternate Investment Fund (AIF) : Q4M:Sources of Awareness
+Alternate Investment Fund (AIF) : Q5M: Media of Awareness
+Specialized Investment Fund (SIF) : Q4M:Sources of Awareness
+Specialized Investment Fund (SIF) : Q5M: Media of Awareness
+MF+ETF : Q4M:Sources of Awareness
+MF+ETF : Q5M: Media of Awareness
+Futures & Options (F&O) : Q4M:Sources of Awareness
+Futures & Options (F&O) : Q5M: Media of Awareness
+Stocks / Shares : Q4M:Sources of Awareness
+Stocks / Shares : Q5M: Media of Awareness
+Gold Exchange Trade Funds (Gold ETF) : Q4M:Sources of Awareness
+Gold Exchange Trade Funds (Gold ETF) : Q5M: Media of Awareness
+National Pension System (NPS) : Q4M:Sources of Awareness
+National Pension System (NPS) : Q5M: Media of Awareness
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Q4M:Sources of Awareness
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Q5M: Media of Awareness
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Q4M:Sources of Awareness
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Q5M: Media of Awareness
+Chit Fund : Q4M:Sources of Awareness
+Chit Fund : Q5M: Media of Awareness
+Real Estate as an Investment (excluding where you are staying) : Q4M:Sources of Awareness
+Real Estate as an Investment (excluding where you are staying) : Q5M: Media of Awareness
+Corporate Bonds : Q4M:Sources of Awareness
+Corporate Bonds : Q5M: Media of Awareness
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Q4M:Sources of Awareness
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Q5M: Media of Awareness
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Q4M:Sources of Awareness
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Q5M: Media of Awareness
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Q4M:Sources of Awareness
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Q5M: Media of Awareness
+Sovereign Gold Bond (SGB) : Q4M:Sources of Awareness
+Sovereign Gold Bond (SGB) : Q5M: Media of Awareness
+Employees Provident Fund (EPF) : Q4M:Sources of Awareness
+Employees Provident Fund (EPF) : Q5M: Media of Awareness
+Portfolio Management Services (PMS) : Q4M:Sources of Awareness
+Portfolio Management Services (PMS) : Q5M: Media of Awareness
+Gold - Physical form / Sovereign Gold Bond (SGB) : Q4M:Sources of Awareness
+Gold - Physical form / Sovereign Gold Bond (SGB) : Q5M: Media of Awareness
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Q4M:Sources of Awareness
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Q5M: Media of Awareness
+Alternate Investment Fund (AIF) : Q4M:Sources of Awareness
+Alternate Investment Fund (AIF) : Q5M: Media of Awareness
+Specialized Investment Fund (SIF) : Q4M:Sources of Awareness
+Specialized Investment Fund (SIF) : Q5M: Media of Awareness
+MF+ETF : Q4M:Sources of Awareness
+MF+ETF : Q5M: Media of Awareness
+Futures & Options (F&O) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Stocks / Shares : Active/Dormant Investor Based Q22C and productwise for dashboard
+Gold Exchange Trade Funds (Gold ETF) : Active/Dormant Investor Based Q22C and productwise for dashboard
+National Pension System (NPS) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Life insurance / Unit Linked Insurance Plans (ULIPS) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Chit Fund : Active/Dormant Investor Based Q22C and productwise for dashboard
+Real Estate as an Investment (excluding where you are staying) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Corporate Bonds : Active/Dormant Investor Based Q22C and productwise for dashboard
+Fixed Deposits / Recurring Deposit / Bank Savings Account : Active/Dormant Investor Based Q22C and productwise for dashboard
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Sovereign Gold Bond (SGB) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Employees Provident Fund (EPF) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Portfolio Management Services (PMS) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Gold - Physical form / Sovereign Gold Bond (SGB) : Active/Dormant Investor Based Q22C and productwise for dashboard
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : Active/Dormant Investor Based Q22C and productwise for dashboard
+Alternate Investment Fund (AIF) : Active/Dormant Investor Based Q22C and productwise for dashboard
+Specialized Investment Fund (SIF) : Active/Dormant Investor Based Q22C and productwise for dashboard
+MF_ETF : Active/Dormant Investor Based Q22C and productwise for dashboard
+Futures & Options (F&O) : NI_Dashboard: Non- Investor and productwise for dashboard
+Stocks / Shares : NI_Dashboard: Non- Investor and productwise for dashboard
+Gold Exchange Trade Funds (Gold ETF) : NI_Dashboard: Non- Investor and productwise for dashboard
+National Pension System (NPS) : NI_Dashboard: Non- Investor and productwise for dashboard
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : NI_Dashboard: Non- Investor and productwise for dashboard
+Life insurance / Unit Linked Insurance Plans (ULIPS) : NI_Dashboard: Non- Investor and productwise for dashboard
+Chit Fund : NI_Dashboard: Non- Investor and productwise for dashboard
+Real Estate as an Investment (excluding where you are staying) : NI_Dashboard: Non- Investor and productwise for dashboard
+Corporate Bonds : NI_Dashboard: Non- Investor and productwise for dashboard
+Fixed Deposits / Recurring Deposit / Bank Savings Account : NI_Dashboard: Non- Investor and productwise for dashboard
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : NI_Dashboard: Non- Investor and productwise for dashboard
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : NI_Dashboard: Non- Investor and productwise for dashboard
+Sovereign Gold Bond (SGB) : NI_Dashboard: Non- Investor and productwise for dashboard
+Employees Provident Fund (EPF) : NI_Dashboard: Non- Investor and productwise for dashboard
+Portfolio Management Services (PMS) : NI_Dashboard: Non- Investor and productwise for dashboard
+Gold - Physical form / Sovereign Gold Bond (SGB) : NI_Dashboard: Non- Investor and productwise for dashboard
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : NI_Dashboard: Non- Investor and productwise for dashboard
+Alternate Investment Fund (AIF) : NI_Dashboard: Non- Investor and productwise for dashboard
+Specialized Investment Fund (SIF) : NI_Dashboard: Non- Investor and productwise for dashboard
+MF_ETF : NI_Dashboard: Non- Investor and productwise for dashboard
+A1_D1:MF+ETF- Sources to gather information
+A2_D2:MF+ETF - Top 3 Reasons for deciding to start investments
+A3_D3: MF+ETF - Usual sources to gather information related to MF or ETF
+A4_D4: Platform use to follow Social media Influencer
+A5_D5: MF+ETF - How credible do you find the financial influencers you follow on social media
+A6_D6: MF+ETF - Role of financial influencers in decision making
+A7_D7:MF+EFT - When you invest in MF/ETF, what types of information do you look for
+A10_D10:MF+ETF -  Top 3 Current reasons are for investing in MF/ETF
+A11_D11:MF+ETF - Frequently you invest in MF/ETF.
+A12_D12: MF+ETF - What you think are the expected returns for Mutual Funds
+A13_D13:MF+ETF - What challenges do you face before/ while making fresh investment in MF/ETF
+A14_D14:  What challenges do you face after making investment in Mutual Funds
+A15_D15: You have not invested in MF/ETF in the last 1 year. Top 3 Reasons are for not investing
+AA1_DD1:MF+ETF - Top 3 Primary reasons for considering investing in MF/ETFs.
+AA2_DD2:MF+ETF - Top 3 Reasons for not investing in MF/ETF
+AA3_DD3:MF+EF - Factors would encourage you to consider investing in MF/ETF that you currently do not invest in
+AA4_DD4: What were the TOp 3 reasons you stopped investing in MF/ETF.

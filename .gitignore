@@ -14,3 +14,5 @@ PLAN.md
 .venv/
 __pycache__/
 *.pyc
+
+Respondent Data.xlsx

@@ -1,0 +1,63 @@
+Resp_ID_DP
+UniqueId_DP
+Selected_State:
+UrbanRural: Urban-Rural Classification
+Q1: Gender
+SECNEW: NCCS
+Zone_DP:
+QFL: Final Investor – Non-Investor Classification
+Life_Stage
+Q3d: Q3d. Can you please tell me your education level?
+Q5a: Q5a. Can you please tell me about your Family Type?
+Q10: ...Monthly Household Income...
+Q10a: ...Monthly Personal Income...
+Q13: Q13. What is your marital status?
+Q14: Q14. What is your current primary occupation?
+Weight (Group 2)(Main)
+Weight (Sample)
+Q21a: Which of the following financial product(s) are you aware of?
+Q22A_All: Which of the following financial products do you currently hold investments in
+Q29: Do you have a Demat account / Share Market trading account?
+Q24a: Could you please tell me if you have ever invested in these products in the past
+Q25a: Which of the following financial products will you never consider investing in the future?
+QRT: Which of the following best describes your preference when considering returns from investments?
+Q11M: Q11. How familiar are you with investing in stock markets?
+Q12M: Q12. Suppose the rate of return on your savings is 5% per year guaranteed and inflation is 6% per year. After a year, with this savings, do you think you will be able to buy...?
+Q16M: Q16. In case of any grievances whom would you approach first?
+Q17M: Q17. Are you aware of SEBI’s grievance redressal mechanism (SCORES Website / Toll Free Helpline / SEBI Offices)
+Q20AM: Q20A. Have you attended any investor education programs?
+Q20BM: Q20B. Effectiveness of awareness programmes in investment decision making
+Q20CM: Q20C. Preferred medium for investor education program
+Q20DM: Q20D. Preferred format for investor education program
+Q20E: Q20E. Preferred language for investor education programmes
+Q20F: Q20F. Topics to be covered in investor education programs
+SS_B1: Sources used to gather information when first investing in stocks/shares
+SS_B3: Usual sources to gather information related to Stocks/Shares
+SS_B5: How credible do you find the financial influencers you follow on social media?
+SS_B7: When you invest in stocks/shares, what types of information do you look for?
+SS_B10: Current reasons for investing in stocks/shares
+SS_B11: How frequently you invest in stock/shares
+SS_B12: Expected returns for stock/shares
+SS_B13: Challenges before/while making fresh investment in stock/shares
+SS_B14: Challenges after making investment in stock/shares
+SS_B15: Reasons for not investing in stock/shares anymore
+Futures & Options (F&O) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Stocks / Shares : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Gold Exchange Trade Funds (Gold ETF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+National Pension System (NPS) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Real Estate Investment Trusts (REITs) and /or Infrastructure Investment Trusts (InvIT) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Life insurance / Unit Linked Insurance Plans (ULIPS) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Chit Fund : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Real Estate as an Investment (excluding where you are staying) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Corporate Bonds : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Fixed Deposits / Recurring Deposit / Bank Savings Account : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Public Provident Fund (PPF) / Voluntary Provident Fund (VPF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Post office savings / Kisan Vikas Patra (KVP) / National Savings Certificate (NSC) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Sovereign Gold Bond (SGB) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Employees Provident Fund (EPF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Portfolio Management Services (PMS) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Gold - Physical form / Sovereign Gold Bond (SGB) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+'Cryptocurrency (e.g. Tether, Bitcoin, Ethereum, etc)' : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Alternate Investment Fund (AIF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+Specialized Investment Fund (SIF) : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
+MF_ETF : For each of the financial product(s) that you currently hold an investment in, could you tell me the last time you made a fresh investment?
