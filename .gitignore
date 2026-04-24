@@ -16,3 +16,11 @@ __pycache__/
 *.pyc
 
 Respondent Data.xlsx
+
+# LaTeX
+*.gz
+*.log
+*.fls
+*.synctex.gz
+*.aux
+*.fdb_latexmk

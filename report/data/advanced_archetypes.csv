@@ -1,0 +1,4 @@
+cluster,risk_tolerance_preference,holds_fd_rd,holds_mf_etf,holds_equity_shares,holds_derivatives_fo,monthly_income_rs,education_years,Archetype
+0,2.0491329479768785,0.6459537572254336,0.5404624277456648,0.6315028901734104,1.0,45000.0,16.0,Risk-Seeking Trader
+1,1.9034619307613847,0.5917081658366833,1.0,0.3144537109257815,0.0,35000.0,16.0,Pragmatic Wealth Builder
+2,1.944580978127304,0.5231014991398378,0.0,0.8405013516834603,0.0,35000.0,16.0,Pragmatic Wealth Builder

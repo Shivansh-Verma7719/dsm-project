@@ -1,0 +1,16 @@
+Feature,Importance,Model
+education_years,0.41853770826165254,Participation
+log_income,0.3601855818572845,Participation
+gender,0.13058227808324108,Participation
+is_urban,0.04926026362222071,Participation
+risk_tolerance_preference,0.04143416817560103,Participation
+log_income,0.47725497497966024,Securities Choice
+gender,0.18502913392352185,Securities Choice
+education_years,0.1633735508823673,Securities Choice
+risk_tolerance_preference,0.12449783917776908,Securities Choice
+is_urban,0.04984450103668159,Securities Choice
+log_income,0.47684950086031547,Duration (Long-Term)
+education_years,0.21601186324932606,Duration (Long-Term)
+risk_tolerance_preference,0.14564197508866156,Duration (Long-Term)
+gender,0.0906305875861505,Duration (Long-Term)
+is_urban,0.07086607321554632,Duration (Long-Term)
