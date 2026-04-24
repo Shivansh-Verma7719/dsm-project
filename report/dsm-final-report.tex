@@ -16,17 +16,23 @@
 \thanks{Based on the 2025 SEBI Household Survey on Securities Market Participation.}
 }
 
-\author{\IEEEauthorblockN{1\textsuperscript{st} Author Name}
-\IEEEauthorblockA{\textit{Department Name} \\
-\textit{Organization}\\
-City, Country \\
-email address or ORCID}
+\author{\IEEEauthorblockN{Shivansh Verma}
+\IEEEauthorblockA{\textit{Dept of CS} \\
+\textit{Ashoka University}\\
+Sonipat, India \\
+shivansh.verma\_ug2023@ashoka.edu.in}
+\and
+\IEEEauthorblockN{Sashwat Dhanuka}
+\IEEEauthorblockA{\textit{Dept of CS} \\
+\textit{Ashoka University}\\
+Sonipat, India \\
+sashwat.dhanuka\_ug2023@ashoka.edu.in}
 }
 
 \maketitle
 
 \begin{abstract}
-Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a logistic regression framework to isolate the socioeconomic drivers of investment, revealing that education and income are the strongest predictors (odds ratios of 1.83 and 1.80, respectively). We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Random Forest classifiers to predict participation, asset choice, and investment horizons based on basic demographic metrics. Our predictive models achieve strong discriminatory power for baseline participation (AUC=0.76) but reveal that predicting the specific nature of retail investments requires deeper psychographic data, providing actionable insights for targeted regulatory interventions.
+Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a logistic regression framework to isolate the socioeconomic drivers of investment, revealing that education and income are the strongest predictors (odds ratios of 1.83 and 1.80, respectively). We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Gradient Boosting Classifiers to predict participation, asset choice, and investment horizons based on basic demographic and behavioral metrics. Our predictive models achieve strong discriminatory power for baseline participation (AUC=0.76) and asset allocation (AUC=0.82), validating that while market entry is structurally gated, post-entry behavior is heavily dictated by psychographic traits and financial literacy.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -49,7 +55,7 @@ We utilize micro-data from the 2025 SEBI Household Survey on Securities Market P
 \subsection{Econometric \& Predictive Specification}
 To identify the core determinants of participation, we first estimate a binary logistic regression model where the dependent variable is active investment status ($Y_i \in \{0,1\}$). Independent variables are normalized to extract comparable odds ratios.
 
-To expand this into a forecasting paradigm, we utilize Random Forest classifiers to predict three distinct outcomes: (Model 1) the binary likelihood of participation; (Model 2) the choice between market-linked securities (Equity/MF) vs. traditional instruments; and (Model 3) the propensity to hold equity for the long-term.
+To expand this into a forecasting paradigm, we utilize Histogram-based Gradient Boosting Classifiers to predict three distinct outcomes: (Model 1) the binary likelihood of participation; (Model 2) the choice between market-linked securities (Equity/MF) vs. traditional instruments; and (Model 3) the propensity to hold equity for the long-term.
 
 \section{Empirical Results}
 
@@ -87,11 +93,11 @@ Once households overcome the barrier to entry, their product preferences shift d
 \label{fig:securities_income}
 \end{figure}
 
-Crucially, the choice of securities is heavily modulated by where investors source their information. Contrasting investors who rely exclusively on Social Media ``Finfluencers'' against those using traditional Financial Professionals reveals a sharp behavioral divide. As seen in Fig. \ref{fig:finfluencers}, the Finfluencer cohort is primarily motivated by ``Quick Gains,'' whereas the professionally-advised cohort seeks ``Long Term Growth.'' This ties directly to the overconfidence trap discussed earlier, painting a picture of a segmented market where information source dictates risk behavior.
+Crucially, the choice of securities is heavily modulated by where investors source their information. Contrasting investors who rely exclusively on Social Media ``Finfluencers'' against those using traditional Financial Professionals reveals a sharp behavioral divide. As seen in Fig. \ref{fig:finfluencers}, the Finfluencer cohort is primarily motivated by ``Quick Gains,'' whereas the professionally-advised cohort seeks ``Long Term Growth.'' (Prevalence here is calculated as the percentage of investors within a specific information-source cohort who selected a given motive). This ties directly to the overconfidence trap discussed earlier, painting a picture of a segmented market where information source dictates risk behavior.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{../figures/fig6_finfluencers.pdf}}
-\caption{Investment Motives segmented by Information Source. Social media heavily biases investors toward short-term speculative gains.}
+\caption{Investment Motives segmented by Information Source. Prevalence denotes the percentage of investors within each cohort holding a specific motive. Social media heavily biases investors toward short-term speculative gains.}
 \label{fig:finfluencers}
 \end{figure}
 
@@ -105,21 +111,39 @@ Holding duration preferences (Fig. \ref{fig:duration}) challenge the notion that
 \end{figure}
 
 \section{Predictive Modeling: Forecasting Household Participation}
-To operationalize our findings, we tasked Random Forest classifiers to predict household behavior based strictly on basic demographic and risk-tolerance metrics. Can we forecast what a household will do before they even open a brokerage account?
+To operationalize our findings, we utilized Histogram-based Gradient Boosting Classifiers to predict household behavior. Initially, our models relied strictly on basic demographic and risk-tolerance metrics. While this was sufficient to predict baseline participation, it failed to predict post-entry behavior. To resolve this, we expanded the feature space for investor-specific models (Models 2 and 3) to include the behavioral traits uncovered in our earlier analysis.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{../figures/fig7_predictive_importance.pdf}}
-\caption{Feature Importance across the three Predictive Models. Education and Income dominate the primary participation decision.}
+\caption{Feature Importance across the three Predictive Models. Behavioral features like Familiarity and Financial Literacy heavily dominate the models predicting asset allocation and duration.}
 \label{fig:predictive_importance}
 \end{figure}
 
-As shown in Fig. \ref{fig:predictive_importance}, the models yielded illuminating results regarding the limits of demographic forecasting:
-\begin{enumerate}
-    \item \textbf{Model 1: Predicting Participation (AUC = 0.76)}: Basic metrics are highly effective at predicting \textit{whether} a household will participate in the market. Education and Income are the dominant features, confirming our logistic regression findings.
-    \item \textbf{Model 2: Predicting Securities Choice (AUC = 0.60)}: Predicting \textit{how} they participate (choosing Equities vs. sticking to traditional FDs) is significantly harder. Once the wealth barrier is crossed, demographics lose their predictive power, and unobserved variables (like Finfluencer exposure) likely take over.
-    \item \textbf{Model 3: Predicting Investment Horizon (AUC = 0.58)}: Forecasting \textit{how long} they will hold equity based on demographics is nearly indistinguishable from random chance.
-\end{enumerate}
-These predictive limits validate our earlier behavioral findings: while structural socioeconomic factors gatekeep entry into the market, post-entry behavior is overwhelmingly dictated by psychological factors, overconfidence, and modern social media dynamics.
+As shown in Fig. \ref{fig:predictive_importance}, injecting behavioral data drastically improves our forecasting capabilities.
+
+\subsection{Model 1: Predicting Participation}
+\textbf{Objective:} Predict the binary outcome of whether a household is an active investor ($1$) or a non-investor ($0$). \\
+\textbf{Data Fields Used:} Years of Education, Log-transformed Monthly Income, Urban Residency (Binary), Gender (Binary), and Risk Tolerance Preference Score. \\
+\textbf{Algorithm \& Split:} HistGradientBoostingClassifier (200 max iterations, balanced class weights) trained on an 80/20 train-test split. \\
+\textbf{Performance:} The model achieved an Area Under the Receiver Operating Characteristic Curve (AUC) of 0.76. \\
+\textbf{Insight:} Basic metrics are highly effective at predicting \textit{whether} a household will participate. Education and Income heavily dominate the decision boundary, validating that entry is structurally gated.
+
+\subsection{Model 2: Predicting Securities Choice}
+\textbf{Objective:} For households that \textit{are} investors, predict if they will hold market-linked securities (Equities or Mutual Funds = $1$) versus sticking exclusively to traditional instruments like Fixed Deposits ($0$). \\
+\textbf{Data Fields Used:} All demographic features from Model 1, \textbf{plus} Self-Perceived Stock Market Familiarity, Actual Financial Literacy Score, Social Media Reliance (Binary), and Professional Advice Reliance (Binary). \\
+\textbf{Algorithm \& Split:} HistGradientBoostingClassifier trained on an 80/20 train-test split. \\
+\textbf{Performance:} The model achieved an impressive AUC of 0.82 (up from 0.60 when using only demographics). \\
+\textbf{Insight:} Predicting \textit{how} individuals participate requires behavioral context. Once we include perceived familiarity and objective knowledge, the model's discriminatory power surges.
+
+\subsection{Model 3: Predicting Investment Horizon}
+\textbf{Objective:} For equity investors, predict if they will define their holding period as ``Long Term'' ($1$) versus Short/Mid-term ($0$). \\
+\textbf{Data Fields Used:} Same extended demographic and behavioral feature set used in Model 2. \\
+\textbf{Algorithm \& Split:} HistGradientBoostingClassifier trained on an 80/20 train-test split. \\
+\textbf{Performance:} The model achieved an AUC of 0.61 (up from 0.58). \\
+\textbf{Insight:} Forecasting \textit{how long} an investor will hold equity remains the hardest prediction task, but injecting information sources and financial literacy provides a measurable improvement over random demographic guessing.
+
+\vspace{0.3cm}
+These predictive models validate our core thesis: while structural socioeconomic factors gatekeep entry into the market, post-entry asset allocation and duration are overwhelmingly dictated by psychological factors, financial literacy, and the modern information ecosystem.
 
 \section{Conclusion and Policy Implications}
 The 2025 SEBI Household Survey provides compelling evidence that while the Indian securities market is growing, entry remains fundamentally gated by education and income. Once inside the market, however, traditional demographics fail to predict behavior. Instead, a dangerous cocktail of overconfidence and social media influence is driving a subset of retail investors toward highly speculative, short-term derivative trading.

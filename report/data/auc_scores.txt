@@ -1,0 +1,3 @@
+Model 1 (Participation) AUC: 0.763
+Model 2 (Securities) AUC: 0.820
+Model 3 (Duration) AUC: 0.609

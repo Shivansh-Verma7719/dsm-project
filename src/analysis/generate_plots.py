@@ -134,14 +134,18 @@ def plot_predictive_importance():
         # Clean names
         subset['Feature'] = subset['Feature'].map({
             'education_years': 'Education', 'log_income': 'Income', 'is_urban': 'Urban',
-            'gender': 'Gender', 'risk_tolerance_preference': 'Risk Tolerance'
+            'gender': 'Gender', 'risk_tolerance_preference': 'Risk Tolerance',
+            'stock_market_familiarity': 'Self-Perceived Familiarity',
+            'actual_knowledge_score': 'Financial Literacy Score',
+            'info_social_media': 'Social Media Reliance',
+            'info_professionals': 'Professional Advice'
         }).fillna(subset['Feature'])
         
         axes[i].barh(subset['Feature'], subset['Importance'], color='teal', edgecolor='black')
         axes[i].set_title(f'{model} Model')
         axes[i].set_xlabel('Feature Importance')
         
-    plt.suptitle('Random Forest Feature Importances across Predictive Models', fontsize=20)
+    plt.suptitle('Gradient Boosting Feature Importances across Predictive Models', fontsize=20)
     plt.tight_layout()
     plt.savefig("figures/fig7_predictive_importance.pdf")
     plt.close()

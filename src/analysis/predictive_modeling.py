@@ -3,8 +3,9 @@ import pandas as pd
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import roc_auc_score, classification_report
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.inspection import permutation_importance
+from sklearn.metrics import roc_auc_score
 import numpy as np
 
 load_dotenv()
@@ -18,10 +19,10 @@ def main():
     engine = create_engine(db_url)
     os.makedirs("report/data", exist_ok=True)
     
-    print("--- Predictive Modeling ---")
+    print("--- Advanced Predictive Modeling ---")
     
-    # Extract base features for all models
-    query = """
+    # 1. Extract base features for Model 1 (Participation)
+    query_base = """
     SELECT 
         r.respondent_id,
         r.is_investor,
@@ -35,83 +36,118 @@ def main():
     LEFT JOIN respondent_geography g ON r.respondent_id = g.respondent_id
     LEFT JOIN respondent_literacy_risk lr ON r.respondent_id = lr.respondent_id
     """
-    df_base = pd.read_sql(query, engine).dropna()
+    df_base = pd.read_sql(query_base, engine)
     
-    features = ['gender', 'education_years', 'monthly_income_rs', 'is_urban', 'risk_tolerance_preference']
-    X = df_base[features].copy()
-    X['is_urban'] = X['is_urban'].astype(int)
-    X['log_income'] = np.log1p(X['monthly_income_rs'])
-    X.drop('monthly_income_rs', axis=1, inplace=True)
-    feature_cols = ['gender', 'education_years', 'is_urban', 'risk_tolerance_preference', 'log_income']
-
-    # 1. Model 1: Predict Participation (is_investor)
+    # Preprocess
+    df_base['is_urban'] = df_base['is_urban'].astype(float)
+    df_base['log_income'] = np.log1p(df_base['monthly_income_rs'])
+    
+    feature_cols_m1 = ['gender', 'education_years', 'is_urban', 'risk_tolerance_preference', 'log_income']
+    
     print("1. Predicting Participation...")
-    y_part = df_base['is_investor'].astype(int)
+    df_m1 = df_base.dropna(subset=feature_cols_m1 + ['is_investor']).copy()
+    X1 = df_m1[feature_cols_m1]
+    y1 = df_m1['is_investor'].astype(int)
     
-    X_train, X_test, y_train, y_test = train_test_split(X[feature_cols], y_part, test_size=0.2, random_state=42)
-    rf_part = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
-    rf_part.fit(X_train, y_train)
+    X_train1, X_test1, y_train1, y_test1 = train_test_split(X1, y1, test_size=0.2, random_state=42)
+    clf1 = HistGradientBoostingClassifier(random_state=42, class_weight='balanced', max_iter=200)
+    clf1.fit(X_train1, y_train1)
     
-    auc_part = roc_auc_score(y_test, rf_part.predict_proba(X_test)[:, 1])
-    print(f"Participation Model AUC: {auc_part:.3f}")
+    auc1 = roc_auc_score(y_test1, clf1.predict_proba(X_test1)[:, 1])
+    print(f"Participation Model AUC: {auc1:.3f}")
     
-    # Save Feature Importance
-    fi_part = pd.DataFrame({'Feature': feature_cols, 'Importance': rf_part.feature_importances_}).sort_values('Importance', ascending=False)
-    fi_part['Model'] = 'Participation'
-    
-    # 2. Model 2: Predict How (Will they hold Equity/MF or just FD?)
-    print("2. Predicting Securities Choice (Market-Linked vs Traditional)...")
-    query_hold = """
-    SELECT respondent_id, holds_mf_etf, holds_equity_shares 
-    FROM respondent_holdings
-    """
-    df_hold = pd.read_sql(query_hold, engine)
-    df_investors = pd.merge(df_base[df_base['is_investor']==True], df_hold, on='respondent_id')
-    
-    y_market = ((df_investors['holds_mf_etf'] == True) | (df_investors['holds_equity_shares'] == True)).astype(int)
-    X_inv = df_investors[features].copy()
-    X_inv['is_urban'] = X_inv['is_urban'].astype(int)
-    X_inv['log_income'] = np.log1p(X_inv['monthly_income_rs'])
-    
-    X_train_i, X_test_i, y_train_i, y_test_i = train_test_split(X_inv[feature_cols], y_market, test_size=0.2, random_state=42)
-    rf_sec = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
-    rf_sec.fit(X_train_i, y_train_i)
-    
-    auc_sec = roc_auc_score(y_test_i, rf_sec.predict_proba(X_test_i)[:, 1])
-    print(f"Securities Choice Model AUC: {auc_sec:.3f}")
-    
-    fi_sec = pd.DataFrame({'Feature': feature_cols, 'Importance': rf_sec.feature_importances_}).sort_values('Importance', ascending=False)
-    fi_sec['Model'] = 'Securities Choice'
+    r1 = permutation_importance(clf1, X_test1, y_test1, n_repeats=5, random_state=42)
+    fi1 = pd.DataFrame({'Feature': feature_cols_m1, 'Importance': r1.importances_mean}).sort_values('Importance', ascending=False)
+    fi1['Model'] = 'Participation'
 
-    # 3. Model 3: Predict Duration (Long-term vs Short-term Equity)
-    print("3. Predicting Horizon (Long-Term Equity)...")
-    query_dur = """
-    SELECT respondent_id, duration_equity 
-    FROM respondent_instrument_duration
-    WHERE duration_equity IN (1, 2, 3)
+    # Extract behavioral features for investors (Models 2 and 3)
+    query_behavioral = """
+    SELECT 
+        r.respondent_id,
+        lr.stock_market_familiarity,
+        k.knows_direct_mf_lower_expense,
+        k.knows_pension_invests_equity,
+        k.knows_compounding_longterm,
+        k.knows_kyc_online,
+        k.knows_demat_needed,
+        k.knows_high_return_high_risk,
+        k.knows_diversification_reduces,
+        k.knows_cas_overview,
+        k.knows_bsda_basic_demat,
+        i.info_social_media_influencers,
+        i.info_financial_professionals,
+        h.holds_mf_etf,
+        h.holds_equity_shares,
+        d.duration_equity
+    FROM respondents r
+    LEFT JOIN respondent_literacy_risk lr ON r.respondent_id = lr.respondent_id
+    LEFT JOIN respondent_knowledge k ON r.respondent_id = k.respondent_id
+    LEFT JOIN respondent_info_sources i ON r.respondent_id = i.respondent_id
+    LEFT JOIN respondent_holdings h ON r.respondent_id = h.respondent_id
+    LEFT JOIN respondent_instrument_duration d ON r.respondent_id = d.respondent_id
+    WHERE r.is_investor = True
     """
-    df_dur = pd.read_sql(query_dur, engine)
-    df_dur_full = pd.merge(df_investors, df_dur, on='respondent_id')
+    df_beh = pd.read_sql(query_behavioral, engine)
     
-    y_dur = (df_dur_full['duration_equity'] == 3).astype(int) # 3 is Long term
-    X_dur = df_dur_full[features].copy()
-    X_dur['is_urban'] = X_dur['is_urban'].astype(int)
-    X_dur['log_income'] = np.log1p(X_dur['monthly_income_rs'])
+    # Calculate knowledge score
+    know_cols = [c for c in df_beh.columns if c.startswith('knows_')]
+    df_beh['actual_knowledge_score'] = (df_beh[know_cols] == 1).sum(axis=1)
     
-    X_train_d, X_test_d, y_train_d, y_test_d = train_test_split(X_dur[feature_cols], y_dur, test_size=0.2, random_state=42)
-    rf_dur = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
-    rf_dur.fit(X_train_d, y_train_d)
+    # Fill NA for info sources with 0
+    df_beh['info_social_media'] = df_beh['info_social_media_influencers'].fillna(False).astype(float)
+    df_beh['info_professionals'] = df_beh['info_financial_professionals'].fillna(False).astype(float)
     
-    auc_dur = roc_auc_score(y_test_d, rf_dur.predict_proba(X_test_d)[:, 1])
-    print(f"Duration Model AUC: {auc_dur:.3f}")
+    df_inv = pd.merge(df_base, df_beh, on='respondent_id')
     
-    fi_dur = pd.DataFrame({'Feature': feature_cols, 'Importance': rf_dur.feature_importances_}).sort_values('Importance', ascending=False)
-    fi_dur['Model'] = 'Duration (Long-Term)'
+    feature_cols_m23 = feature_cols_m1 + ['stock_market_familiarity', 'actual_knowledge_score', 'info_social_media', 'info_professionals']
+    
+    # 2. Model 2: Predicting Securities Choice
+    print("2. Predicting Securities Choice (Market-Linked vs Traditional)...")
+    df_m2 = df_inv.dropna(subset=['holds_mf_etf', 'holds_equity_shares']).copy()
+    y2 = ((df_m2['holds_mf_etf'] == True) | (df_m2['holds_equity_shares'] == True)).astype(int)
+    X2 = df_m2[feature_cols_m23]
+    
+    X_train2, X_test2, y_train2, y_test2 = train_test_split(X2, y2, test_size=0.2, random_state=42)
+    clf2 = HistGradientBoostingClassifier(random_state=42, class_weight='balanced', max_iter=200)
+    clf2.fit(X_train2, y_train2)
+    
+    auc2 = roc_auc_score(y_test2, clf2.predict_proba(X_test2)[:, 1])
+    print(f"Securities Choice Model AUC: {auc2:.3f}")
+    
+    r2 = permutation_importance(clf2, X_test2, y_test2, n_repeats=5, random_state=42)
+    fi2 = pd.DataFrame({'Feature': feature_cols_m23, 'Importance': r2.importances_mean}).sort_values('Importance', ascending=False)
+    fi2['Model'] = 'Securities Choice'
+
+    # 3. Model 3: Predicting Duration
+    print("3. Predicting Horizon (Long-Term Equity)...")
+    df_m3 = df_inv[df_inv['duration_equity'].isin([1, 2, 3])].copy()
+    y3 = (df_m3['duration_equity'] == 3).astype(int)
+    X3 = df_m3[feature_cols_m23]
+    
+    X_train3, X_test3, y_train3, y_test3 = train_test_split(X3, y3, test_size=0.2, random_state=42)
+    clf3 = HistGradientBoostingClassifier(random_state=42, class_weight='balanced', max_iter=200)
+    clf3.fit(X_train3, y_train3)
+    
+    auc3 = roc_auc_score(y_test3, clf3.predict_proba(X_test3)[:, 1])
+    print(f"Duration Model AUC: {auc3:.3f}")
+    
+    r3 = permutation_importance(clf3, X_test3, y_test3, n_repeats=5, random_state=42)
+    fi3 = pd.DataFrame({'Feature': feature_cols_m23, 'Importance': r3.importances_mean}).sort_values('Importance', ascending=False)
+    fi3['Model'] = 'Duration (Long-Term)'
 
     # Combine and save feature importances
-    all_fi = pd.concat([fi_part, fi_sec, fi_dur], ignore_index=True)
+    all_fi = pd.concat([fi1, fi2, fi3], ignore_index=True)
+    # Normalize importance within each model so it plots nicely (0 to 1)
+    all_fi['Importance'] = all_fi.groupby('Model')['Importance'].transform(lambda x: x / x.max())
+    
     all_fi.to_csv("report/data/predictive_feature_importance.csv", index=False)
     print("Saved Predictive Feature Importances.")
     
+    # Save AUC scores to a text file to easily put in the report
+    with open("report/data/auc_scores.txt", "w") as f:
+        f.write(f"Model 1 (Participation) AUC: {auc1:.3f}\n")
+        f.write(f"Model 2 (Securities) AUC: {auc2:.3f}\n")
+        f.write(f"Model 3 (Duration) AUC: {auc3:.3f}\n")
+
 if __name__ == "__main__":
     main()
