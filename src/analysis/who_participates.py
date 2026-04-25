@@ -43,11 +43,13 @@ def main():
         p.monthly_income_rs,
         g.is_urban,
         g.zone,
-        lr.risk_tolerance_preference
+        lr.risk_tolerance_preference,
+        a.n_products_aware
     FROM respondents r
     LEFT JOIN respondent_profile p ON r.respondent_id = p.respondent_id
     LEFT JOIN respondent_geography g ON r.respondent_id = g.respondent_id
     LEFT JOIN respondent_literacy_risk lr ON r.respondent_id = lr.respondent_id
+    LEFT JOIN respondent_awareness a ON r.respondent_id = a.respondent_id
     """
 
     df = pd.read_sql(query, engine)
@@ -83,7 +85,7 @@ def main():
     print("Running weighted logistic regression (statsmodels, HC3 robust SEs)...")
 
     model_df = df.dropna(
-        subset=["education_years", "monthly_income_rs", "is_urban", "risk_tolerance_preference", "gender", "life_stage", "zone"]
+        subset=["education_years", "monthly_income_rs", "is_urban", "risk_tolerance_preference", "gender", "life_stage", "zone", "n_products_aware"]
     ).copy()
 
     model_df["log_income"] = np.log1p(model_df["monthly_income_rs"])
@@ -102,6 +104,7 @@ def main():
 
     feature_cols = [
         "education_years", "log_income", "is_urban", "gender_male", "risk_tolerance_preference",
+        "n_products_aware",
         "lifestage_millennial", "lifestage_genx", "lifestage_boomer",
         "zone_north", "zone_south", "zone_west",
     ]

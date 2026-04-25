@@ -87,6 +87,7 @@ def plot_odds_ratios():
     df = pd.read_csv("report/data/who_participates_logistic_regression.csv")
     df = df.dropna(subset=['Odds Ratio'])
     name_map = {
+        'n_products_aware': 'Product Awareness\n(# instruments known)',
         'education_years': 'Education (yrs)',
         'log_income': 'Log(Income)',
         'is_urban': 'Urban Resident',

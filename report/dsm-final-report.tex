@@ -50,7 +50,7 @@ sashwat.dhanuka\_ug2023@ashoka.edu.in}
 % ---- REST OF YOUR DOCUMENT UNCHANGED ----
 
 \begin{abstract}
-Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a weighted logistic regression framework with HC3 robust standard errors across eleven demographic, socioeconomic, and geographic predictors, revealing that education and income are the strongest drivers (odds ratios of 1.86 and 1.80, respectively; $p < 0.001$), while two predictors (Gen~X life stage and West zone) return null results, validating model specificity. We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Histogram-based Gradient Boosting Classifiers to predict participation, asset choice, and investment horizons based on basic demographic and behavioral metrics. Our predictive models achieve strong discriminatory power for baseline participation (AUC=0.76) and asset allocation (AUC=0.83), validating that while market entry is structurally gated, post-entry behavior is heavily dictated by psychographic traits and financial literacy.
+Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a weighted logistic regression framework with HC3 robust standard errors across eleven demographic, socioeconomic, and geographic predictors, revealing that product awareness is the single strongest driver of participation (OR = 2.22, $p < 0.001$), exceeding income (OR = 1.60) and education (OR = 1.56), while two predictors (Gen~X life stage and West zone) return null results, validating model specificity. Including awareness raises the McFadden pseudo-$R^2$ from 0.208 to 0.290, confirming it is an independent, policy-actionable determinant beyond income and education alone. We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Histogram-based Gradient Boosting Classifiers to predict participation, asset choice, and investment horizons based on basic demographic and behavioral metrics. Our predictive models achieve strong discriminatory power for baseline participation (AUC=0.76) and asset allocation (AUC=0.83), validating that while market entry is structurally gated, post-entry behavior is heavily dictated by psychographic traits and financial literacy.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -126,7 +126,7 @@ A critical precondition for participation is product awareness. The survey's awa
 The financial literacy data deepens this picture. When presented with nine objective financial knowledge questions, investors perform unevenly: while 80\%+ correctly identify that KYC can be completed online and that higher returns entail higher risk, a majority respond incorrectly or ``Don't Know'' to questions about compounding, diversification, and even basic SEBI tools (CAS, BSDA). This asymmetry (high procedural literacy, weak conceptual literacy) is directly relevant to the Dunning-Kruger analysis in Section~\ref{sec:results} and to the barriers analysis, where ``Lack of Knowledge'' ranks as the second most-cited deterrent among non-investors.
 
 \subsection{Variable Operationalization}
-The dependent variable $Y_i \in \{0, 1\}$ indicates whether household $i$ holds any financial security. We include eleven regressors across three groups. The \textit{socioeconomic} block contains \textit{Education} (continuous years of formal schooling) and \textit{Income} (natural log of self-reported monthly household income in INR, log-transformed to address right-skew). The \textit{demographic} block contains \textit{Urban} (binary; urban vs.\ rural residence), \textit{Gender} (binary; male $= 1$), and \textit{Risk Tolerance} (ordinal; 1 = low, 2 = medium, 3 = high). The \textit{life stage} block uses Gen~Z as the reference category, with binary indicators for Millennial (28--43 years), Gen~X (44--59 years), and Baby Boomer (60+ years). The \textit{geographic} block uses the East zone as reference, with binary indicators for North, South, and West. All continuous regressors are standardized ($\mu = 0$, $\sigma = 1$) prior to estimation so that OR magnitudes are directly comparable across predictors.
+The dependent variable $Y_i \in \{0, 1\}$ indicates whether household $i$ holds any financial security. We include twelve regressors across four groups. The \textit{awareness} block contains \textit{Product Awareness} ($n\_products\_aware$; count of financial instruments the respondent has heard of, 0--15, drawn from the Q21A multi-select module administered to all 109,430 respondents). The \textit{socioeconomic} block contains \textit{Education} (continuous years of formal schooling) and \textit{Income} (natural log of self-reported monthly household income in INR). The \textit{demographic} block contains \textit{Urban} (binary; urban vs.\ rural residence), \textit{Gender} (binary; male $= 1$), and \textit{Risk Tolerance} (ordinal; 1 = low, 2 = medium, 3 = high). The \textit{life stage} block uses Gen~Z as the reference category, with binary indicators for Millennial (28--43 years), Gen~X (44--59 years), and Baby Boomer (60+ years). The \textit{geographic} block uses the East zone as reference, with binary indicators for North, South, and West. All continuous regressors are standardized ($\mu = 0$, $\sigma = 1$) prior to estimation so that OR magnitudes are directly comparable across predictors.
 
 \subsection{Econometric Specification}
 We estimate a binary logistic regression via maximum likelihood:
@@ -136,7 +136,7 @@ We estimate a binary logistic regression via maximum likelihood:
 \label{eq:logit}
 \end{equation}
 
-\noindent where $\mathbf{x}_i$ is the vector of standardized regressors. Coefficients are exponentiated to yield odds ratios (ORs), interpreted as the multiplicative change in participation odds per one-standard-deviation increase in each predictor. Statistical significance is evaluated via Wald $z$-tests with heteroskedasticity-consistent (HC3) standard errors; survey weights are incorporated during estimation. We note that with $N \approx 100{,}000$, statistical significance is trivially achieved for any real effect---$p$-values are reported for completeness but the economically meaningful metrics are OR magnitude and confidence interval width. We include 11 regressors spanning socioeconomic, demographic, and geographic dimensions; two (Gen~X life stage and West zone) return ORs statistically indistinguishable from 1.0, providing a falsifiability check on the model.
+\noindent where $\mathbf{x}_i$ is the vector of standardized regressors. Coefficients are exponentiated to yield odds ratios (ORs), interpreted as the multiplicative change in participation odds per one-standard-deviation increase in each predictor. Statistical significance is evaluated via Wald $z$-tests with heteroskedasticity-consistent (HC3) standard errors; survey weights are incorporated during estimation. We note that with $N \approx 100{,}000$, statistical significance is trivially achieved for any real effect---$p$-values are reported for completeness but the economically meaningful metrics are OR magnitude and confidence interval width. We include 12 regressors spanning awareness, socioeconomic, demographic, and geographic dimensions; two (Gen~X life stage and West zone) return ORs statistically indistinguishable from 1.0, providing a falsifiability check on the model.
 
 \subsection{Predictive Framework}
 To operationalize the regression findings, we implement Histogram-based Gradient Boosting Classifiers for three distinct prediction tasks: (Model~1) the binary likelihood of market participation; (Model~2) whether an investor holds market-linked instruments (equity or mutual funds) vs.\ traditional instruments only; and (Model~3) the propensity to hold equity over a long-term horizon. All models are trained on an 80/20 stratified split and evaluated via the area under the ROC curve (AUC).
@@ -144,7 +144,7 @@ To operationalize the regression findings, we implement Histogram-based Gradient
 \section{Empirical Results}
 
 \subsection{Determinants of Participation \& Overconfidence}\label{sec:results}
-Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}626$; McFadden pseudo-$R^2 = 0.208$, which falls in the ``excellent fit'' range of 0.20--0.40 on McFadden's scale and is not directly comparable to OLS $R^2$). Nine of eleven predictors are statistically significant; crucially, Gen~X (vs.\ Gen~Z reference) and West zone (vs.\ East reference) are not, with ORs of 1.015 and 1.004 respectively, providing confidence that the model is not returning spurious significance driven purely by sample size.
+Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}626$; McFadden pseudo-$R^2 = 0.290$, excellent fit range 0.20--0.40, not comparable to OLS $R^2$). Ten of twelve predictors are statistically significant; Gen~X (vs.\ Gen~Z) and West zone (vs.\ East) are not, with ORs of 0.993 and 1.021 respectively, confirming the model does not return spurious significance at this sample size.
 
 \begin{table}[htbp]
 \caption{Logistic Regression: Determinants of Market Participation}
@@ -154,32 +154,39 @@ Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}6
 \toprule
 \textbf{Predictor} & \textbf{OR} & \textbf{95\% CI} & \textbf{$z$} & \textbf{Sig.} \\
 \midrule
+\multicolumn{5}{l}{\textit{Awareness}} \\
+\quad Product Awareness   & 2.218 & [2.166,\ 2.272] & 65.2 & *** \\
+\midrule
 \multicolumn{5}{l}{\textit{Socioeconomic}} \\
-\quad Education (yrs)     & 1.864 & [1.823,\ 1.907] & 57.1 & *** \\
-\quad Log(Income)         & 1.800 & [1.758,\ 1.843] & 53.5 & *** \\
+\quad Log(Income)         & 1.603 & [1.564,\ 1.643] & 37.4 & *** \\
+\quad Education (yrs)     & 1.556 & [1.518,\ 1.594] & 35.6 & *** \\
 \midrule
 \multicolumn{5}{l}{\textit{Demographic}} \\
-\quad Urban               & 1.602 & [1.568,\ 1.637] & 46.5 & *** \\
-\quad Male                & 1.550 & [1.515,\ 1.586] & 44.5 & *** \\
-\quad Risk Tolerance      & 1.184 & [1.160,\ 1.209] & 16.7 & *** \\
+\quad Male                & 1.526 & [1.490,\ 1.564] & 33.9 & *** \\
+\quad Urban               & 1.455 & [1.422,\ 1.489] & 32.0 & *** \\
+\quad Risk Tolerance      & 1.170 & [1.145,\ 1.196] & 14.0 & *** \\
 \midrule
 \multicolumn{5}{l}{\textit{Life Stage (ref: Gen Z)}} \\
-\quad Millennial          & 1.141 & [1.116,\ 1.167] & 11.5 & *** \\
-\quad Gen X               & 1.015 & [0.992,\ 1.038] &  1.3 & \phantom{***} \\
-\quad Baby Boomer         & 0.902 & [0.876,\ 0.928] & $-$6.7 & *** \\
+\quad Millennial          & 1.124 & [1.098,\ 1.151] &  9.8 & *** \\
+\quad Gen X               & 0.993 & [0.969,\ 1.017] & $-$0.6 & \phantom{***} \\
+\quad Baby Boomer         & 0.907 & [0.881,\ 0.934] & $-$6.6 & *** \\
 \midrule
 \multicolumn{5}{l}{\textit{Zone (ref: East)}} \\
-\quad North               & 0.893 & [0.869,\ 0.918] & $-$8.2 & *** \\
-\quad South               & 0.805 & [0.781,\ 0.829] & $-$14.4 & *** \\
-\quad West                & 1.004 & [0.975,\ 1.035] &  0.3 & \phantom{***} \\
+\quad North               & 0.850 & [0.825,\ 0.876] & $-$10.7 & *** \\
+\quad South               & 0.842 & [0.816,\ 0.869] & $-$10.7 & *** \\
+\quad West                & 1.021 & [0.989,\ 1.054] &   1.3 & \phantom{***} \\
 \midrule
-\multicolumn{5}{l}{\textit{N} = 97,626 \quad McFadden pseudo-$R^2$ = 0.208 (excellent fit: 0.20--0.40)} \\
+\multicolumn{5}{l}{\textit{N} = 97,626 \quad McFadden pseudo-$R^2$ = 0.290 (excellent fit: 0.20--0.40) \quad All predictors standardised} \\
 \multicolumn{5}{l}{*** $p < 0.001$. HC3 robust SEs. Survey-weighted GLM (Binomial).} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-As depicted in Fig.~\ref{fig:odds_ratios}, education and income remain the dominant drivers (OR = 1.86 and 1.80 respectively). Urban residency (1.60) and male gender (1.55) also exert substantial independent effects. The life stage results are instructive: Millennials participate \textit{more} than Gen~Z (OR = 1.14), plausibly reflecting the post-2020 retail boom activating this cohort disproportionately; Gen~X is statistically indistinguishable from Gen~Z; and Baby Boomers participate significantly less (OR = 0.90). On geography, the South zone underperforms East after controlling for all other variables (OR = 0.81), despite having higher raw participation rates, indicating that South's advantage in the raw tabulation is fully explained by its higher education and income levels. West is no different from East after controls.
+As depicted in Fig.~\ref{fig:odds_ratios}, product awareness (OR = 2.22) is the dominant driver of participation, substantially exceeding income (1.60), education (1.56), male gender (1.53), and urban residency (1.45). The magnitude gap is meaningful: moving one standard deviation up in awareness predicts a larger change in participation odds than any structural or demographic variable in the model.
+
+Comparing these estimates against a baseline eleven-variable specification (excluding awareness), the ORs for income and education fall by 0.20 and 0.31 respectively. This partial mediation indicates that high-income and educated respondents tend to know more financial products, and it is partly this familiarity that converts to participation. Critically, however, both income and education retain large independent effects after controlling for awareness, confirming that awareness is not merely a socioeconomic proxy---it is a distinct, policy-actionable lever.
+
+The life stage results are instructive: Millennials participate \textit{more} than Gen~Z (OR = 1.12), plausibly reflecting the post-2020 retail boom; Gen~X is statistically indistinguishable from Gen~Z; and Baby Boomers participate significantly less (OR = 0.91). On geography, both South (OR = 0.84) and North (OR = 0.85) zones underperform East after controls, despite South's higher raw participation rates, indicating that South's raw advantage is fully explained by its demographic composition. West is no different from East after controls.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{../figures/fig1_odds_ratios.pdf}}
