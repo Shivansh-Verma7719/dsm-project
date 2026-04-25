@@ -241,6 +241,50 @@ def plot_predictive_importance():
     plt.savefig("figures/fig7_predictive_importance.pdf")
     plt.close()
 
+def plot_iep_analysis():
+    print("Generating IEP Analysis plot...")
+    df = pd.read_csv("report/data/iep_analysis.csv")
+
+    iep = df[df["Group"] == "IEP-Exposed"].iloc[0]
+    non = df[df["Group"] == "Non-IEP"].iloc[0]
+
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+    # Panel 1: Knowledge score and product awareness
+    metrics = ["Mean_Knowledge_Score", "Mean_Products_Aware"]
+    labels = ["Financial Literacy\nScore (/9)", "Product Awareness\n(# instruments known)"]
+    x = np.arange(len(labels))
+    w = 0.35
+    axes[0].bar(x - w/2, [iep[m] for m in metrics], w, label="IEP-Exposed", color="steelblue", edgecolor="black")
+    axes[0].bar(x + w/2, [non[m] for m in metrics], w, label="Non-IEP", color="lightcoral", edgecolor="black")
+    for i, m in enumerate(metrics):
+        axes[0].text(i - w/2, iep[m] + 0.1, f"{iep[m]:.2f}", ha="center", fontsize=9, fontweight="bold")
+        axes[0].text(i + w/2, non[m] + 0.1, f"{non[m]:.2f}", ha="center", fontsize=9, fontweight="bold")
+    axes[0].set_xticks(x)
+    axes[0].set_xticklabels(labels, fontsize=10)
+    axes[0].set_ylabel("Mean Score")
+    axes[0].set_title("Knowledge & Awareness Profile")
+    axes[0].legend()
+    axes[0].set_ylim(0, 13)
+
+    # Panel 2: Motivations (% of cohort)
+    motives = ["motive_long_term_growth", "motive_quick_gains", "motive_financial_goals", "motive_higher_returns"]
+    motive_labels = ["Long-Term\nGrowth", "Quick\nGains", "Financial\nGoals", "Higher\nReturns"]
+    x2 = np.arange(len(motives))
+    axes[1].bar(x2 - w/2, [iep[m] for m in motives], w, label="IEP-Exposed", color="steelblue", edgecolor="black")
+    axes[1].bar(x2 + w/2, [non[m] for m in motives], w, label="Non-IEP", color="lightcoral", edgecolor="black")
+    axes[1].set_xticks(x2)
+    axes[1].set_xticklabels(motive_labels, fontsize=10)
+    axes[1].set_ylabel("% of Investor Cohort")
+    axes[1].set_title("Investment Motivations")
+    axes[1].legend()
+
+    plt.suptitle("IEP-Exposed vs Non-IEP Investors", fontsize=14, fontweight="bold")
+    plt.tight_layout()
+    plt.savefig("figures/fig8_iep_analysis.pdf", bbox_inches="tight")
+    plt.close()
+
+
 if __name__ == "__main__":
     plot_participation_demo()
     plot_holdings_penetration()
@@ -251,4 +295,5 @@ if __name__ == "__main__":
     plot_dunning_kruger()
     plot_finfluencers()
     plot_predictive_importance()
+    plot_iep_analysis()
     print("All figures generated successfully.")
