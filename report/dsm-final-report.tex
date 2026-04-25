@@ -1,5 +1,20 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
+
+% --------- ADDED FOR HEADER ---------
+% --------- HEADER FIX ---------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\renewcommand{\thepage}{\Roman{page}} % Capital Roman numerals
+
+\fancyhead[L]{\thepage}                 % Page number on left
+\fancyhead[C]{S. VERMA \& S. DHANUKA}        % Standard author format
+
+% --------------------------------
+% -----------------------------------
+
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -8,8 +23,6 @@
 \usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{multirow}
-\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \begin{document}
 
@@ -31,6 +44,10 @@ sashwat.dhanuka\_ug2023@ashoka.edu.in}
 }
 
 \maketitle
+
+\thispagestyle{empty} % No header on first page
+
+% ---- REST OF YOUR DOCUMENT UNCHANGED ----
 
 \begin{abstract}
 Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a weighted logistic regression framework with HC3 robust standard errors across eleven demographic, socioeconomic, and geographic predictors, revealing that education and income are the strongest drivers (odds ratios of 1.86 and 1.80, respectively; $p < 0.001$), while two predictors (Gen~X life stage and West zone) return null results, validating model specificity. We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Histogram-based Gradient Boosting Classifiers to predict participation, asset choice, and investment horizons based on basic demographic and behavioral metrics. Our predictive models achieve strong discriminatory power for baseline participation (AUC=0.76) and asset allocation (AUC=0.83), validating that while market entry is structurally gated, post-entry behavior is heavily dictated by psychographic traits and financial literacy.
@@ -254,6 +271,7 @@ For policymakers, the mandate is clear: interventions must pivot from merely red
 
 \begin{thebibliography}{00}
 \bibitem{b1} SEBI, ``Household Survey on Securities Market Participation 2025,'' Securities and Exchange Board of India, 2025.
+\bibitem{b2} Kruger, Justin \& Dunning, David. (2000). Unskilled and Unaware of It: How Difficulties in Recognizing One's Own Incompetence Lead to Inflated Self-Assessments. Journal of Personality and Social Psychology. 77. 1121-34. 10.1037//0022-3514.77.6.1121.
 \end{thebibliography}
 
 \end{document}
