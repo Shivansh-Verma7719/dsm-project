@@ -1,24 +1,24 @@
 Feature,Importance,Model
 education_years,1.0,Participation
-log_income,0.5367534456355281,Participation
-gender,0.2773736600306278,Participation
-is_urban,0.08384379785604847,Participation
-risk_tolerance_preference,0.007656967840734386,Participation
+log_income,0.46329161218008597,Participation
+gender,0.27909583411171335,Participation
+is_urban,0.03474687091350655,Participation
+risk_tolerance_preference,0.004483467214646241,Participation
 stock_market_familiarity,1.0,Securities Choice
-actual_knowledge_score,0.8438634713144519,Securities Choice
-education_years,0.26724763979665983,Securities Choice
-log_income,0.22222222222222207,Securities Choice
-is_urban,0.07044299201161934,Securities Choice
-gender,-0.004357298474945355,Securities Choice
-risk_tolerance_preference,-0.04938271604938264,Securities Choice
-info_professionals,-0.1227305737109663,Securities Choice
-info_social_media,-0.4502541757443719,Securities Choice
+actual_knowledge_score,0.7656794425087107,Securities Choice
+education_years,0.24216027874564355,Securities Choice
+log_income,0.1080139372822297,Securities Choice
+is_urban,0.03310104529616608,Securities Choice
+gender,0.013066202090591535,Securities Choice
+risk_tolerance_preference,-0.050522648083624694,Securities Choice
+info_professionals,-0.33623693379791103,Securities Choice
+info_social_media,-0.5174216027874575,Securities Choice
 log_income,1.0,Duration (Long-Term)
-actual_knowledge_score,0.6183206106870223,Duration (Long-Term)
-education_years,0.549618320610687,Duration (Long-Term)
-risk_tolerance_preference,0.39949109414758405,Duration (Long-Term)
-gender,0.34096692111959476,Duration (Long-Term)
-is_urban,0.09923664122137414,Duration (Long-Term)
-info_social_media,-0.04580152671755684,Duration (Long-Term)
-info_professionals,-0.05343511450381632,Duration (Long-Term)
-stock_market_familiarity,-0.15267175572518948,Duration (Long-Term)
+actual_knowledge_score,0.7103004291845489,Duration (Long-Term)
+risk_tolerance_preference,0.448497854077254,Duration (Long-Term)
+education_years,0.43347639484978545,Duration (Long-Term)
+gender,0.3497854077253226,Duration (Long-Term)
+info_professionals,0.0321888412017165,Duration (Long-Term)
+info_social_media,-0.0085836909871244,Duration (Long-Term)
+stock_market_familiarity,-0.036480686695278694,Duration (Long-Term)
+is_urban,-0.0622317596566519,Duration (Long-Term)

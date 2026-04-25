@@ -20,7 +20,7 @@ from tqdm import tqdm
 load_dotenv()
 DATABASE_URL = os.environ["DATABASE_URL"]
 
-DATA_DIR = Path(__file__).parent.parent / "data"
+DATA_DIR = Path(__file__).parent.parent.parent / "data" / "sebi" / "2025"
 RAW_XLSX  = DATA_DIR / "Respondent Data.XLSX"
 YEAR = 2025
 
