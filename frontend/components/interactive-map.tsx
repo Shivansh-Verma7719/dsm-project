@@ -13,7 +13,7 @@ export function InteractiveMap() {
   const [hoverInfo, setHoverInfo] = useState<{ x: number; y: number; feature: any } | null>(null);
 
   useEffect(() => {
-    fetch(`${process.env.BACKEND_URL}/state-metrics`)
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/state-metrics`)
       .then((res) => res.json())
       .then((data) => setMetrics(data))
       .catch((err) => console.error(err));

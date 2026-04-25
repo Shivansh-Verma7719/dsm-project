@@ -1,13 +1,14 @@
-# API Layer
+# Optimized requirements for Vercel (East) - iad1
+# Bumped versions to match model training environment (1.7.2)
+
+# API
 fastapi
 pydantic
 
-# Inference Engine
-# Pinning to a stable version to match unpickling requirements
-scikit-learn==1.3.2
-scipy
-numpy
+# Inference (Heavier, but necessary for unpickling)
+scikit-learn>=1.6.0
+numpy>=1.26.4
 joblib
 
 # Data Structures
-pandas
+pandas>=2.2.0
