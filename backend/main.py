@@ -20,7 +20,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 MODELS_DIR = os.path.join(BASE_DIR, 'models')
 REPORT_DIR = os.path.join(ROOT_DIR, 'report', 'data')
-DATA_DIR = os.path.join(ROOT_DIR, 'data')
 
 clf_participation = None
 clf_securities = None
@@ -77,7 +76,7 @@ def predict(data: PredictionInput):
 
 @app.get("/state-metrics")
 def get_state_metrics():
-    csv_path = os.path.join(DATA_DIR, 'state_layer.csv')
+    csv_path = os.path.join("data", 'state_layer.csv')
     if not os.path.exists(csv_path):
         return {"error": "state_layer.csv not found"}
     df = pd.read_csv(csv_path)
