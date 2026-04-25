@@ -23,6 +23,14 @@ def main():
         r.respondent_id,
         r.is_investor,
         i.info_iep_providers,
+        i.info_friends_family,
+        i.info_social_media_influencers,
+        i.info_financial_professionals,
+        i.info_educational_resources,
+        i.info_online_communities,
+        i.info_news_blogs,
+        i.info_research_reports,
+        i.info_sebi_official_websites,
         k.knows_direct_mf_lower_expense,
         k.knows_pension_invests_equity,
         k.knows_compounding_longterm,
@@ -60,33 +68,43 @@ def main():
 
     df["iep_exposed"] = df["info_iep_providers"].fillna(False).astype(bool)
 
-    iep = df[df["iep_exposed"]]
-    non_iep = df[~df["iep_exposed"]]
+    # Two comparison groups:
+    # - non_iep_all: all non-IEP investors (for knowledge/awareness/holdings — no routing bias)
+    # - non_iep_ss_b3: only investors who answered the info-source question (for motivations)
+    info_cols = [c for c in df.columns if c.startswith("info_")]
+    df_ss_b3 = df[df[info_cols].any(axis=1)].copy()
 
-    print(f"IEP-exposed investors:     {len(iep):,}")
-    print(f"Non-IEP investors:         {len(non_iep):,}")
+    iep = df_ss_b3[df_ss_b3["iep_exposed"]]
+    non_iep_all = df[~df["iep_exposed"]]
+    non_iep_ss_b3 = df_ss_b3[~df_ss_b3["iep_exposed"]]
 
-    # --- 1. Knowledge score comparison ---
+    print(f"IEP-exposed investors:        {len(iep):,}")
+    print(f"Non-IEP all investors:        {len(non_iep_all):,}")
+    print(f"Non-IEP SS_B3 investors:      {len(non_iep_ss_b3):,}")
+
+    # --- 1. Knowledge / awareness / risk — use full non-IEP population ---
     results = {
-        "Group": ["IEP-Exposed", "Non-IEP"],
-        "N": [len(iep), len(non_iep)],
-        "Mean_Knowledge_Score": [iep["knowledge_score"].mean(), non_iep["knowledge_score"].mean()],
-        "Mean_Products_Aware": [iep["n_products_aware"].mean(), non_iep["n_products_aware"].mean()],
-        "Mean_Risk_Tolerance": [iep["risk_tolerance_preference"].mean(), non_iep["risk_tolerance_preference"].mean()],
+        "Group": ["IEP-Exposed", "Non-IEP (all)", "Non-IEP (info-active)"],
+        "N": [len(iep), len(non_iep_all), len(non_iep_ss_b3)],
+        "Mean_Knowledge_Score": [iep["knowledge_score"].mean(), non_iep_all["knowledge_score"].mean(), non_iep_ss_b3["knowledge_score"].mean()],
+        "Mean_Products_Aware": [iep["n_products_aware"].mean(), non_iep_all["n_products_aware"].mean(), non_iep_ss_b3["n_products_aware"].mean()],
+        "Mean_Risk_Tolerance": [iep["risk_tolerance_preference"].mean(), non_iep_all["risk_tolerance_preference"].mean(), non_iep_ss_b3["risk_tolerance_preference"].mean()],
     }
 
-    # --- 2. Holdings penetration ---
+    # --- 2. Holdings — use full non-IEP population ---
     for col in ["holds_mf_etf", "holds_equity_shares", "holds_fd_rd", "holds_derivatives_fo", "holds_ulip"]:
         results[col] = [
             iep[col].fillna(False).mean() * 100,
-            non_iep[col].fillna(False).mean() * 100,
+            non_iep_all[col].fillna(False).mean() * 100,
+            non_iep_ss_b3[col].fillna(False).mean() * 100,
         ]
 
-    # --- 3. Motivations ---
+    # --- 3. Motivations — use SS_B3 non-IEP only (avoids non-answerer dilution) ---
     for col in ["motive_long_term_growth", "motive_quick_gains", "motive_higher_returns", "motive_financial_goals"]:
         results[col] = [
             iep[col].fillna(False).mean() * 100,
-            non_iep[col].fillna(False).mean() * 100,
+            non_iep_all[col].fillna(False).mean() * 100,
+            non_iep_ss_b3[col].fillna(False).mean() * 100,
         ]
 
     out = pd.DataFrame(results)

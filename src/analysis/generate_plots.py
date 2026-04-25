@@ -245,43 +245,44 @@ def plot_iep_analysis():
     print("Generating IEP Analysis plot...")
     df = pd.read_csv("report/data/iep_analysis.csv")
 
-    iep = df[df["Group"] == "IEP-Exposed"].iloc[0]
-    non = df[df["Group"] == "Non-IEP"].iloc[0]
+    iep     = df[df["Group"] == "IEP-Exposed"].iloc[0]
+    non_all = df[df["Group"] == "Non-IEP (all)"].iloc[0]          # knowledge panel
+    non_act = df[df["Group"] == "Non-IEP (info-active)"].iloc[0]  # motivations panel
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-
-    # Panel 1: Knowledge score and product awareness
-    metrics = ["Mean_Knowledge_Score", "Mean_Products_Aware"]
-    labels = ["Financial Literacy\nScore (/9)", "Product Awareness\n(# instruments known)"]
-    x = np.arange(len(labels))
     w = 0.35
+
+    # Panel 1: Knowledge score — IEP vs all non-IEP investors
+    metrics = ["Mean_Knowledge_Score", "Mean_Products_Aware"]
+    labels  = ["Financial Literacy\nScore (/9)", "Product Awareness\n(# instruments known)"]
+    x = np.arange(len(labels))
     axes[0].bar(x - w/2, [iep[m] for m in metrics], w, label="IEP-Exposed", color="steelblue", edgecolor="black")
-    axes[0].bar(x + w/2, [non[m] for m in metrics], w, label="Non-IEP", color="lightcoral", edgecolor="black")
+    axes[0].bar(x + w/2, [non_all[m] for m in metrics], w, label="Non-IEP", color="lightcoral", edgecolor="black")
     for i, m in enumerate(metrics):
         axes[0].text(i - w/2, iep[m] + 0.1, f"{iep[m]:.2f}", ha="center", fontsize=9, fontweight="bold")
-        axes[0].text(i + w/2, non[m] + 0.1, f"{non[m]:.2f}", ha="center", fontsize=9, fontweight="bold")
+        axes[0].text(i + w/2, non_all[m] + 0.1, f"{non_all[m]:.2f}", ha="center", fontsize=9, fontweight="bold")
     axes[0].set_xticks(x)
     axes[0].set_xticklabels(labels, fontsize=10)
     axes[0].set_ylabel("Mean Score")
-    axes[0].set_title("Knowledge & Awareness Profile")
+    axes[0].set_title("Knowledge & Awareness Profile\n(vs. all non-IEP investors)")
     axes[0].legend()
     axes[0].set_ylim(0, 13)
 
-    # Panel 2: Motivations (% of cohort)
-    motives = ["motive_long_term_growth", "motive_quick_gains", "motive_financial_goals", "motive_higher_returns"]
+    # Panel 2: Motivations — IEP vs info-active non-IEP only
+    motives       = ["motive_long_term_growth", "motive_quick_gains", "motive_financial_goals", "motive_higher_returns"]
     motive_labels = ["Long-Term\nGrowth", "Quick\nGains", "Financial\nGoals", "Higher\nReturns"]
     x2 = np.arange(len(motives))
     axes[1].bar(x2 - w/2, [iep[m] for m in motives], w, label="IEP-Exposed", color="steelblue", edgecolor="black")
-    axes[1].bar(x2 + w/2, [non[m] for m in motives], w, label="Non-IEP", color="lightcoral", edgecolor="black")
+    axes[1].bar(x2 + w/2, [non_act[m] for m in motives], w, label="Non-IEP", color="lightcoral", edgecolor="black")
     axes[1].set_xticks(x2)
     axes[1].set_xticklabels(motive_labels, fontsize=10)
     axes[1].set_ylabel("% of Investor Cohort")
-    axes[1].set_title("Investment Motivations")
+    axes[1].set_title("Investment Motivations\n(vs. info-active non-IEP investors)")
     axes[1].legend()
 
     plt.suptitle("IEP-Exposed vs Non-IEP Investors", fontsize=14, fontweight="bold")
     plt.tight_layout()
-    plt.savefig("figures/fig8_iep_analysis.pdf", bbox_inches="tight")
+    plt.savefig("figures/fig12_iep_analysis.pdf", bbox_inches="tight")
     plt.close()
 
 
