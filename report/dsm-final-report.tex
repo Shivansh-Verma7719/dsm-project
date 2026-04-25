@@ -7,6 +7,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{booktabs}
+\usepackage{multirow}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
@@ -32,7 +33,7 @@ sashwat.dhanuka\_ug2023@ashoka.edu.in}
 \maketitle
 
 \begin{abstract}
-Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a logistic regression framework to isolate the socioeconomic drivers of investment, revealing that education and income are the strongest predictors (odds ratios of 1.83 and 1.80, respectively). We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Gradient Boosting Classifiers to predict participation, asset choice, and investment horizons based on basic demographic and behavioral metrics. Our predictive models achieve strong discriminatory power for baseline participation (AUC=0.76) and asset allocation (AUC=0.83), validating that while market entry is structurally gated, post-entry behavior is heavily dictated by psychographic traits and financial literacy.
+Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a weighted logistic regression framework with HC3 robust standard errors across eleven demographic, socioeconomic, and geographic predictors, revealing that education and income are the strongest drivers (odds ratios of 1.86 and 1.80, respectively; $p < 0.001$), while two predictors (Gen~X life stage and West zone) return null results, validating model specificity. We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Histogram-based Gradient Boosting Classifiers to predict participation, asset choice, and investment horizons based on basic demographic and behavioral metrics. Our predictive models achieve strong discriminatory power for baseline participation (AUC=0.76) and asset allocation (AUC=0.83), validating that while market entry is structurally gated, post-entry behavior is heavily dictated by psychographic traits and financial literacy.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -40,7 +41,7 @@ Financial Inclusion, Securities Markets, Household Finance, Behavioral Economics
 \end{IEEEkeywords}
 
 \section{Introduction}
-The democratization of capital markets is essential for broad-based economic growth and household wealth accumulation. In emerging economies like India, retail participation in securities has witnessed a significant surge, catalyzed by digitization and the proliferation of zero-commission trading platforms. Despite this growth, participation remains highly heterogeneous. 
+The democratization of capital markets is essential for broad-based economic growth and household wealth accumulation. In emerging economies like India, retail participation in securities has witnessed a significant surge, catalyzed by digitization and the proliferation of zero-commission trading platforms. Despite this growth, participation remains highly heterogeneous.
 
 Understanding the determinants of household participation is a central problem in financial economics. Why do certain households allocate capital to mutual funds and equities, while others restrict their savings to traditional, low-yield instruments like fixed deposits? The literature points to a combination of background risk, financial literacy, and trust in institutions. However, most existing studies rely on older data that predate the post-pandemic retail boom, the widespread adoption of digital KYC, and the systemic rise of social media financial influencers.
 
@@ -49,22 +50,123 @@ This paper addresses this gap by utilizing the comprehensive 2025 SEBI Household
 The remainder of the paper is organized as follows: Section II details the dataset and methodology. Section III presents the empirical findings regarding determinants, behavioral anomalies, and securities preferences. Section IV details our predictive modeling framework. Finally, Section V concludes with highly condensed policy implications.
 
 \section{Data and Methodology}
+
 \subsection{Dataset}
-We utilize micro-data from the 2025 SEBI Household Survey on Securities Market Participation, comprising a nationally representative sample of 109,430 households across India. The dataset captures detailed demographic variables (age, gender, education, income), geographical data, and behavioral metrics (risk tolerance, market perception). Crucially, the survey differentiates between \textit{investors} (25.5\%) and \textit{non-investors} (74.5\%).
+We utilize micro-data from the 2025 SEBI Household Survey on Securities Market Participation, a nationally representative cross-sectional survey of $N = 109{,}430$ households administered across four geographic zones: North, South, East, and West India. Each observation corresponds to a unique household respondent, weighted for population representativeness via a pre-computed survey weight variable.
 
-\subsection{Econometric \& Predictive Specification}
-To identify the core determinants of participation, we first estimate a binary logistic regression model where the dependent variable is active investment status ($Y_i \in \{0,1\}$). Independent variables are normalized to extract comparable odds ratios.
+The sample is bifurcated into \textit{active investors} (those holding at least one financial security) ($n = 27{,}882$; 25.5\%) and \textit{non-investors} ($n = 81{,}548$; 74.5\%). Table~\ref{tab:descriptive} reports key demographic characteristics. The sample skews male (64.5\%) and is concentrated in younger cohorts: Gen~Z (18--27 years) and Millennials (28--43 years) together comprise 86.1\% of respondents. Nuclear family structures predominate (84.2\% of households).
 
-To expand this into a forecasting paradigm, we utilize Histogram-based Gradient Boosting Classifiers to predict three distinct outcomes: (Model 1) the binary likelihood of participation; (Model 2) the choice between market-linked securities (Equity/MF) vs. traditional instruments; and (Model 3) the propensity to hold equity for the long-term.
+\begin{table}[htbp]
+\caption{Sample Composition and Participation Rates}
+\label{tab:descriptive}
+\centering
+\begin{tabular}{lrrr}
+\toprule
+& \textbf{N} & \textbf{\% of Sample} & \textbf{Participation Rate} \\
+\midrule
+\multicolumn{4}{l}{\textit{Gender}} \\
+\quad Male   & 70,616 & 64.5 & 30.8\% \\
+\quad Female & 38,814 & 35.5 & 15.8\% \\
+\midrule
+\multicolumn{4}{l}{\textit{Life Stage}} \\
+\quad Gen Z (18--27)       & 49,035 & 44.8 & 24.3\% \\
+\quad Millennial (28--43)  & 45,235 & 41.3 & 28.1\% \\
+\quad Gen X (44--59)       & 12,806 & 11.7 & 22.9\% \\
+\quad Baby Boomer (60+)    &  2,354 &  2.2 & 13.3\% \\
+\midrule
+\multicolumn{4}{l}{\textit{Residence}} \\
+\quad Urban & 76,931 & 70.3 & 28.8\% \\
+\quad Rural & 32,499 & 29.7 & 17.6\% \\
+\midrule
+\multicolumn{4}{l}{\textit{Zone}} \\
+\quad West  & 34,153 & 31.2 & 27.1\% \\
+\quad South & 27,885 & 25.5 & 26.8\% \\
+\quad North & 26,439 & 24.2 & 24.1\% \\
+\quad East  & 20,953 & 19.1 & 22.8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The survey employs a conditional routing design. Investors were directed to dedicated sub-modules (SS\_B3, SS\_B10) covering information sources and investment motivations, yielding $n = 9{,}797$ complete investor sub-responses. Non-investors were routed to a separate module (SS\_BB2) eliciting up to three self-reported barriers to participation, yielding $n = 14{,}794$ barrier responses. All group-level percentages for these modules are computed against the respective routing-eligible population, not the full sample.
+
+\subsection{Exploratory Analysis}
+The raw participation patterns in Table~\ref{tab:descriptive} reveal a market sharply stratified by socioeconomic position. The gender gap is the most visually immediate: male respondents participate at 30.8\% against 15.8\% for female respondents. The income gradient, however, is the steepest univariate signal: participation rises from 10.7\% in the lowest quintile (below INR~12,500/month) to 47.6\% in the highest (above INR~35,000/month), a more than fourfold difference. Urban households (28.8\%) participate at nearly double the rate of rural ones (17.6\%). Notably, Millennials (28--43 years) record the \textit{highest} participation rate of any cohort (28.1\%), exceeding Gen~X (22.9\%) and Gen~Z (24.3\%), suggesting the post-2020 retail boom was disproportionately captured by this age group rather than younger entrants.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{../figures/fig_eda1_participation_demo.pdf}}
+\caption{Market participation rates by gender, residence, and monthly income quintile. The income gradient (10.7\% to 47.6\%) is the steepest univariate signal, while the gender gap (30.8\% vs 15.8\%) persists across all income levels.}
+\label{fig:participation_demo}
+\end{figure}
+
+A critical precondition for participation is product awareness. The survey's awareness module reveals a steep gradient: fixed deposits are known to 99.1\% of respondents, while mutual funds and ETFs reach 67.0\%, direct equity 62.0\%, and derivatives just 17.9\%. This awareness gap, between near-universal familiarity with traditional instruments and niche awareness of market-linked ones, maps closely onto the observed holdings distribution. Among the 27,882 active investors, MF/ETFs lead penetration (66.5\%), followed by FD/RD (57.2\%) and direct equity (49.3\%). The co-existence of MFs and FDs as the two most-held instruments indicates that Indian retail investors are not homogenously risk-seeking; the portfolio evidence points instead to a layered allocation model where market-linked products supplement rather than replace traditional savings.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{../figures/fig_eda2_holdings.pdf}}
+\caption{Instrument holdings penetration among active investors ($n=27{,}882$). MF/ETFs and Fixed Deposits co-dominate, indicating a layered allocation model rather than a shift away from traditional savings.}
+\label{fig:holdings_penetration}
+\end{figure}
+
+The financial literacy data deepens this picture. When presented with nine objective financial knowledge questions, investors perform unevenly: while 80\%+ correctly identify that KYC can be completed online and that higher returns entail higher risk, a majority respond incorrectly or ``Don't Know'' to questions about compounding, diversification, and even basic SEBI tools (CAS, BSDA). This asymmetry (high procedural literacy, weak conceptual literacy) is directly relevant to the Dunning-Kruger analysis in Section~\ref{sec:results} and to the barriers analysis, where ``Lack of Knowledge'' ranks as the second most-cited deterrent among non-investors.
+
+\subsection{Variable Operationalization}
+The dependent variable $Y_i \in \{0, 1\}$ indicates whether household $i$ holds any financial security. We include eleven regressors across three groups. The \textit{socioeconomic} block contains \textit{Education} (continuous years of formal schooling) and \textit{Income} (natural log of self-reported monthly household income in INR, log-transformed to address right-skew). The \textit{demographic} block contains \textit{Urban} (binary; urban vs.\ rural residence), \textit{Gender} (binary; male $= 1$), and \textit{Risk Tolerance} (ordinal; 1 = low, 2 = medium, 3 = high). The \textit{life stage} block uses Gen~Z as the reference category, with binary indicators for Millennial (28--43 years), Gen~X (44--59 years), and Baby Boomer (60+ years). The \textit{geographic} block uses the East zone as reference, with binary indicators for North, South, and West. All continuous regressors are standardized ($\mu = 0$, $\sigma = 1$) prior to estimation so that OR magnitudes are directly comparable across predictors.
+
+\subsection{Econometric Specification}
+We estimate a binary logistic regression via maximum likelihood:
+
+\begin{equation}
+\Pr(Y_i = 1) = \frac{1}{1 + e^{-(\beta_0 + \boldsymbol{\beta}^\top \mathbf{x}_i)}}
+\label{eq:logit}
+\end{equation}
+
+\noindent where $\mathbf{x}_i$ is the vector of standardized regressors. Coefficients are exponentiated to yield odds ratios (ORs), interpreted as the multiplicative change in participation odds per one-standard-deviation increase in each predictor. Statistical significance is evaluated via Wald $z$-tests with heteroskedasticity-consistent (HC3) standard errors; survey weights are incorporated during estimation. We note that with $N \approx 100{,}000$, statistical significance is trivially achieved for any real effect---$p$-values are reported for completeness but the economically meaningful metrics are OR magnitude and confidence interval width. We include 11 regressors spanning socioeconomic, demographic, and geographic dimensions; two (Gen~X life stage and West zone) return ORs statistically indistinguishable from 1.0, providing a falsifiability check on the model.
+
+\subsection{Predictive Framework}
+To operationalize the regression findings, we implement Histogram-based Gradient Boosting Classifiers for three distinct prediction tasks: (Model~1) the binary likelihood of market participation; (Model~2) whether an investor holds market-linked instruments (equity or mutual funds) vs.\ traditional instruments only; and (Model~3) the propensity to hold equity over a long-term horizon. All models are trained on an 80/20 stratified split and evaluated via the area under the ROC curve (AUC).
 
 \section{Empirical Results}
 
-\subsection{Determinants of Participation \& Overconfidence}
-The results of the logistic regression demonstrate a stark divide driven by human and financial capital. As depicted in Fig. \ref{fig:odds_ratios}, education and income emerge as the strongest statistical determinants. A one-standard-deviation increase in years of education increases the odds of market participation by 1.83 times, holding other factors constant. Similarly, the odds ratio for log-income is 1.80. Urban residency (OR=1.56) and male gender (OR=1.56) also play significant roles, highlighting systemic geographical and gender-based disparities.
+\subsection{Determinants of Participation \& Overconfidence}\label{sec:results}
+Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}626$; pseudo-$R^2 = 0.208$). Nine of eleven predictors are statistically significant; crucially, Gen~X (vs.\ Gen~Z reference) and West zone (vs.\ East reference) are not, with ORs of 1.015 and 1.004 respectively, providing confidence that the model is not returning spurious significance driven purely by sample size.
+
+\begin{table}[htbp]
+\caption{Logistic Regression: Determinants of Market Participation}
+\label{tab:logit}
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Predictor} & \textbf{OR} & \textbf{95\% CI} & \textbf{$z$} & \textbf{Sig.} \\
+\midrule
+\multicolumn{5}{l}{\textit{Socioeconomic}} \\
+\quad Education (yrs)     & 1.864 & [1.823,\ 1.907] & 57.1 & *** \\
+\quad Log(Income)         & 1.800 & [1.758,\ 1.843] & 53.5 & *** \\
+\midrule
+\multicolumn{5}{l}{\textit{Demographic}} \\
+\quad Urban               & 1.602 & [1.568,\ 1.637] & 46.5 & *** \\
+\quad Male                & 1.550 & [1.515,\ 1.586] & 44.5 & *** \\
+\quad Risk Tolerance      & 1.184 & [1.160,\ 1.209] & 16.7 & *** \\
+\midrule
+\multicolumn{5}{l}{\textit{Life Stage (ref: Gen Z)}} \\
+\quad Millennial          & 1.141 & [1.116,\ 1.167] & 11.5 & *** \\
+\quad Gen X               & 1.015 & [0.992,\ 1.038] &  1.3 & \phantom{***} \\
+\quad Baby Boomer         & 0.902 & [0.876,\ 0.928] & $-$6.7 & *** \\
+\midrule
+\multicolumn{5}{l}{\textit{Zone (ref: East)}} \\
+\quad North               & 0.893 & [0.869,\ 0.918] & $-$8.2 & *** \\
+\quad South               & 0.805 & [0.781,\ 0.829] & $-$14.4 & *** \\
+\quad West                & 1.004 & [0.975,\ 1.035] &  0.3 & \phantom{***} \\
+\midrule
+\multicolumn{5}{l}{\textit{N} = 97,626 \quad Pseudo-$R^2$ = 0.208 \quad All predictors standardised} \\
+\multicolumn{5}{l}{*** $p < 0.001$. HC3 robust SEs. Survey-weighted GLM (Binomial).} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+As depicted in Fig.~\ref{fig:odds_ratios}, education and income remain the dominant drivers (OR = 1.86 and 1.80 respectively). Urban residency (1.60) and male gender (1.55) also exert substantial independent effects. The life stage results are instructive: Millennials participate \textit{more} than Gen~Z (OR = 1.14), plausibly reflecting the post-2020 retail boom activating this cohort disproportionately; Gen~X is statistically indistinguishable from Gen~Z; and Baby Boomers participate significantly less (OR = 0.90). On geography, the South zone underperforms East after controlling for all other variables (OR = 0.81), despite having higher raw participation rates, indicating that South's advantage in the raw tabulation is fully explained by its higher education and income levels. West is no different from East after controls.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{../figures/fig1_odds_ratios.pdf}}
-\caption{Forest plot of Odds Ratios for determinants of market participation. Baseline is 1.0. Education and income show the highest predictive power.}
+\caption{Forest plot of odds ratios for determinants of market participation. Baseline is 1.0. Education and income show the highest predictive power.}
 \label{fig:odds_ratios}
 \end{figure}
 
@@ -85,7 +187,7 @@ Diving deeper into the ``Knowledge'' barrier, we analyzed the divergence between
 \end{figure}
 
 \subsection{Securities Preferences, Demographics, and Influencers}
-Once households overcome the barrier to entry, their product preferences shift dynamically with income. Fig. \ref{fig:securities_income} illustrates the penetration of various financial instruments across income quartiles. Fixed Deposits (FDs) remain the bedrock of Indian savings, showing uniformly high penetration. However, the adoption of market-linked securities---specifically Mutual Funds/ETFs and Direct Equity---scales dramatically in the higher income brackets, indicating that risk appetite scales non-linearly with wealth.
+Once households overcome the barrier to entry, their product preferences shift dynamically with income. Fig. \ref{fig:securities_income} illustrates the penetration of various financial instruments across income quartiles. Fixed Deposits (FDs) remain the bedrock of Indian savings, showing uniformly high penetration. However, the adoption of market-linked securities (specifically Mutual Funds/ETFs and Direct Equity) scales dramatically in the higher income brackets, indicating that risk appetite scales non-linearly with wealth.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{../figures/fig3_securities_income.pdf}}

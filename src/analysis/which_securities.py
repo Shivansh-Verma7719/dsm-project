@@ -13,7 +13,7 @@ def main():
 
     engine = create_engine(db_url)
     
-    os.makedirs("report", exist_ok=True)
+    os.makedirs("report/data", exist_ok=True)
 
     print("Extracting data for Securities Analysis...")
     
@@ -46,20 +46,20 @@ def main():
     overall_penetration_df.columns = ['Instrument', 'Penetration_%']
     overall_penetration_df = overall_penetration_df.sort_values(by='Penetration_%', ascending=False)
     
-    overall_penetration_df.to_csv("report/which_securities_overall.csv", index=False)
-    print("Overall penetration saved to report/which_securities_overall.csv")
+    overall_penetration_df.to_csv("report/data/which_securities_overall.csv", index=False)
+    print("Overall penetration saved to report/data/which_securities_overall.csv")
 
     print("Segmenting holdings by Life Stage...")
     life_stage_group = df_holdings.groupby('life_stage')[holding_cols].mean() * 100
     life_stage_group.reset_index(inplace=True)
-    life_stage_group.to_csv("report/which_securities_by_lifestage.csv", index=False)
+    life_stage_group.to_csv("report/data/which_securities_by_lifestage.csv", index=False)
     
     print("Segmenting holdings by Income Quartiles...")
     df_holdings['income_quartile'] = pd.qcut(df_holdings['monthly_income_rs'], q=4, duplicates='drop')
     income_group = df_holdings.groupby('income_quartile')[holding_cols].mean() * 100
     income_group.reset_index(inplace=True)
     income_group['income_quartile'] = income_group['income_quartile'].astype(str)
-    income_group.to_csv("report/which_securities_by_income.csv", index=False)
+    income_group.to_csv("report/data/which_securities_by_income.csv", index=False)
 
     print("Analyzing Motivations...")
     query_motives = """
@@ -70,7 +70,7 @@ def main():
     motive_counts = df_motives[motive_cols].sum().reset_index()
     motive_counts.columns = ['Motivation', 'Count']
     motive_counts = motive_counts.sort_values(by='Count', ascending=False)
-    motive_counts.to_csv("report/which_securities_motivations.csv", index=False)
+    motive_counts.to_csv("report/data/which_securities_motivations.csv", index=False)
     
     print("Securities analysis complete.")
 

@@ -13,7 +13,7 @@ def main():
 
     engine = create_engine(db_url)
     
-    os.makedirs("report", exist_ok=True)
+    os.makedirs("report/data", exist_ok=True)
 
     print("Extracting data for Duration Analysis...")
     
@@ -47,8 +47,8 @@ def main():
         
     final_durations = pd.concat(duration_stats, ignore_index=True)
     final_durations = final_durations[['Instrument', 'Duration_Code', 'Duration_Label', 'Count', 'Percentage']]
-    final_durations.to_csv("report/duration_preferences.csv", index=False)
-    print("Duration preferences saved to report/duration_preferences.csv")
+    final_durations.to_csv("report/data/duration_preferences.csv", index=False)
+    print("Duration preferences saved to report/data/duration_preferences.csv")
 
     # 2. Analyze time horizons definition (short_term_months, mid_term_months, long_term_months)
     query_horizons = """
@@ -63,8 +63,8 @@ def main():
     
     print("Computing perceived time horizons (months)...")
     horizons_summary = df_horizons.describe().transpose()
-    horizons_summary.to_csv("report/duration_time_horizons_summary.csv")
-    print("Time horizons summary saved to report/duration_time_horizons_summary.csv")
+    horizons_summary.to_csv("report/data/duration_time_horizons_summary.csv")
+    print("Time horizons summary saved to report/data/duration_time_horizons_summary.csv")
     
     print("Duration analysis complete.")
 
