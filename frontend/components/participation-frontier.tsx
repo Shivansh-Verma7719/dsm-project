@@ -49,7 +49,7 @@ export function ParticipationFrontier({
   const [tooltip, setTooltip] = useState<{ inc: number; edu: number; prob: number; x: number; y: number } | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/participation-grid")
+    fetch(`${process.env.BACKEND_URL}/participation-grid`)
       .then(r => r.json())
       .then(d => { setData(d); setLoading(false); })
       .catch(() => { setError(true); setLoading(false); });
