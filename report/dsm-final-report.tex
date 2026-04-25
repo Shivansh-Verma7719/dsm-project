@@ -153,8 +153,7 @@ We estimate a binary logistic regression via maximum likelihood:
 To operationalize the regression findings, we implement Histogram-based Gradient Boosting Classifiers for three distinct prediction tasks: (Model~1) the binary likelihood of market participation; (Model~2) whether an investor holds market-linked instruments (equity or mutual funds) vs.\ traditional instruments only; and (Model~3) the propensity to hold equity over a long-term horizon. All models are trained on an 80/20 stratified split and evaluated via the area under the ROC curve (AUC).
 
 \section{Empirical Results}
-
-\subsection{Determinants of Participation \& Overconfidence}\label{sec:results}
+\subsection{Socioeconomic Determinants of Participation}\label{sec:results}
 Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}626$; McFadden pseudo-$R^2 = 0.290$, excellent fit range 0.20--0.40). Ten of twelve predictors are statistically significant; Gen~X (vs.\ Gen~Z) and West zone (vs.\ East) are not, with ORs of 0.993 and 1.021 respectively, confirming the model does not return spurious significance at this sample size.
 
 \begin{table}[htbp]
@@ -205,14 +204,19 @@ The life stage results are instructive: Millennials participate \textit{more} th
 \label{fig:odds_ratios}
 \end{figure}
 
-For the 74.5\% of households that remain completely outside the securities market, self-reported barriers (Fig. \ref{fig:barriers}) indicate that behavioral frictions dominate structural ones. Specifically, ``Fear of Loss'' is the top barrier, closely followed by ``Lack of Knowledge'' and ``Lack of Trust''. This suggests that while digital platforms have solved access friction, the cognitive and emotional friction of investing remains high.
+\subsection{Barriers to Entry: Latent Archetype Analysis}
+To better understand the 74.5\% of households that remain completely outside the securities market, we move beyond simple frequency rankings and cluster the 18 self-reported barriers into latent archetypes. Using K-means clustering on the subset of non-investors who identified specific deterrents ($n=14,705$), we identify three distinct profiles: \textit{Trust-Deficient} (46.3\%), \textit{Knowledge-Gated} (29.0\%), and \textit{Fear-Driven} (24.8\%).
+
+The demographic cross-tabulation (Fig.~\ref{fig:archetype_demographics}) reveals that the \textit{Knowledge-Gated} profile is disproportionately concentrated in rural areas and among the lowest income quartile (Q1). In contrast, \textit{Trust-Deficiency} remains a persistent barrier that scales with wealth, remaining high even in urban higher-income cohorts. This segmentation implies that financial inclusion cannot be solved with a one-size-fits-all awareness campaign; it requires targeted interventions---educational for the rural knowledge-gated, and institutional/regulatory for the urban trust-deficient.
+
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=\linewidth]{../figures/fig2_barriers.pdf}}
-\caption{Top barriers cited by non-investors. Loss aversion and information asymmetry (lack of knowledge/trust) are the primary deterrents.}
-\label{fig:barriers}
+\centerline{\includegraphics[width=\linewidth]{../figures/fig11_archetype_demographics.pdf}}
+\caption{Demographic distribution of barrier archetypes.}
+\label{fig:archetype_demographics}
 \end{figure}
 
+\subsection{Behavioral Anomalies: Overconfidence \& Dunning-Kruger}
 Diving deeper into the ``Knowledge'' barrier, we analyzed the divergence between self-reported market familiarity and actual scores on an objective financial literacy quiz. We discovered a profound Dunning-Kruger effect: investors who are ``overconfident'' (high perceived familiarity, low actual knowledge) are disproportionately likely to hold high-risk assets like Futures \& Options (F\&O) and Cryptocurrency compared to calibrated investors (Fig. \ref{fig:dunning_kruger}). This behavioral anomaly underscores why traditional models of rational participation often fail to capture modern retail dynamics.
 
 \begin{figure}[htbp]
