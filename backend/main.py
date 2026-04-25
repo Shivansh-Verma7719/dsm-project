@@ -75,7 +75,7 @@ def predict(data: PredictionInput):
 
 @app.get("/state-metrics")
 def get_state_metrics():
-    csv_path = os.path.join(os.path.dirname(BASE_DIR), 'data', 'state_layer.csv')
+    csv_path = os.path.join('data', 'state_layer.csv')
     if not os.path.exists(csv_path):
         return {"error": "state_layer.csv not found"}
     df = pd.read_csv(csv_path)
