@@ -8,6 +8,7 @@ import { KpiStrip } from "@/components/kpi-strip";
 import { BarrierWall } from "@/components/barrier-wall";
 import { ParticipationFrontier } from "@/components/participation-frontier";
 import { AssetLadder } from "@/components/asset-ladder";
+import { StateMetricsPanel } from "@/components/state-metrics-panel";
 
 // Odds ratio strip — the paper's headline logistic regression findings
 function OddsRatioStrip() {
@@ -117,7 +118,14 @@ export default function Home() {
             <span className="font-mono text-xs" style={{ color: "var(--ink-2)" }}>NSE / SEBI UCC</span>
           </div>
         </div>
-        <InteractiveMap />
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          <div className="lg:col-span-3">
+            <InteractiveMap />
+          </div>
+          <div className="lg:col-span-2 h-[460px]">
+            <StateMetricsPanel />
+          </div>
+        </div>
       </section>
 
       {/* ── Section 02: Behavioral Patterns ────────────────────────────── */}
