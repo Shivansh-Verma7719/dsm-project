@@ -122,8 +122,9 @@ function WeightDots({ featureKey }: { featureKey: string }) {
 }
 
 // ── GaugeBar ─────────────────────────────────────────────────────────────
-function GaugeBar({ label, description, value, loading, color, ariaLabel }: {
+function GaugeBar({ label, description, value, loading, color, ariaLabel, lowLabel, highLabel }: {
   label: string; description: string; value: number; loading: boolean; color?: string; ariaLabel: string;
+  lowLabel?: string; highLabel?: string;
 }) {
   return (
     <div className="space-y-2">
@@ -133,12 +134,22 @@ function GaugeBar({ label, description, value, loading, color, ariaLabel }: {
           {loading ? "—" : `${value.toFixed(1)}%`}
         </span>
       </div>
-      <ProgressBar value={value} isIndeterminate={loading} aria-label={ariaLabel} className="h-1.5">
-        <ProgressBar.Track>
-          <ProgressBar.Fill style={{ background: color ?? "var(--data-1)" }} />
-        </ProgressBar.Track>
-      </ProgressBar>
-      <p className="font-mono text-xs" style={{ color: "var(--ink-3)", lineHeight: 1.5 }}>{description}</p>
+      <div className="relative pt-1">
+        <ProgressBar value={value} isIndeterminate={loading} aria-label={ariaLabel} className="h-1.5">
+          <ProgressBar.Track>
+            <ProgressBar.Fill style={{ background: color ?? "var(--data-1)" }} />
+          </ProgressBar.Track>
+        </ProgressBar>
+        <div className="flex justify-between mt-3 px-0.5">
+          <span className="font-mono text-[0.6rem] uppercase tracking-tighter" style={{ color: "var(--ink-3)" }}>
+            {lowLabel}
+          </span>
+          <span className="font-mono text-[0.6rem] uppercase tracking-tighter text-right" style={{ color: "var(--ink-3)" }}>
+            {highLabel}
+          </span>
+        </div>
+      </div>
+      <p className="font-mono text-xs" style={{ color: "var(--ink-3)", lineHeight: 1.5, marginTop: "-0.5rem" }}>{description}</p>
     </div>
   );
 }
@@ -438,15 +449,24 @@ export function PredictionSimulator() {
           </div>
         ) : (
           <div className="space-y-6" style={{ borderTop: "1px solid var(--border)", paddingTop: "1.5rem" }}>
-            <GaugeBar label="Market Participation" description="Likelihood of holding any securities"
+            <GaugeBar 
+              label="Market Participation" 
+              description="Probability that the household enters the securities market at all."
               value={predictions.participation_probability * 100} loading={loading}
-              color="var(--data-1)" ariaLabel="Market Participation Probability" />
-            <GaugeBar label="Market-Linked Choice" description="Equity / MF vs. traditional instruments"
+              color="var(--data-1)" ariaLabel="Market Participation Probability"
+              lowLabel="Stay Out" highLabel="Participate" />
+            <GaugeBar 
+              label="Market-Linked Choice" 
+              description="Probability that an investor chooses Equity/MFs over safe traditional assets (FD/Gold)."
               value={predictions.securities_probability * 100} loading={loading}
-              color="var(--data-2)" ariaLabel="Securities Choice" />
-            <GaugeBar label="Long-Term Horizon" description="Holding horizon of more than 3 years"
+              color="var(--data-2)" ariaLabel="Securities Choice"
+              lowLabel="Traditional" highLabel="Market-Linked" />
+            <GaugeBar 
+              label="Long-Term Horizon" 
+              description="Likelihood of maintaining investments for more than 3 years."
               value={predictions.long_term_duration_probability * 100} loading={loading}
-              color="var(--data-3)" ariaLabel="Long-Term Holding Horizon" />
+              color="var(--data-3)" ariaLabel="Long-Term Holding Horizon"
+              lowLabel="Short-Term" highLabel="Long-Term" />
           </div>
         )}
 
