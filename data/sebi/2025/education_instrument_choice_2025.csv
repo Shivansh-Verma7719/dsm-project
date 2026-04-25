@@ -1,0 +1,5 @@
+education_level,years_schooling,mf_pct,equity_pct,debt_pct,n_investors
+Not Literate,0,50.0,0.0,0.0,4
+Primary,1-7,62.2,43.4,18.2,735
+Secondary,8-10,62.3,46.4,21.5,2588
+Higher Secondary,11-15,62.0,49.0,18.5,6930

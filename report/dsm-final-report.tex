@@ -127,7 +127,7 @@ To operationalize the regression findings, we implement Histogram-based Gradient
 \section{Empirical Results}
 
 \subsection{Determinants of Participation \& Overconfidence}\label{sec:results}
-Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}626$; pseudo-$R^2 = 0.208$). Nine of eleven predictors are statistically significant; crucially, Gen~X (vs.\ Gen~Z reference) and West zone (vs.\ East reference) are not, with ORs of 1.015 and 1.004 respectively, providing confidence that the model is not returning spurious significance driven purely by sample size.
+Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}626$; McFadden pseudo-$R^2 = 0.208$, which falls in the ``excellent fit'' range of 0.20--0.40 on McFadden's scale and is not directly comparable to OLS $R^2$). Nine of eleven predictors are statistically significant; crucially, Gen~X (vs.\ Gen~Z reference) and West zone (vs.\ East reference) are not, with ORs of 1.015 and 1.004 respectively, providing confidence that the model is not returning spurious significance driven purely by sample size.
 
 \begin{table}[htbp]
 \caption{Logistic Regression: Determinants of Market Participation}
@@ -156,7 +156,7 @@ Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}6
 \quad South               & 0.805 & [0.781,\ 0.829] & $-$14.4 & *** \\
 \quad West                & 1.004 & [0.975,\ 1.035] &  0.3 & \phantom{***} \\
 \midrule
-\multicolumn{5}{l}{\textit{N} = 97,626 \quad Pseudo-$R^2$ = 0.208 \quad All predictors standardised} \\
+\multicolumn{5}{l}{\textit{N} = 97,626 \quad McFadden pseudo-$R^2$ = 0.208 (excellent fit: 0.20--0.40) \quad All predictors standardised} \\
 \multicolumn{5}{l}{*** $p < 0.001$. HC3 robust SEs. Survey-weighted GLM (Binomial).} \\
 \bottomrule
 \end{tabular}

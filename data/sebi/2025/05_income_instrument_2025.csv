@@ -1,0 +1,17 @@
+country,year,investor_type,range,income_range,n_investors,pct_of_total
+India,2025,Mutual Fund Investor,,"Less than 20,000",0,0.0
+India,2025,Equity Investor,,"Less than 20,000",0,0.0
+India,2025,Debt Investor,,"Less than 20,000",0,0.0
+India,2025,Total Investors,,"Less than 20,000",0,100.0
+India,2025,Mutual Fund Investor,,"20,000 to 50,000",0,0.0
+India,2025,Equity Investor,,"20,000 to 50,000",0,0.0
+India,2025,Debt Investor,,"20,000 to 50,000",0,0.0
+India,2025,Total Investors,,"20,000 to 50,000",0,100.0
+India,2025,Mutual Fund Investor,,"50,000 to 1 lakh",0,0.0
+India,2025,Equity Investor,,"50,000 to 1 lakh",0,0.0
+India,2025,Debt Investor,,"50,000 to 1 lakh",0,0.0
+India,2025,Total Investors,,"50,000 to 1 lakh",0,100.0
+India,2025,Mutual Fund Investor,,Above 1 lakh,0,0.0
+India,2025,Equity Investor,,Above 1 lakh,0,0.0
+India,2025,Debt Investor,,Above 1 lakh,0,0.0
+India,2025,Total Investors,,Above 1 lakh,0,100.0

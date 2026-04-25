@@ -19,23 +19,112 @@ plt.rcParams.update({
 
 os.makedirs("figures", exist_ok=True)
 
+def plot_participation_demo():
+    print("Generating EDA: Participation Rates by Demographic...")
+    df = pd.read_csv("report/data/who_participates_descriptive.csv")
+
+    gender = df[df['characteristic'] == 'gender'].copy()
+    gender['label'] = gender['category'].astype(str).map({'1': 'Male', '2': 'Female'})
+    gender = gender.dropna(subset=['label'])
+
+    urban = df[df['characteristic'] == 'is_urban'].copy()
+    urban['label'] = urban['category'].astype(str).map({'True': 'Urban', 'False': 'Rural'})
+    urban = urban.dropna(subset=['label'])
+
+    income = df[df['characteristic'] == 'income_quintile'].copy().reset_index(drop=True)
+    income['label'] = ['Q1\n<₹12.5k', 'Q2\n₹12.5-17.5k', 'Q3\n₹17.5-25k', 'Q4\n₹25-35k', 'Q5\n>₹35k'][:len(income)]
+
+    fig, axes = plt.subplots(1, 3, figsize=(14, 5))
+    panels = [(gender, 'By Gender'), (urban, 'By Residence'), (income, 'By Monthly Income')]
+
+    for ax, (subset, title) in zip(axes, panels):
+        rates = subset['participation_rate'] * 100
+        ax.bar(list(subset['label']), list(rates), color='steelblue', edgecolor='black', alpha=0.85)
+        ax.set_title(title, fontsize=13)
+        ax.set_ylim(0, 58)
+        if ax is axes[0]:
+            ax.set_ylabel('Participation Rate (%)')
+        ax.tick_params(axis='x', labelsize=9)
+        for j, v in enumerate(rates):
+            ax.text(j, v + 0.8, f'{v:.1f}%', ha='center', fontsize=9, fontweight='bold')
+
+    plt.suptitle('Market Participation Rates Across Demographic Groups', fontsize=14, fontweight='bold')
+    plt.tight_layout()
+    plt.savefig("figures/fig_eda1_participation_demo.pdf", bbox_inches='tight')
+    plt.close()
+
+
+def plot_holdings_penetration():
+    print("Generating EDA: Holdings Penetration...")
+    df = pd.read_csv("report/data/which_securities_overall.csv")
+    name_map = {
+        'holds_mf_etf': 'Mutual Funds / ETFs',
+        'holds_fd_rd': 'Fixed Deposits / RDs',
+        'holds_equity_shares': 'Direct Equity',
+        'holds_ulip': 'ULIPs',
+        'holds_gold_physical': 'Physical Gold',
+        'holds_post_office': 'Post Office Schemes',
+        'holds_real_estate': 'Real Estate',
+    }
+    df['Instrument'] = df['Instrument'].map(name_map).fillna(df['Instrument'])
+    df = df.sort_values('Penetration_%', ascending=True)
+
+    fig, ax = plt.subplots(figsize=(8, 4.5))
+    colors = ['#2171b5' if p > 40 else '#6baed6' for p in df['Penetration_%']]
+    ax.barh(list(df['Instrument']), list(df['Penetration_%']), color=colors, edgecolor='black')
+    ax.set_xlabel('Penetration Among Investors (%)')
+    ax.set_title('Instrument Holdings Distribution Among Active Investors')
+    ax.set_xlim(0, 82)
+    for i, v in enumerate(df['Penetration_%']):
+        ax.text(v + 0.5, i, f'{v:.1f}%', va='center', fontsize=10)
+    plt.tight_layout()
+    plt.savefig("figures/fig_eda2_holdings.pdf", bbox_inches='tight')
+    plt.close()
+
+
 def plot_odds_ratios():
     print("Generating Odds Ratios plot...")
     df = pd.read_csv("report/data/who_participates_logistic_regression.csv")
-    df = df.dropna()
-    name_map = {'education_years': 'Years of Education', 'log_income': 'Log(Monthly Income)', 'is_urban': 'Urban Resident', 'gender_male': 'Male Gender', 'risk_tolerance_preference': 'Risk Tolerance'}
+    df = df.dropna(subset=['Odds Ratio'])
+    name_map = {
+        'education_years': 'Education (yrs)',
+        'log_income': 'Log(Income)',
+        'is_urban': 'Urban Resident',
+        'gender_male': 'Male Gender',
+        'risk_tolerance_preference': 'Risk Tolerance',
+        'lifestage_millennial': 'Millennial\n(ref: Gen Z)',
+        'lifestage_genx': 'Gen X\n(ref: Gen Z)',
+        'lifestage_boomer': 'Baby Boomer\n(ref: Gen Z)',
+        'zone_north': 'North Zone\n(ref: East)',
+        'zone_south': 'South Zone\n(ref: East)',
+        'zone_west': 'West Zone\n(ref: East)',
+    }
     df['Feature'] = df['Feature'].map(name_map).fillna(df['Feature'])
-    df = df.sort_values('Odds Ratio', ascending=True)
+    df = df.sort_values('Odds Ratio', ascending=True).reset_index(drop=True)
 
-    fig, ax = plt.subplots(figsize=(8, 5))
-    ax.barh(df['Feature'], df['Odds Ratio'] - 1, left=1, color='steelblue', edgecolor='black')
-    ax.axvline(x=1, color='red', linestyle='--', linewidth=2)
+    fig, ax = plt.subplots(figsize=(9, 8))
+    y_pos = list(range(len(df)))
+    colors = ['steelblue' if v >= 1.0 else 'indianred' for v in df['Odds Ratio']]
+    ax.barh(y_pos, df['Odds Ratio'] - 1, left=1, color=colors, edgecolor='black', alpha=0.8, height=0.6)
+
+    xerr_lower = (df['Odds Ratio'] - df['OR_CI_Lower']).values
+    xerr_upper = (df['OR_CI_Upper'] - df['Odds Ratio']).values
+    ax.errorbar(df['Odds Ratio'].values, y_pos,
+                xerr=[xerr_lower, xerr_upper],
+                fmt='none', color='black', capsize=3, linewidth=1.2, zorder=5)
+
+    ax.axvline(x=1, color='red', linestyle='--', linewidth=1.5)
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(df['Feature'])
     ax.set_xlabel('Odds Ratio (Baseline = 1.0)')
     ax.set_title('Determinants of Market Participation (Odds Ratios)')
-    for i, v in enumerate(df['Odds Ratio']):
-        ax.text(v + 0.02, i, f"{v:.2f}", va='center', fontweight='bold')
+
+    for i, row in df.iterrows():
+        sig = row['Significance'] if pd.notna(row['Significance']) else ''
+        ax.text(row['OR_CI_Upper'] + 0.03, i, f"{row['Odds Ratio']:.2f}{sig}", va='center', fontsize=8)
+
     plt.tight_layout()
-    plt.savefig("figures/fig1_odds_ratios.pdf")
+    plt.savefig("figures/fig1_odds_ratios.pdf", bbox_inches='tight')
     plt.close()
 
 def plot_barriers():
@@ -151,6 +240,8 @@ def plot_predictive_importance():
     plt.close()
 
 if __name__ == "__main__":
+    plot_participation_demo()
+    plot_holdings_penetration()
     plot_odds_ratios()
     plot_barriers()
     plot_securities_by_income()
