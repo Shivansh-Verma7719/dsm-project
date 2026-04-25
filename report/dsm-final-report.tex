@@ -53,9 +53,6 @@ sashwat.dhanuka\_ug2023@ashoka.edu.in}
 Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a weighted logistic regression framework with HC3 robust standard errors across twelve predictors spanning awareness, socioeconomic, demographic, and geographic dimensions, revealing that product awareness is the single strongest driver of participation (OR = 2.22, $p < 0.001$), exceeding income (OR = 1.60) and education (OR = 1.56), while two predictors (Gen~X life stage and West zone) return null results, validating model specificity. The model achieves a McFadden pseudo-$R^2$ of 0.290, confirming that awareness is an independent, policy-actionable determinant beyond income and education alone. We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Histogram-based Gradient Boosting Classifiers to predict participation, asset choice, and investment horizons. Our predictive models achieve strong discriminatory power for baseline participation (AUC = 0.814) and asset allocation (AUC = 0.820), validating that while market entry is structurally gated, post-entry behavior is heavily dictated by psychographic traits and financial literacy.
 \end{abstract}
 
-\begin{IEEEkeywords}
-Financial Inclusion, Securities Markets, Household Finance, Behavioral Economics, Predictive Modeling
-\end{IEEEkeywords}
 
 \section{Introduction}
 The democratization of capital markets is essential for broad-based economic growth and household wealth accumulation. In emerging economies like India, retail participation in securities has witnessed a significant surge, catalyzed by digitization and the proliferation of zero-commission trading platforms. Despite this growth, participation remains highly heterogeneous.
@@ -70,6 +67,20 @@ The remainder of the paper is organized as follows: Section II details the datas
 
 \subsection{Dataset}
 We utilize micro-data from the 2025 SEBI Household Survey on Securities Market Participation, a nationally representative cross-sectional survey of $N = 109{,}430$ households administered across four geographic zones: North, South, East, and West India. Each observation corresponds to a unique household respondent, weighted for population representativeness via a pre-computed survey weight variable.
+
+\subsection{Data Normalization and Schema Architecture}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=\linewidth]{../figures/data_layer.png}}
+\caption{Architecture of the data layer showing the aggregation and normalization process of the respondent microdata.}
+\label{fig:data_layer}
+\end{figure}
+
+To facilitate robust multivariate analysis, the raw survey microdata—originally comprising a single flat file with 449 columns—underwent a rigorous Extraction, Transformation, and Loading (ETL) process. Categorical survey responses and qualitative inputs were systematically transformed into strictly analytical data types (booleans, integers, and ordinal scales), eliminating unstructured free-text to ensure computational efficiency and statistical reliability.
+
+As illustrated in Fig.~\ref{fig:data_layer}, the transformed data was subsequently loaded into a fully normalized PostgreSQL relational database. The schema architecture is anchored by a central \texttt{respondents} table, which establishes a unique primary key (\texttt{respondent\_id}) for each household and stores the population-representative survey weights. 
+
+The remaining data is segmented across 16 interconnected, domain-specific tables encompassing geographic distribution, socioeconomic profiles, financial allocations, product awareness, and behavioral perceptions. Maintaining a strict one-to-one relationship with the core identity table, this modular and highly indexed design allows for rapid, optimized querying of specific behavioral intersections—such as isolating active equity investors to correlate objective financial literacy with risk tolerance—thereby forming the computational backbone for both our logistic regression and gradient boosting frameworks.
 
 The sample is bifurcated into \textit{active investors} (those holding at least one financial security) ($n = 27{,}882$; 25.5\%) and \textit{non-investors} ($n = 81{,}548$; 74.5\%). Table~\ref{tab:descriptive} reports key demographic characteristics. The sample skews male (64.5\%) and is concentrated in younger cohorts: Gen~Z (18--27 years) and Millennials (28--43 years) together comprise 86.1\% of respondents. Nuclear family structures predominate (84.2\% of households).
 
@@ -144,7 +155,7 @@ To operationalize the regression findings, we implement Histogram-based Gradient
 \section{Empirical Results}
 
 \subsection{Determinants of Participation \& Overconfidence}\label{sec:results}
-Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}626$; McFadden pseudo-$R^2 = 0.290$, excellent fit range 0.20--0.40, not comparable to OLS $R^2$). Ten of twelve predictors are statistically significant; Gen~X (vs.\ Gen~Z) and West zone (vs.\ East) are not, with ORs of 0.993 and 1.021 respectively, confirming the model does not return spurious significance at this sample size.
+Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}626$; McFadden pseudo-$R^2 = 0.290$, excellent fit range 0.20--0.40). Ten of twelve predictors are statistically significant; Gen~X (vs.\ Gen~Z) and West zone (vs.\ East) are not, with ORs of 0.993 and 1.021 respectively, confirming the model does not return spurious significance at this sample size.
 
 \begin{table}[htbp]
 \caption{Logistic Regression: Determinants of Market Participation}
@@ -176,7 +187,7 @@ Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}6
 \quad South               & 0.842 & [0.816,\ 0.869] & $-$10.7 & *** \\
 \quad West                & 1.021 & [0.989,\ 1.054] &   1.3 & \phantom{***} \\
 \midrule
-\multicolumn{5}{l}{\textit{N} = 97,626 \quad McFadden pseudo-$R^2$ = 0.290 (excellent fit: 0.20--0.40) \quad All predictors standardised} \\
+\multicolumn{5}{l}{\textit{N} = 97,626 \quad McFadden pseudo-$R^2$ = 0.290 (excellent fit: 0.20--0.40)} \\
 \multicolumn{5}{l}{*** $p < 0.001$. HC3 robust SEs. Survey-weighted GLM (Binomial).} \\
 \bottomrule
 \end{tabular}
@@ -239,11 +250,11 @@ Holding duration preferences (Fig. \ref{fig:duration}) challenge the notion that
 \section{Predictive Modeling: Forecasting Household Participation}
 To operationalize our findings, we utilized Histogram-based Gradient Boosting Classifiers to predict household behavior. All three models incorporate product awareness ($n\_products\_aware$) alongside standard demographic and socioeconomic features. For investor-specific models (Models 2 and 3), the feature space is further expanded to include the behavioral traits uncovered in our earlier analysis: perceived familiarity, objective financial literacy, and information source reliance.
 
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=\linewidth]{../figures/fig7_predictive_importance.pdf}}
+\begin{figure*}[t]
+\centerline{\includegraphics[width=0.9\textwidth]{../figures/fig7_predictive_importance.pdf}}
 \caption{Normalized feature importances across the three predictive models.}
 \label{fig:predictive_importance}
-\end{figure}
+\end{figure*}
 
 As shown in Fig.~\ref{fig:predictive_importance}, the feature importance profiles differ sharply across models: awareness dominates participation prediction, while familiarity and objective knowledge take over once inside the market.
 
