@@ -7,6 +7,7 @@ from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.inspection import permutation_importance
 from sklearn.metrics import roc_auc_score
 import numpy as np
+import joblib
 
 load_dotenv()
 
@@ -148,6 +149,13 @@ def main():
         f.write(f"Model 1 (Participation) AUC: {auc1:.3f}\n")
         f.write(f"Model 2 (Securities) AUC: {auc2:.3f}\n")
         f.write(f"Model 3 (Duration) AUC: {auc3:.3f}\n")
+
+    # Save Models for the Dashboard Backend
+    os.makedirs('backend/models', exist_ok=True)
+    joblib.dump(clf1, 'backend/models/model1_participation.joblib')
+    joblib.dump(clf2, 'backend/models/model2_securities.joblib')
+    joblib.dump(clf3, 'backend/models/model3_duration.joblib')
+    print("Models saved to backend/models/")
 
 if __name__ == "__main__":
     main()
