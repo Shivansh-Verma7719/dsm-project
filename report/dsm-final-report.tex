@@ -249,12 +249,17 @@ Crucially, the choice of securities is heavily modulated by where investors sour
 \label{fig:finfluencers}
 \end{figure}
 
-\subsection{Goal--Portfolio Alignment: The Intent--Action Gap}
-Beyond demographics and information sources, we test whether household portfolios are internally consistent with their stated primary financial goals. As shown in Fig.~\ref{fig:goal_alignment_heatmap}, households citing long-term objectives like \textit{Retirement} (72.4\%) or \textit{Children's Education} (77.2\%) show strong alignment, with high penetration in Mutual Funds and provident funds (PPF/EPF). 
+\subsection{Goal--Portfolio Consistency}
 
-However, we identify a stark ``Say--Do'' paradox among speculative entrants. While households citing \textit{Daily Trading} as their primary goal theoretically ought to hold high-risk, high-velocity instruments, we find an internal consistency score of only 7.3\% for this cohort (Fig.~\ref{fig:consistency_score}). 
+Beyond demographics and information sources, we test whether household portfolios are internally consistent with their stated primary financial goals. As shown in Fig.~\ref{fig:goal_alignment_heatmap}, households citing long-term objectives such as Retirement (72.4\%) and Children’s Education (77.2\%) exhibit strong alignment, with high penetration in mutual funds and provident fund instruments (PPF/EPF), indicating coherent long-horizon financial planning.
 
-This suggests a critical distinction between \textit{stated intent} and \textit{behavioral catalyst}. While many households adopt the identity of a ``trader'' as an aspirational goal, the actual adoption of speculative instruments like F\&O and Crypto is not driven by this formal objective. Instead, as demonstrated in our Section~\ref{sec:results} analysis of the Dunning-Kruger effect, risky asset penetration is overwhelmingly dictated by the \textbf{psychological trait of overconfidence} rather than the \textbf{stated goal of trading}. In essence, thousands of households \textit{want} to trade (Identity), but only the overconfident actually \textit{do} (Action), leaving a vast majority of self-identified traders holding traditional, misaligned portfolios.
+To formalize this, we define a \textit{goal--portfolio consistency} metric as the proportion of households whose primary goal maps to a theoretically aligned instrument set (e.g., Retirement $\rightarrow$ MF/EPF; Daily Trading $\rightarrow$ Equity/F\&O) and who hold at least one such instrument.
+
+However, we identify a stark ``Say--Do'' paradox among speculative entrants. While households citing Daily Trading as their primary goal should, in principle, exhibit high exposure to equities and derivatives, we observe an internal consistency score of just 7.3\% (Fig.~\ref{fig:consistency_score}). This is not merely a mismatch but a structural phenomenon: households self-identify with a trading-oriented financial identity without participating in the asset classes that operationalize such behavior.
+
+We therefore classify households into three segments: (i) \textit{aligned investors} (goals and portfolios match), (ii) \textit{constrained investors} (risk-oriented goals but conservative portfolios), and (iii) \textit{aspirational investors} (speculative self-identification without corresponding asset adoption). The ``daily trading'' cohort overwhelmingly falls into the third category.
+
+This misalignment provides a structural explanation for the overconfidence patterns documented earlier. Aspirational investors exhibit high perceived market familiarity but lack both instrument exposure and technical literacy, creating the precise conditions for Dunning--Kruger effects. In practice, this segment is likely to engage with markets episodically and without adequate risk management, making it particularly vulnerable to adverse financial outcomes.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{../figures/fig8_goal_alignment_heatmap.pdf}}
