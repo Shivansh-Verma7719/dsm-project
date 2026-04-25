@@ -1,45 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 @import "@heroui/styles"; 
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core palette — warm ink on off-white */
+--ink:      #111418;
+--ink-2:    #2c3340;
+--ink-3:    #5a6374;
+--ink-4:    #8a93a3;
+--ink-5:    #c2c7d0;
+  --paper:    #f5f3ef;
+  --paper-2:  #edebe6;
+  --paper-3:  #e2dfd9;
+  --border:   #d4d0c9;
+  --border-2: #c7c3bb;
+
+  /* Accent — amber, precise, restrained */
+  --accent:   #c9852a;
+  --accent-2: #e8a04a;
+  --accent-bg: rgba(201,133,42,0.08);
+
+  /* Data colors — curated for charts */
+  --data-1: #2a4b8c;   /* deep navy */
+  --data-2: #c9852a;   /* amber */
+  --data-3: #3d8b6e;   /* slate green */
+  --data-4: #8c3a3a;   /* muted red */
+  --data-5: #6b5ea8;   /* plum */
+
+  /* Chart tokens for Recharts */
+  --chart-1: var(--data-1);
+  --chart-2: var(--data-2);
+  --chart-3: var(--data-3);
+  --chart-4: var(--data-4);
+  --chart-5: var(--data-5);
+
+  /* Semantic */
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+.dark {
+  --ink:      #f0ede8;
+  --ink-2:    #c9c6c0;
+  --ink-3:    #8a8880;
+  --ink-4:    #5a5752;
+  --ink-5:    #2e2c2a;
+  --paper:    #141210;
+  --paper-2:  #1c1a18;
+  --paper-3:  #252320;
+  --border:   #302e2a;
+  --border-2: #3d3b37;
+
+  --accent:   #d4943a;
+  --accent-2: #b87928;
+  --accent-bg: rgba(212,148,58,0.1);
+
+  --data-1: #4a72c4;
+  --data-2: #d4943a;
+  --data-3: #5ab090;
+  --data-4: #c05858;
+  --data-5: #9b8fce;
+
+  --chart-1: var(--data-1);
+  --chart-2: var(--data-2);
+  --chart-3: var(--data-3);
+  --chart-4: var(--data-4);
+  --chart-5: var(--data-5);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-serif: 'Newsreader', serif;
 }
 
-@layer base {
-  :root {
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
-  }
-
-  .dark {
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
-  }
+/* ─────────────────────────────────────────
+   BASE RESETS
+───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
 }
+
+/* ─────────────────────────────────────────
+   DESIGN SYSTEM UTILITIES
+───────────────────────────────────────── */
+.font-serif   { font-family: 'Newsreader', serif; }
+.font-mono    { font-family: 'DM Mono', monospace; }
+
+/* Section divider line — editorial style */
+.section-rule {
+  border: none;
+  border-top: 2px solid var(--ink);
+  margin: 0;
+}
+
+/* KPI number — monospaced for alignment */
+.kpi-number {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.kpi-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+
+.kpi-delta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Section heading — editorial */
+.section-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-title {
+  font-family: 'Newsreader', serif;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  max-width: 56ch;
+  line-height: 1.65;
+}
+
+/* Card system */
+.card-base {
+  background: var(--paper-2);
+  border: 1px solid var(--border);
+}
+
+.card-accent-left {
+  border-left: 3px solid var(--accent);
+}
+
+/* Predict gauge output */
+.gauge-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.gauge-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+/* ─────────────────────────────────────────
+   HEROUI TOKEN OVERRIDES
+   Map HeroUI's semantic tokens onto our palette
+   so sliders, selects, and progress bars match.
+───────────────────────────────────────── */
+:root {
+  /* Primary = deep navy */
+  --heroui-primary:             var(--data-1);
+  --heroui-primary-foreground:  #f5f3ef;
+  /* Secondary = amber */
+  --heroui-secondary:           var(--data-2);
+  --heroui-secondary-foreground:#111418;
+  /* Default / neutral */
+  --heroui-default:             var(--paper-3);
+  --heroui-default-foreground:  var(--ink);
+  /* Focus ring */
+  --heroui-focus:               var(--accent);
+  /* Background / content layers */
+  --heroui-background:          var(--paper);
+  --heroui-content1:            var(--paper-2);
+  --heroui-content2:            var(--paper-3);
+  --heroui-divider:             var(--border);
+  /* Foreground */
+  --heroui-foreground:          var(--ink);
+}
+
+.dark {
+  --heroui-primary:             var(--data-1);
+  --heroui-primary-foreground:  var(--paper);
+  --heroui-secondary:           var(--data-2);
+  --heroui-secondary-foreground:var(--ink);
+  --heroui-default:             var(--paper-3);
+  --heroui-default-foreground:  var(--ink);
+  --heroui-focus:               var(--accent);
+  --heroui-background:          var(--paper);
+  --heroui-content1:            var(--paper-2);
+  --heroui-content2:            var(--paper-3);
+  --heroui-divider:             var(--border);
+  --heroui-foreground:          var(--ink);
+}
+
+/* ─────────────────────────────────────────
+   PAGE-LOAD ENTRANCE ANIMATIONS
+───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-delay-1 { animation-delay: 0.05s; }
+.animate-delay-2 { animation-delay: 0.12s; }
+.animate-delay-3 { animation-delay: 0.2s; }
+.animate-delay-4 { animation-delay: 0.28s; }
+.animate-delay-5 { animation-delay: 0.36s; }

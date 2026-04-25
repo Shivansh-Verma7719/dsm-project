@@ -1,0 +1,14 @@
+# Optimized requirements for Vercel (East) - iad1
+# Bumped versions to match model training environment (1.7.2)
+
+# API
+fastapi
+pydantic
+
+# Inference (Heavier, but necessary for unpickling)
+scikit-learn>=1.6.0
+numpy>=1.26.4
+joblib
+
+# Data Structures
+pandas>=2.2.0
