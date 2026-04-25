@@ -24,29 +24,31 @@ def main():
     
     # 1. Extract base features for Model 1 (Participation)
     query_base = """
-    SELECT 
+    SELECT
         r.respondent_id,
         r.is_investor,
         p.gender,
         p.education_years,
         p.monthly_income_rs,
         g.is_urban,
-        lr.risk_tolerance_preference
+        lr.risk_tolerance_preference,
+        a.n_products_aware
     FROM respondents r
     LEFT JOIN respondent_profile p ON r.respondent_id = p.respondent_id
     LEFT JOIN respondent_geography g ON r.respondent_id = g.respondent_id
     LEFT JOIN respondent_literacy_risk lr ON r.respondent_id = lr.respondent_id
+    LEFT JOIN respondent_awareness a ON r.respondent_id = a.respondent_id
     """
     df_base = pd.read_sql(query_base, engine)
-    
+
     # Preprocess
     df_base['is_urban'] = df_base['is_urban'].astype(float)
     df_base['log_income'] = np.log1p(df_base['monthly_income_rs'])
-    
-    feature_cols_m1 = ['gender', 'education_years', 'is_urban', 'risk_tolerance_preference', 'log_income']
+
+    feature_cols_m1 = ['gender', 'education_years', 'is_urban', 'risk_tolerance_preference', 'log_income', 'n_products_aware']
     
     print("1. Predicting Participation...")
-    df_m1 = df_base.dropna(subset=feature_cols_m1 + ['is_investor']).copy()
+    df_m1 = df_base.dropna(subset=feature_cols_m1 + ['is_investor', 'n_products_aware']).copy()
     X1 = df_m1[feature_cols_m1]
     y1 = df_m1['is_investor'].astype(int)
     

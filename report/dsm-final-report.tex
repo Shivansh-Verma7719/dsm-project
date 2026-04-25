@@ -50,7 +50,7 @@ sashwat.dhanuka\_ug2023@ashoka.edu.in}
 % ---- REST OF YOUR DOCUMENT UNCHANGED ----
 
 \begin{abstract}
-Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a weighted logistic regression framework with HC3 robust standard errors across eleven demographic, socioeconomic, and geographic predictors, revealing that product awareness is the single strongest driver of participation (OR = 2.22, $p < 0.001$), exceeding income (OR = 1.60) and education (OR = 1.56), while two predictors (Gen~X life stage and West zone) return null results, validating model specificity. Including awareness raises the McFadden pseudo-$R^2$ from 0.208 to 0.290, confirming it is an independent, policy-actionable determinant beyond income and education alone. We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Histogram-based Gradient Boosting Classifiers to predict participation, asset choice, and investment horizons based on basic demographic and behavioral metrics. Our predictive models achieve strong discriminatory power for baseline participation (AUC=0.76) and asset allocation (AUC=0.83), validating that while market entry is structurally gated, post-entry behavior is heavily dictated by psychographic traits and financial literacy.
+Household participation in capital markets is a crucial driver of financial inclusion and wealth creation, yet it remains disproportionately skewed across demographic lines. Using a large-scale micro-dataset from the 2025 SEBI Household Survey ($N=109,430$), this paper empirically analyzes the determinants of securities market participation in India. We employ a weighted logistic regression framework with HC3 robust standard errors across twelve predictors spanning awareness, socioeconomic, demographic, and geographic dimensions, revealing that product awareness is the single strongest driver of participation (OR = 2.22, $p < 0.001$), exceeding income (OR = 1.60) and education (OR = 1.56), while two predictors (Gen~X life stage and West zone) return null results, validating model specificity. The model achieves a McFadden pseudo-$R^2$ of 0.290, confirming that awareness is an independent, policy-actionable determinant beyond income and education alone. We further investigate structural barriers deterring non-investors, identifying loss aversion and information asymmetry as primary friction points. To deepen our behavioral insights, we expose a stark Dunning-Kruger effect among overconfident retail traders and measure the impact of ``finfluencers'' on high-risk asset adoption. Finally, we implement Histogram-based Gradient Boosting Classifiers to predict participation, asset choice, and investment horizons. Our predictive models achieve strong discriminatory power for baseline participation (AUC = 0.814) and asset allocation (AUC = 0.820), validating that while market entry is structurally gated, post-entry behavior is heavily dictated by psychographic traits and financial literacy.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -184,13 +184,13 @@ Table~\ref{tab:logit} presents the full logistic regression results ($N = 97{,}6
 
 As depicted in Fig.~\ref{fig:odds_ratios}, product awareness (OR = 2.22) is the dominant driver of participation, substantially exceeding income (1.60), education (1.56), male gender (1.53), and urban residency (1.45). The magnitude gap is meaningful: moving one standard deviation up in awareness predicts a larger change in participation odds than any structural or demographic variable in the model.
 
-Comparing these estimates against a baseline eleven-variable specification (excluding awareness), the ORs for income and education fall by 0.20 and 0.31 respectively. This partial mediation indicates that high-income and educated respondents tend to know more financial products, and it is partly this familiarity that converts to participation. Critically, however, both income and education retain large independent effects after controlling for awareness, confirming that awareness is not merely a socioeconomic proxy---it is a distinct, policy-actionable lever.
+The partial mediation structure is evident in the OR magnitudes: income (1.60) and education (1.56) retain large independent effects even after awareness is controlled, yet the relatively modest gap between them and awareness (2.22) indicates that part of the socioeconomic advantage operates through knowing more products. Awareness is therefore not merely a socioeconomic proxy---it is a distinct, policy-actionable lever that educated, higher-income households happen to possess more of.
 
 The life stage results are instructive: Millennials participate \textit{more} than Gen~Z (OR = 1.12), plausibly reflecting the post-2020 retail boom; Gen~X is statistically indistinguishable from Gen~Z; and Baby Boomers participate significantly less (OR = 0.91). On geography, both South (OR = 0.84) and North (OR = 0.85) zones underperform East after controls, despite South's higher raw participation rates, indicating that South's raw advantage is fully explained by its demographic composition. West is no different from East after controls.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{../figures/fig1_odds_ratios.pdf}}
-\caption{Forest plot of odds ratios for determinants of market participation. Baseline is 1.0. Education and income show the highest predictive power.}
+\caption{Forest plot of odds ratios for determinants of market participation. Baseline is 1.0. Product awareness ($n\_products\_aware$, OR = 2.22) is the single strongest predictor, followed by log-income (1.60) and education (1.56). All predictors standardised to unit-SD units.}
 \label{fig:odds_ratios}
 \end{figure}
 
@@ -237,39 +237,39 @@ Holding duration preferences (Fig. \ref{fig:duration}) challenge the notion that
 \end{figure}
 
 \section{Predictive Modeling: Forecasting Household Participation}
-To operationalize our findings, we utilized Histogram-based Gradient Boosting Classifiers to predict household behavior. Initially, our models relied strictly on basic demographic and risk-tolerance metrics. While this was sufficient to predict baseline participation, it failed to predict post-entry behavior. To resolve this, we expanded the feature space for investor-specific models (Models 2 and 3) to include the behavioral traits uncovered in our earlier analysis.
+To operationalize our findings, we utilized Histogram-based Gradient Boosting Classifiers to predict household behavior. All three models incorporate product awareness ($n\_products\_aware$) alongside standard demographic and socioeconomic features. For investor-specific models (Models 2 and 3), the feature space is further expanded to include the behavioral traits uncovered in our earlier analysis: perceived familiarity, objective financial literacy, and information source reliance.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=\linewidth]{../figures/fig7_predictive_importance.pdf}}
-\caption{Feature Importance across the three Predictive Models. Behavioral features like Familiarity and Financial Literacy heavily dominate the models predicting asset allocation and duration.}
+\caption{Normalized feature importances across the three predictive models.}
 \label{fig:predictive_importance}
 \end{figure}
 
-As shown in Fig. \ref{fig:predictive_importance}, injecting behavioral data drastically improves our forecasting capabilities.
+As shown in Fig.~\ref{fig:predictive_importance}, the feature importance profiles differ sharply across models: awareness dominates participation prediction, while familiarity and objective knowledge take over once inside the market.
 
 \subsection{Model 1: Predicting Participation}
 \textbf{Objective:} Predict the binary outcome of whether a household is an active investor ($1$) or a non-investor ($0$). \\
-\textbf{Data Fields Used:} Years of Education, Log-transformed Monthly Income, Urban Residency (Binary), Gender (Binary), and Risk Tolerance Preference Score. \\
+\textbf{Data Fields Used:} Years of Education, Log-transformed Monthly Income, Urban Residency (Binary), Gender (Binary), Risk Tolerance Preference Score, and Product Awareness ($n\_products\_aware$). \\
 \textbf{Algorithm \& Split:} HistGradientBoostingClassifier (200 max iterations, balanced class weights) trained on an 80/20 train-test split. \\
-\textbf{Performance:} The model achieved an Area Under the Receiver Operating Characteristic Curve (AUC) of 0.76. \\
-\textbf{Insight:} Basic metrics are highly effective at predicting \textit{whether} a household will participate. Education and Income heavily dominate the decision boundary, validating that entry is structurally gated.
+\textbf{Performance:} The model achieved an AUC of \textbf{0.814}. \\
+\textbf{Insight:} Product awareness is the single most predictive feature, consistent with its dominant OR of 2.22 in the logistic regression. Awareness of more instruments is independently predictive beyond any demographic factor.
 
 \subsection{Model 2: Predicting Securities Choice}
 \textbf{Objective:} For households that \textit{are} investors, predict if they will hold market-linked securities (Equities or Mutual Funds = $1$) versus sticking exclusively to traditional instruments like Fixed Deposits ($0$). \\
-\textbf{Data Fields Used:} All demographic features from Model 1, \textbf{plus} Self-Perceived Stock Market Familiarity, Actual Financial Literacy Score, Social Media Reliance (Binary), and Professional Advice Reliance (Binary). \\
+\textbf{Data Fields Used:} All features from Model 1 (including Product Awareness), \textbf{plus} Self-Perceived Stock Market Familiarity, Actual Financial Literacy Score, Social Media Reliance (Binary), and Professional Advice Reliance (Binary). \\
 \textbf{Algorithm \& Split:} HistGradientBoostingClassifier trained on an 80/20 train-test split. \\
-\textbf{Performance:} The model achieved an impressive AUC of 0.83 (up from 0.60 when using only demographics). \\
+\textbf{Performance:} The model achieved an AUC of 0.820. \\
 \textbf{Insight:} Predicting \textit{how} individuals participate requires behavioral context. Once we include perceived familiarity and objective knowledge, the model's discriminatory power surges.
 
 \subsection{Model 3: Predicting Investment Horizon}
 \textbf{Objective:} For equity investors, predict if they will define their holding period as ``Long Term'' ($1$) versus Short/Mid-term ($0$). \\
-\textbf{Data Fields Used:} Same extended demographic and behavioral feature set used in Model 2. \\
+\textbf{Data Fields Used:} Same extended demographic, awareness, and behavioral feature set used in Model 2. \\
 \textbf{Algorithm \& Split:} HistGradientBoostingClassifier trained on an 80/20 train-test split. \\
-\textbf{Performance:} The model achieved an AUC of 0.61 (up from 0.58). \\
-\textbf{Insight:} Forecasting \textit{how long} an investor will hold equity remains the hardest prediction task, but injecting information sources and financial literacy provides a measurable improvement over random demographic guessing.
+\textbf{Performance:} The model achieved an AUC of 0.612. \\
+\textbf{Insight:} Forecasting \textit{how long} an investor will hold equity remains the hardest prediction task, suggesting that horizon is shaped by situational factors outside our cross-sectional feature space.
 
 \vspace{0.3cm}
-These predictive models validate our core thesis: while structural socioeconomic factors gatekeep entry into the market, post-entry asset allocation and duration are overwhelmingly dictated by psychological factors, financial literacy, and the modern information ecosystem.
+These predictive models validate our core thesis: awareness and behavioral context, not demographics alone, determine participation and post-entry choices. The divergence in feature importance across models underscores that financial outreach is a quantifiably more powerful lever than income redistribution for broadening market access.
 
 \section{Conclusion and Policy Implications}
 The 2025 SEBI Household Survey provides compelling evidence that while the Indian securities market is growing, entry remains fundamentally gated by education and income. Once inside the market, however, traditional demographics fail to predict behavior. Instead, a dangerous cocktail of overconfidence and social media influence is driving a subset of retail investors toward highly speculative, short-term derivative trading.

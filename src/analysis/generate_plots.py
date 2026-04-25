@@ -225,6 +225,7 @@ def plot_predictive_importance():
         subset['Feature'] = subset['Feature'].map({
             'education_years': 'Education', 'log_income': 'Income', 'is_urban': 'Urban',
             'gender': 'Gender', 'risk_tolerance_preference': 'Risk Tolerance',
+            'n_products_aware': 'Product Awareness',
             'stock_market_familiarity': 'Self-Perceived Familiarity',
             'actual_knowledge_score': 'Financial Literacy Score',
             'info_social_media': 'Social Media Reliance',
