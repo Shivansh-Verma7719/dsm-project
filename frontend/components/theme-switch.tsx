@@ -24,9 +24,9 @@ export function ThemeSwitch() {
       onPress={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       {theme === "dark" ? (
-        <IconSunset2Filled className="text-black group-hover:text-white group-hover:scale-110 transition-all duration-400 ease-in-out" />
+        <IconSunset2Filled className="text-white group-hover:scale-110 transition-all duration-400 ease-in-out" />
       ) : (
-        <IconHazeMoon className="text-white group-hover:text-black group-hover:scale-110 transition-all duration-400 ease-in-out" />
+        <IconHazeMoon className="text-white group-hover:scale-110 transition-all duration-400 ease-in-out" />
       )}
     </Button>
   );
