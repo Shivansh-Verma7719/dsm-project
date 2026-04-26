@@ -24,6 +24,10 @@ Respondent Data.xlsx
 *.synctex.gz
 *.aux
 *.fdb_latexmk
+*.toc
+*.nav
+*.snm
+*.out
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

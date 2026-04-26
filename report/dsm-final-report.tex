@@ -365,6 +365,57 @@ Social media finfluencers are the second most-used information source (5.0\% of 
 \subsection{Gate Derivatives Access on Objective Literacy}
 The Dunning-Kruger analysis shows that overconfident investors---those with high perceived familiarity but low objective knowledge---hold Futures \& Options and crypto at significantly higher rates than calibrated investors. The goal-alignment data reinforces this: the daily trading cohort, whose strategy requires active derivatives exposure, has a portfolio consistency score of just 7.3\%, suggesting they aspire to speculative trading without the instruments or knowledge to do so safely. SEBI should consider replacing the current self-certification suitability test for derivatives access with a brief objective literacy assessment, analogous to the approach used for sophisticated investor classification in other jurisdictions. This would filter out the most behaviorally at-risk segment before they encounter leveraged instruments.
 
+\section{Appendix}
+
+\subsection{AI Stockbroker Sales Helper}
+The final phase of this research involved the implementation of an AI-powered Research Assistant, the \textit{DSM Stockbroker Sales Helper}, designed to operationalize our empirical findings into actionable sales intelligence. The agent architecture is designed to bridge the gap between static academic results and real-world sales strategy.
+
+\subsubsection{System Architecture}
+The agent is built on a multi-layered agentic framework:
+\begin{itemize}
+    \item \textbf{Reasoning Engine}: Powered by the Gemini 1.5 Pro large language model, the agent utilizes a \textit{LangGraph}-based state machine. This allows for iterative reasoning loops where the agent can plan a query, execute a tool, observe the result, and refine its strategy before providing a final answer.
+    \item \textbf{Dynamic Data Access}: The agent is natively integrated with our normalized PostgreSQL database ($N=109{,}430$). Using a specialized SQL Toolkit, it can generate and execute complex queries in real-time to find real-world lead examples or calculate specific geographic aggregates.
+    \item \textbf{Operational Tools}: \textit{LeadScorer} (Gradient Boosting wrapper), \textit{GeographicAnalyst} (State-level gap analysis), and \textit{PitchOptimizer} (Behavioral what-if simulations).
+\end{itemize}
+
+\subsection{Strategic Sales Dashboard}
+To host the AI agent and visualize our empirical findings, we developed a high-fidelity web application built with Next.js and React. The dashboard is designed with a "Premium-First" aesthetic to match the high-end nature of financial research.
+
+\subsubsection{Design System \& Aesthetics}
+The dashboard utilizes a curated design system focused on editorial clarity and atmospheric depth:
+\begin{itemize}
+    \item \textbf{Typography}: We utilize a high-contrast typographic pairing of \textit{Fraunces} (an editorial serif) for narrative synthesis and a strictly defined monospace font for data-heavy tool outputs and SQL indicators.
+    \item \textbf{Theming}: A custom "Paper" theme was implemented using OKLCH color variables, providing a sophisticated dark-mode aesthetic with semantic tokens for different information layers (\texttt{paper-1} through \texttt{paper-3}).
+    \item \textbf{Glassmorphism}: The interface employs semi-transparent overlays and blurred background effects to create a sense of depth and focus, common in modern premium fintech applications.
+\end{itemize}
+
+\subsubsection{Interactive Components}
+We implemented several custom components to enhance the sales workflow:
+\begin{itemize}
+    \item \textbf{Real-Time Status Indicators}: Pulsing emerald status dots and "Text Shimmer" animations provide immediate visual feedback on the agent's background processing state.
+    \item \textbf{Research Audit Trail}: A dedicated sidebar log that persists "Checkmarked" tool indicators, allowing brokers to verify the agent's data sources at a glance.
+    \item \textbf{Adaptive Multi-Line Input}: An intelligent text area that supports both rapid execution and complex, multi-paragraph lead descriptions.
+\end{itemize}
+
+\subsection{Microdata Explorer}
+To provide full transparency into the SEBI 2025 dataset, we implemented a robust Data Explorer module. This interface serves as an administrative and research portal for auditing the raw microdata that powers our predictive models.
+
+\subsubsection{Technical Architecture}
+The explorer is built on a high-performance server-side processing engine:
+\begin{itemize}
+    \item \textbf{Dynamic Schema Discovery}: The system utilizes SQLAlchemy's inspection engine to dynamically reflect the database schema, allowing it to serve any microdata table without manual configuration.
+    \item \textbf{Server-Side Sorting \& Filtering}: To maintain performance over hundreds of thousands of records, we implemented global search and sorting directly in the SQL layer. This allows for complex filtering across all columns (utilizing \texttt{ILIKE} pattern matching) with sub-millisecond response times.
+    \item \textbf{HeroUI v3 Modular Table}: The interface leverages the advanced modular architecture of HeroUI v3, utilizing \texttt{Table.ScrollContainer} for native horizontal scrolling and strict accessibility compliance via the \texttt{isRowHeader} identifier for record keys.
+\end{itemize}
+
+\subsubsection{Visual Polish}
+The Data Explorer extends the dashboard's premium aesthetic:
+\begin{itemize}
+    \item \textbf{Monospace Precision}: All raw data is rendered in a strictly defined monospace font at small optical sizes (\texttt{11px}), optimizing for information density while maintaining an "Audit-First" look.
+    \item \textbf{Interactive Metrics}: A high-fidelity record counter and column indicator provide real-time feedback on the scope of the current data subset.
+    \item \textbf{Debounced Search}: The global search bar utilizes a debounced input pattern to prevent unnecessary server load during rapid typing, providing a smooth "Sync-on-Type" experience.
+\end{itemize}
+
 \begin{thebibliography}{00}
 \bibitem{b1} SEBI, ``Household Survey on Securities Market Participation 2025,'' Securities and Exchange Board of India, 2025.
 \bibitem{b2} Kruger, Justin \& Dunning, David. (2000). Unskilled and Unaware of It: How Difficulties in Recognizing One's Own Incompetence Lead to Inflated Self-Assessments. Journal of Personality and Social Psychology. 77. 1121-34. 10.1037//0022-3514.77.6.1121.
