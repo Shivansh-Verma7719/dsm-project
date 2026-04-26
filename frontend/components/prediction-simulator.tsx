@@ -12,6 +12,7 @@ const FEATURE_WEIGHTS: Record<string, [number, number, number]> = {
   is_urban:                    [0.03, 0.03, -0.06],
   gender:                      [0.28, 0.01,  0.35],
   risk_tolerance_preference:   [0.00, -0.05, 0.45],
+  n_products_aware:            [1.00, 0.40,  0.20],
   stock_market_familiarity:    [0.00, 1.00, -0.04],
   actual_knowledge_score:      [0.00, 0.77,  0.71],
   info_social_media:           [0.00, -0.52, -0.01],
@@ -238,6 +239,7 @@ const DEFAULT_INPUTS = {
   is_urban: 1.0,
   gender: 1.0,
   risk_tolerance_preference: 3.0,
+  n_products_aware: 10.0,
   stock_market_familiarity: 3.0,
   actual_knowledge_score: 5.0,
   info_social_media: 0.0,
@@ -308,19 +310,8 @@ export function PredictionSimulator() {
               <Slider.Track><Slider.Fill /><Slider.Thumb /></Slider.Track>
             </Slider>
 
-            <Slider step={1} maxValue={20} minValue={0}
-              value={inputs.education_years}
-              onChange={v => handleChange("education_years", v)}
-              className="max-w-md"
-            >
-              <Label>
-                Years of Education <WeightDots featureKey="education_years" />
-              </Label>
-              <Slider.Output />
-              <Slider.Track><Slider.Fill /><Slider.Thumb /></Slider.Track>
-            </Slider>
 
-            <div className="grid grid-cols-2 gap-4 max-w-md">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-5 max-w-md">
               <Select className="w-full" value={String(inputs.is_urban)} onChange={k => handleChange("is_urban", k)}>
                 <Label>Location <WeightDots featureKey="is_urban" /></Label>
                 <Select.Trigger><Select.Value /><Select.Indicator /></Select.Trigger>
@@ -342,10 +333,56 @@ export function PredictionSimulator() {
                   </ListBox>
                 </Select.Popover>
               </Select>
+
+              <Select className="w-full" value={String(inputs.info_social_media)} onChange={k => handleChange("info_social_media", k)}>
+                <Label>Social Media <WeightDots featureKey="info_social_media" /></Label>
+                <Select.Trigger><Select.Value /><Select.Indicator /></Select.Trigger>
+                <Select.Popover>
+                  <ListBox>
+                    <ListBox.Item id="1" textValue="Finfluencers">Finfluencers<ListBox.ItemIndicator /></ListBox.Item>
+                    <ListBox.Item id="0" textValue="No">No<ListBox.ItemIndicator /></ListBox.Item>
+                  </ListBox>
+                </Select.Popover>
+              </Select>
+
+              <Select className="w-full" value={String(inputs.info_professionals)} onChange={k => handleChange("info_professionals", k)}>
+                <Label>Professionals <WeightDots featureKey="info_professionals" /></Label>
+                <Select.Trigger><Select.Value /><Select.Indicator /></Select.Trigger>
+                <Select.Popover>
+                  <ListBox>
+                    <ListBox.Item id="1" textValue="Yes, Advisors">Yes, Advisors<ListBox.ItemIndicator /></ListBox.Item>
+                    <ListBox.Item id="0" textValue="No">No<ListBox.ItemIndicator /></ListBox.Item>
+                  </ListBox>
+                </Select.Popover>
+              </Select>
             </div>
           </InputSection>
 
-          <InputSection label="Behavioral Factors" color="var(--data-2)">
+          <InputSection label="Behavioral & Knowledge" color="var(--data-2)">
+            <Slider step={1} maxValue={20} minValue={0}
+              value={inputs.education_years}
+              onChange={v => handleChange("education_years", v)}
+              className="max-w-md"
+            >
+              <Label>
+                Years of Education <WeightDots featureKey="education_years" />
+              </Label>
+              <Slider.Output />
+              <Slider.Track><Slider.Fill /><Slider.Thumb /></Slider.Track>
+            </Slider>
+
+            <Slider step={1} maxValue={18} minValue={0}
+              value={inputs.n_products_aware}
+              onChange={v => handleChange("n_products_aware", v)}
+              className="max-w-md"
+            >
+              <Label>
+                Product Awareness <WeightDots featureKey="n_products_aware" />
+                <span className="font-normal ml-1" style={{ color: "var(--ink-3)" }}>(0–18 instruments)</span>
+              </Label>
+              <Slider.Output />
+              <Slider.Track><Slider.Fill /><Slider.Thumb /></Slider.Track>
+            </Slider>
 
             <Slider step={1} maxValue={9} minValue={0}
               value={inputs.actual_knowledge_score}
@@ -373,29 +410,6 @@ export function PredictionSimulator() {
               <Slider.Track><Slider.Fill /><Slider.Thumb /></Slider.Track>
             </Slider>
 
-            <div className="grid grid-cols-2 gap-4 max-w-md">
-              <Select className="w-full" value={String(inputs.info_social_media)} onChange={k => handleChange("info_social_media", k)}>
-                <Label>Social Media <WeightDots featureKey="info_social_media" /></Label>
-                <Select.Trigger><Select.Value /><Select.Indicator /></Select.Trigger>
-                <Select.Popover>
-                  <ListBox>
-                    <ListBox.Item id="1" textValue="Finfluencers">Finfluencers<ListBox.ItemIndicator /></ListBox.Item>
-                    <ListBox.Item id="0" textValue="No">No<ListBox.ItemIndicator /></ListBox.Item>
-                  </ListBox>
-                </Select.Popover>
-              </Select>
-
-              <Select className="w-full" value={String(inputs.info_professionals)} onChange={k => handleChange("info_professionals", k)}>
-                <Label>Professionals <WeightDots featureKey="info_professionals" /></Label>
-                <Select.Trigger><Select.Value /><Select.Indicator /></Select.Trigger>
-                <Select.Popover>
-                  <ListBox>
-                    <ListBox.Item id="1" textValue="Yes, Advisors">Yes, Advisors<ListBox.ItemIndicator /></ListBox.Item>
-                    <ListBox.Item id="0" textValue="No">No<ListBox.ItemIndicator /></ListBox.Item>
-                  </ListBox>
-                </Select.Popover>
-              </Select>
-            </div>
           </InputSection>
         </div>
 

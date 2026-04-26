@@ -114,7 +114,7 @@ export function InteractiveMap() {
 
   return (
     <div 
-      className="relative w-full h-[460px] overflow-hidden"
+      className="relative w-full h-[510px] overflow-hidden"
       style={{ border: "1px solid var(--border)" }}
     >
       <Map
@@ -153,31 +153,53 @@ export function InteractiveMap() {
           >
             <Card.Content className="p-3 text-sm flex flex-col gap-1.5">
               <h4 
-                className="font-serif font-semibold mb-1"
-                style={{ fontSize: "0.9rem", color: "var(--ink)", lineHeight: 1.2 }}
+                className="font-serif font-semibold mb-1 border-b pb-1"
+                style={{ fontSize: "0.9rem", color: "var(--ink)", borderBottomColor: "var(--border)", lineHeight: 1.2 }}
               >
                 {hoverInfo.feature.state_name || hoverInfo.feature.name}
               </h4>
+              
               {hoverInfo.feature.investors_per_lakh !== undefined ? (
                 <>
                   <div className="flex justify-between gap-6">
-                    <span className="font-mono text-xs" style={{ color: "var(--ink-3)" }}>Investors / Lakh</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: "var(--ink-3)" }}>Actual Penetration</span>
                     <span className="font-mono text-xs font-medium" style={{ color: "var(--accent)" }}>
-                      {hoverInfo.feature.investors_per_lakh?.toLocaleString()}
+                      {hoverInfo.feature.investors_per_lakh?.toLocaleString()} / L
                     </span>
                   </div>
                   <div className="flex justify-between gap-6">
-                    <span className="font-mono text-xs" style={{ color: "var(--ink-3)" }}>Per Capita Income</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: "var(--ink-3)" }}>Income Avg</span>
                     <span className="font-mono text-xs font-medium" style={{ color: "var(--ink)" }}>
                       ₹{hoverInfo.feature.per_capita_income_2011?.toLocaleString()}
                     </span>
                   </div>
+
+                  <div className="my-1 border-t" style={{ borderColor: "var(--border)", opacity: 0.5 }} />
+
                   <div className="flex justify-between gap-6">
-                    <span className="font-mono text-xs" style={{ color: "var(--ink-3)" }}>Population</span>
-                    <span className="font-mono text-xs font-medium" style={{ color: "var(--ink)" }}>
-                      {(hoverInfo.feature.total_population / 1e6).toFixed(1)}M
+                    <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: "var(--ink-3)" }}>Model Accuracy</span>
+                    <span className="font-mono text-xs font-semibold" style={{ color: "var(--data-2)" }}>
+                      {Math.round(hoverInfo.feature.prediction_accuracy)}%
                     </span>
                   </div>
+
+                  {hoverInfo.feature.predicted_investor_rate && (
+                    <div className="flex justify-between gap-6">
+                      <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: "var(--ink-3)" }}>Participation Gap</span>
+                      <span 
+                        className="font-mono text-xs font-semibold" 
+                        style={{ color: (hoverInfo.feature.predicted_investor_rate - (hoverInfo.feature.investors_last_year / hoverInfo.feature.total_population)) > 0 ? "var(--data-1)" : "var(--data-4)" }}
+                      >
+                        {((hoverInfo.feature.predicted_investor_rate - (hoverInfo.feature.investors_last_year / hoverInfo.feature.total_population)) * 100).toFixed(2)}%
+                      </span>
+                    </div>
+                  )}
+
+                  {hoverInfo.feature.model_insight && (
+                    <div className="mt-1 pt-1 border-t italic text-[11px]" style={{ color: "var(--ink-2)", borderTopColor: "var(--border)", lineHeight: 1.3 }}>
+                      "{hoverInfo.feature.model_insight}"
+                    </div>
+                  )}
                 </>
               ) : (
                 <span className="font-mono text-xs" style={{ color: "var(--ink-3)" }}>No data available</span>

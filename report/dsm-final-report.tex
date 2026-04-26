@@ -320,8 +320,21 @@ As shown in Fig.~\ref{fig:predictive_importance}, the feature importance profile
 \textbf{Performance:} The model achieved an AUC of 0.612. \\
 \textbf{Insight:} Forecasting \textit{how long} an investor will hold equity remains the hardest prediction task, suggesting that horizon is shaped by situational factors outside our cross-sectional feature space.
 
+\subsection{External Validation and Geographic Opportunity Mapping}
+To validate the real-world utility of our predictive framework, we cross-referenced the results of Model 1 with aggregate market registry data from the \texttt{state\_layer} module. This process involved applying the respondent-level model to state-level demographic averages (income, literacy, urbanization) to calculate a ``Demographic Potential'' score for each of India's 35 states and union territories.
+
+As shown in Fig.~\ref{fig:geographic_validation}, the model's predictions correlate significantly with actual market participation rates ($r=0.491$, $p<0.01$). More importantly, this cross-validation allows us to identify the ``Participation Gap''---the delta between a state's demographic readiness and its actual market penetration. 
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.85\linewidth]{../figures/model_validation_gap_analysis.pdf}}
+\caption{Geographic Validation of Predictive Model. (A) Regression of model-predicted potential against actual market registry data. (B) The Participation Gap Analysis identifies states where demographics suggest higher participation potential than currently observed (Red) vs over-performing states (Blue).}
+\label{fig:geographic_validation}
+\end{figure}
+
+Our analysis reveals several ``Under-Penetrated'' regions including \textbf{Lakshadweep, Puducherry, Mizoram, and Kerala}, where high literacy and income levels suggest a latent capacity for participation that remains uncaptured by current market infrastructure. Conversely, states like \textbf{Delhi, Gujarat, and Haryana} exhibit a negative gap, indicating that market enthusiasm in these clusters significantly exceeds what would be expected based on basic demographics alone---likely driven by mature brokerage networks and localized financial cultures.
+
 \vspace{0.3cm}
-These predictive models validate our core thesis: awareness and behavioral context, not demographics alone, determine participation and post-entry choices. The divergence in feature importance across models underscores that financial outreach is a quantifiably more powerful lever than income redistribution for broadening market access.
+These predictive models validate our core thesis: awareness and behavioral context, not demographics alone, determine participation and post-entry choices. The geographic validation further suggests that targeted institutional outreach in ``Under-Penetrated'' clusters could unlock significant new retail capital.
 
 \section{Conclusion}
 The 2025 SEBI Household Survey reveals a securities market with a three-layer structure. At the entry layer, participation is primarily gated by product awareness (OR = 2.22), exceeding even income (1.60) and education (1.56) as a predictor. This finding reframes the participation problem: the dominant barrier is not poverty but unfamiliarity with the instrument landscape. The partial mediation structure confirms that education and income partly work \textit{through} awareness, meaning financial outreach that expands product knowledge is a complementary lever to income growth rather than a substitute for it.

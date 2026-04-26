@@ -39,6 +39,7 @@ class PredictionInput(BaseModel):
     is_urban: float
     gender: float
     risk_tolerance_preference: float
+    n_products_aware: float = 10.0
     stock_market_familiarity: float = 0.0
     actual_knowledge_score: float = 0.0
     info_social_media: float = 0.0
@@ -52,7 +53,8 @@ def predict(data: PredictionInput):
         'education_years': data.education_years,
         'is_urban': data.is_urban,
         'risk_tolerance_preference': data.risk_tolerance_preference,
-        'log_income': log_income
+        'log_income': log_income,
+        'n_products_aware': data.n_products_aware
     }])
     features_m23 = pd.DataFrame([{
         'gender': data.gender,
@@ -60,6 +62,7 @@ def predict(data: PredictionInput):
         'is_urban': data.is_urban,
         'risk_tolerance_preference': data.risk_tolerance_preference,
         'log_income': log_income,
+        'n_products_aware': data.n_products_aware,
         'stock_market_familiarity': data.stock_market_familiarity,
         'actual_knowledge_score': data.actual_knowledge_score,
         'info_social_media': data.info_social_media,
@@ -102,7 +105,8 @@ def get_participation_grid():
                 'education_years': float(edu),
                 'is_urban': 1.0,
                 'risk_tolerance_preference': 2.0,
-                'log_income': float(np.log1p(inc))
+                'log_income': float(np.log1p(inc)),
+                'n_products_aware': 10.0
             }])
             prob = float(clf_participation.predict_proba(features)[0, 1])
             row.append(round(prob, 4))
