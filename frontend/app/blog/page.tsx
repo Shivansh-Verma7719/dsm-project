@@ -1,14 +1,13 @@
 "use client";
-
-import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Users, MousePointer2, ChevronRight } from 'lucide-react';
+import { MousePointer2, ChevronRight, User } from 'lucide-react';
 import { ReadingProgressBar } from '@/components/blog/blog-components';
 import BlogPart1 from '@/components/blog/blog-part1';
 import BlogPart2 from '@/components/blog/blog-part2';
 import BlogPart3 from '@/components/blog/blog-part3';
 import BlogPart4 from '@/components/blog/blog-part4';
+import BlogAppendix from '@/components/blog/blog-appendix';
 
 export default function BlogPage() {
   return (
@@ -16,7 +15,7 @@ export default function BlogPage() {
       <ReadingProgressBar />
 
       {/* Editorial Header */}
-      <header className="mb-20 border-b border-[#2c3340] pb-12">
+      <header className="mb-12 border-b border-[#2c3340] pb-12">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,23 +36,23 @@ export default function BlogPage() {
 
           <div className="flex items-center gap-6 p-4 rounded-2xl bg-[var(--surface-sunken)] border border-[var(--border)] w-fit">
             <div className="flex -space-x-2">
-              {[1, 2, 3].map(i => (
+              {[1, 2].map(i => (
                 <div key={i} className="w-10 h-10 rounded-full border-2 border-[var(--background)] bg-[var(--surface)] flex items-center justify-center overflow-hidden">
-                  <Users size={16} className="text-[#8a93a3]" />
+                  <User size={16} className="text-[#8a93a3]" />
                 </div>
               ))}
             </div>
             <div className="pr-4">
-              <p className="text-[0.65rem] font-bold font-space-grotesk uppercase tracking-widest text-[var(--ink)]">The DSM Research Group</p>
-              <p className="text-[0.6rem] text-[#8a93a3] font-mono">Data Science Methods • Spring 2025</p>
+              <p className="text-[0.65rem] font-bold font-space-grotesk uppercase tracking-widest text-[var(--ink)]">Shivansh Verma & Sashwat Dhanuka</p>
+              <p className="text-[0.6rem] text-[#8a93a3] font-mono">Data Science Methods • Spring 2026</p>
             </div>
           </div>
         </motion.div>
       </header>
 
       {/* Prologue with Drop Cap */}
-      <div className="prose prose-invert prose-lg max-w-none font-fraunces text-[#c2c7d0] leading-relaxed mb-24">
-        <p className="text-3xl font-medium text-[var(--ink)] mb-10 leading-tight">
+      <div className="prose prose-invert prose-lg max-w-none font-fraunces leading-relaxed mb-24">
+        <p className="text-3xl font-medium text-[var(--blog-ink)] mb-10 leading-tight">
           <span className="float-left text-8xl font-space-grotesk font-bold text-[var(--data-1)] mr-4 leading-[0.8] mt-2">T</span>
           he numbers were a shock to the system. In a "Digital India" where UPI transactions happen at tea stalls
           in the remotest villages, we expected a similar democratization of the stock market. We were wrong.
@@ -69,16 +68,38 @@ export default function BlogPage() {
       <BlogPart2 />
       <BlogPart3 />
       <BlogPart4 />
+      <BlogAppendix />
 
 
       {/* Conclusion */}
-      <section className="mt-32 pt-16 border-t border-[#2c3340]">
-        <h2 className="text-4xl font-bold font-space-grotesk mb-10 uppercase tracking-tighter">The Way Forward</h2>
-        <div className="prose prose-invert prose-lg max-w-none font-fraunces text-[#c2c7d0] leading-relaxed mb-16">
+      <section className="mt-20 pt-16 border-t border-[#2c3340]">
+        <h2 className="text-4xl font-bold font-space-grotesk mb-10 uppercase tracking-tighter">Synthesis &amp; The Path Forward</h2>
+        <div className="prose prose-invert prose-lg max-w-none font-fraunces text-[var(--blog-ink)] leading-relaxed space-y-8 mb-16">
           <p>
-            This journey taught us that data science is most powerful when it becomes a tool for empathy.
-            By identifying these specific behavioral gates, we can begin to design financial systems
-            that don't just provide access, but build genuine participation.
+            When <strong>we started</strong> this project, we expected to find that wealth was the primary 
+            barrier to the Indian securities market. We expected the data to show that people don't 
+            invest because they don't have the money.
+          </p>
+          <p>
+            Instead, <strong>we discovered</strong> that the primary gatekeeper isn't the wallet, but the mind. 
+            The "Awareness Gating" effect — where product knowledge outpredicts income as a driver 
+            of participation — is our most significant finding. It suggests that India's low participation 
+            rate isn't just a function of economic development, but a massive information asymmetry 
+            that we can actively solve.
+          </p>
+          <p>
+            By decomposing the non-investor population into the <strong>Trust-Deficient</strong>, 
+            <strong>Knowledge-Gated</strong>, and <strong>Fear-Driven</strong> archetypes, we've moved 
+            beyond broad statistics to actionable profiles. We believe that a one-size-fits-all 
+            approach to financial literacy will fail. A Trust-Deficient urban professional needs 
+            institutional transparency; a Knowledge-Gated rural farmer needs procedural simplicity.
+          </p>
+          <p>
+            This journey taught us that data science is most powerful when it becomes a tool for 
+            structural empathy. We didn't just build a predictor; we mapped the psychological 
+            geography of a nation's financial future. As we move forward, we hope these insights 
+            serve as a blueprint for a more inclusive, calibrated, and goal-oriented Indian 
+            investment landscape.
           </p>
         </div>
 

@@ -486,7 +486,7 @@ export function PredictionSimulator() {
 
         <div style={{ borderTop: "1px solid var(--border)", paddingTop: "1rem" }}>
           <p className="font-mono text-xs" style={{ color: "var(--ink-3)", lineHeight: 1.6 }}>
-            Models: Gradient Boosting (all three). AUC: 76.1% / 77.8% / 61.1%
+            Models: Gradient Boosting (all three). AUC: 81.4% / 82.0% / 61.2%
           </p>
         </div>
       </div>

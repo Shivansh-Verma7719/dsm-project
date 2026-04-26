@@ -45,7 +45,7 @@ export const ResearcherNote = ({ children }: { children: React.ReactNode }) => (
     initial={{ opacity: 0, x: -10 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
-    className="my-16 py-4 relative group"
+    className="my-10 py-2 relative group"
   >
     <div className="absolute -left-12 top-0 text-7xl font-serif text-[var(--data-1)]/20 select-none group-hover:text-[var(--data-1)]/40 transition-colors">
       &ldquo;
@@ -73,7 +73,7 @@ export const ETLStep = ({ number, title, description, icon: Icon }: { number: st
 );
 
 export const CodeHighlight = ({ title, code, language = "python" }: { title: string, code: string, language?: string }) => (
-  <div className="my-10 rounded-xl overflow-hidden border border-[var(--border)] bg-[#ffffff] dark:bg-[#0A0A0B] backdrop-blur-sm">
+  <div className="my-6 rounded-xl overflow-hidden border border-[var(--border)] bg-[#ffffff] dark:bg-[#0A0A0B] backdrop-blur-sm">
     <div className="px-4 py-2 bg-[#ffffff] dark:bg-[#18181B] border-b border-[var(--border)] flex items-center justify-between">
       <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--blog-ink-muted)]">{title}</span>
       <Terminal size={12} className="text-[var(--blog-ink-muted)]" />
@@ -107,7 +107,7 @@ export const InsightCard = ({ title, children, icon: Icon }: { title: string, ch
     initial={{ opacity: 0, y: 10 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    className="py-10 border-t border-[var(--border)] group"
+    className="py-6 border-t border-[var(--border)] group"
   >
     <div className="flex gap-6 items-start">
       <div className="w-10 h-10 rounded-lg bg-[var(--surface-sunken)] text-[var(--blog-ink-muted)] group-hover:text-[var(--data-1)] flex items-center justify-center transition-colors">
@@ -124,7 +124,7 @@ export const InsightCard = ({ title, children, icon: Icon }: { title: string, ch
 );
 
 export const IterationNote = ({ title, children }: { title: string, children: React.ReactNode }) => (
-  <div className="my-12 p-6 rounded-xl border border-dashed border-[var(--border)] bg-[var(--surface)]/30">
+  <div className="my-8 p-6 rounded-xl border border-dashed border-[var(--border)] bg-[var(--surface)]/30">
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
         <div className="w-1.5 h-1.5 rounded-full bg-[var(--data-1)] animate-pulse" />

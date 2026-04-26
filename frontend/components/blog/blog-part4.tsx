@@ -18,7 +18,7 @@ const DK_DATA = [
 
 export default function BlogPart4() {
   return (
-    <section className="mb-32 relative">
+    <section className="mb-20 relative">
       <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         04
       </div>
@@ -103,7 +103,7 @@ export default function BlogPart4() {
         </div>
 
         <ResearcherNote>
-          This isn't just academic. Overconfident retail traders are the primary source of losses
+          We believe this isn't just academic. Overconfident retail traders are the primary source of losses
           in the Indian F&amp;O market. SEBI's own 2023 study found that 89% of individual F&amp;O
           traders lost money. Our data suggests the mechanism: it's not greed, it's miscalibrated
           self-assessment.
@@ -151,6 +151,27 @@ export default function BlogPart4() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Dashboard Integration: Barrier Wall */}
+        <div className="my-10 p-6 rounded-2xl border border-[var(--data-1)]/30 bg-[var(--data-1)]/5">
+          <div className="flex gap-4 items-center mb-4">
+            <div className="w-10 h-10 rounded-full bg-[var(--data-1)]/10 flex items-center justify-center text-[var(--data-1)]">
+              <Target size={20} />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold font-space-grotesk uppercase">Integration: The Barrier Wall</h4>
+              <p className="text-xs text-[var(--blog-ink-muted)] font-mono">Qualitative Signals via K-Means</p>
+            </div>
+          </div>
+          <p className="text-sm text-[var(--blog-ink-secondary)] mb-6">
+            The <strong>Barrier Wall</strong> on the dashboard visualizes the top friction points for each 
+            archetype. By clicking a barrier, users can see the demographic profile of the households 
+            affected by that specific gate.
+          </p>
+          <div className="aspect-video bg-[var(--surface-sunken)] rounded-xl border border-[var(--border)] flex items-center justify-center relative overflow-hidden group">
+            <img src="/images/barrier_wall.png" alt="Dashboard Barrier Wall" className="object-cover w-full h-full opacity-100 group-hover:scale-105 transition-transform duration-700" />
           </div>
         </div>
 
@@ -219,7 +240,7 @@ centroids = pd.DataFrame(
         </div>
 
         <IterationNote title="Reconciling Dunning-Kruger with Say-Do">
-          A reviewer asked: "If overconfident investors hold more crypto, but daily-trading aspirants
+          <strong>We had to ask ourselves</strong>: "If overconfident investors hold more crypto, but daily-trading aspirants
           don't, is there a contradiction?" No — these are different populations. Dunning-Kruger
           measures a <strong>psychological trait</strong> (miscalibrated confidence) among existing
           investors. The Say-Do Gap measures an <strong>execution gap</strong> between stated intent

@@ -16,7 +16,7 @@ const DOMAIN_CARDS = [
 
 export default function BlogPart2() {
   return (
-    <section className="mb-32 relative">
+    <section className="mb-20 relative">
       <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         02
       </div>
@@ -49,7 +49,7 @@ export default function BlogPart2() {
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            Notice the <strong className="text-[var(--blog-ink-muted)]">asymmetry in our data</strong>. Portfolio-level
+            <strong>We noticed</strong> an interesting <strong className="text-[var(--blog-ink-muted)]">asymmetry in our data</strong>. Portfolio-level
             tables (holdings, allocation, duration) only exist for the ~28,000 investors. But
             barriers and market perception tables exist for <em>all</em> 109k respondents — including
             the 80k non-investors. This asymmetry is a feature, not a bug. It means we can study
@@ -97,9 +97,30 @@ export default function BlogPart2() {
             <p className="text-sm text-[var(--blog-ink-secondary)] leading-relaxed">
               State-level demat account density, trading volume, and unique investor counts.
               This gives us a macro-level "market enthusiasm" signal that complements the
-              micro-level survey responses. States with high demat density but low survey
-              participation reveal interesting friction points.
+              micro-level survey responses.
             </p>
+          </div>
+        </div>
+
+        {/* Dashboard Integration: State Explorer */}
+        <div className="my-10 p-6 rounded-2xl border border-[#60a5fa]/30 bg-[#60a5fa]/5">
+          <div className="flex gap-4 items-center mb-4">
+            <div className="w-10 h-10 rounded-full bg-[#60a5fa]/10 flex items-center justify-center text-[#60a5fa]">
+              <Database size={20} />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold font-space-grotesk uppercase">Integration: The State Explorer</h4>
+              <p className="text-xs text-[var(--blog-ink-muted)] font-mono">Geographic Triangulation in Action</p>
+            </div>
+          </div>
+          <p className="text-sm text-[var(--blog-ink-secondary)] mb-6">
+            Our <strong>State Explorer</strong> dashboard maps the NSE demat density against our 
+            survey-derived participation rates. It reveals states like Gujarat where retail 
+            enthusiasm is matched by infrastructure, and others where the knowledge gap remains 
+            the primary bottleneck.
+          </p>
+          <div className="aspect-video bg-[var(--surface-sunken)] rounded-xl border border-[var(--border)] flex items-center justify-center relative overflow-hidden group">
+            <img src="/images/state_explorer.png" alt="Dashboard State Explorer" className="object-cover w-full h-full opacity-100 group-hover:scale-105 transition-transform duration-700" />
           </div>
         </div>
 

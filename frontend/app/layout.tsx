@@ -81,7 +81,7 @@ export default function RootLayout({
           <footer className="border-t py-6 px-6" style={{ borderColor: "var(--border)", background: "var(--paper-2)" }}>
             <div className="container mx-auto flex items-center justify-between">
               <p className="font-mono text-xs" style={{ color: "var(--ink-3)" }}>
-                DSM Project, Data Science Methods
+                S. Verma & S. Dhanuka, Data Science Methods • Spring 2026
               </p>
               <p className="font-mono text-xs" style={{ color: "var(--ink-3)" }}>
                 SEBI / Census 2011 / NSE Data

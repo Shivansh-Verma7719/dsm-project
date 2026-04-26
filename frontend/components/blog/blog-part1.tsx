@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Database } from 'lucide-react';
 import { ResearcherNote, CodeHighlight, IterationNote } from './blog-components';
 
 const DOMAINS = [
@@ -9,7 +10,7 @@ const DOMAINS = [
   { label: "Demographics", cols: 95, color: "var(--data-1)", desc: "income, education, occupation, NCCS, family type" },
   { label: "Motivations & Barriers", cols: 85, color: "#a78bfa", desc: "18 barriers, 14 motives, 12 ranked goals" },
   { label: "Knowledge & Behavior", cols: 75, color: "#10b981", desc: "literacy quiz, risk perception, market views" },
-  { label: "Survey Metadata", cols: 40, color: "var(--blog-ink-muted)", desc: "identifiers, weights, routing flags" },
+  { label: "Survey Metadata", cols: 41, color: "var(--blog-ink-muted)", desc: "identifiers, weights, routing flags" },
   { label: "Awareness & Media", cols: 23, color: "#fbbf24", desc: "15 product awareness booleans, media frequency" },
 ];
 
@@ -36,7 +37,7 @@ const SCHEMA_ROWS = [
 
 export default function BlogPart1() {
   return (
-    <section className="mb-32 relative">
+    <section className="mb-20 relative">
       <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         01
       </div>
@@ -46,25 +47,45 @@ export default function BlogPart1() {
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            Data scientists love talking about "cleaning data." What that phrase hides is the actual experience:
-            opening a 450MB Excel file at 11pm and watching your laptop fan spin up while Pandas chokes on
+            <strong>We started</strong> with a problem that most researchers gloss over:
+            opening a 450MB Excel file at 11pm and watching our laptop fan spin up while Pandas chokes on
             the first read attempt. The raw <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm">Respondent Data.XLSX</code> from
             SEBI's 2025 Household Investor Survey was exactly this — 109,430 rows, 449 columns, and no column
             dictionary beyond a 60-page PDF survey instrument.
           </p>
           <p>
-            Our first task before any modeling was simply <em>understanding what we had</em>.
-            We ran a column audit and found the data fell into six broad categories, many using
-            non-standard multi-select encoding: comma-separated strings like
-            <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">"Mutual Funds, Gold, Fixed Deposits"</code>
-            where three holdings were crammed into one cell.
+            <strong>The Motivation:</strong> We weren't just looking for averages; we were hunting for the 
+            <em>Participation Frontier</em>. In a $10 trillion economy, the shift from "saving" to "investing" 
+            is the single most important macroeconomic transition. We built this platform to see if we 
+            could predict exactly where that frontier sits for a given household profile.
           </p>
+        </div>
+
+        {/* Dashboard Integration: Data Viewer */}
+        <div className="my-10 p-6 rounded-2xl border border-[var(--data-1)]/30 bg-[var(--data-1)]/5">
+          <div className="flex gap-4 items-center mb-4">
+            <div className="w-10 h-10 rounded-full bg-[var(--data-1)]/10 flex items-center justify-center text-[var(--data-1)]">
+              <Database size={20} />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold font-space-grotesk uppercase">Integration: The Raw Data Explorer</h4>
+              <p className="text-xs text-[var(--blog-ink-muted)] font-mono">Verifying ETL outcomes in real-time</p>
+            </div>
+          </div>
+          <p className="text-sm text-[var(--blog-ink-secondary)] mb-6">
+            We built a dedicated <strong>Data Explorer</strong> into the dashboard to verify our ETL 
+            transformations. It allows us to query the 18 semantic tables directly and inspect the 
+            midpoint-mapped income values that power our models.
+          </p>
+          <div className="aspect-video bg-[var(--surface-sunken)] rounded-xl border border-[var(--border)] flex items-center justify-center relative overflow-hidden group">
+            <img src="/images/data_explorer.png" alt="Dashboard Data Explorer" className="object-cover w-full h-full opacity-100 group-hover:scale-105 transition-transform duration-700" />
+          </div>
         </div>
 
         {/* Column taxonomy visualization */}
         <div className="my-12 p-8 rounded-2xl border border-[var(--blog-ink)] bg-[var(--surface-sunken)]">
           <p className="font-mono text-[0.65rem] uppercase tracking-widest text-[var(--blog-ink-secondary)] mb-1">Fig. 1 — Column Taxonomy</p>
-          <p className="text-xs text-[var(--blog-ink-secondary)] italic mb-8">448 raw survey columns mapped to six functional domains</p>
+          <p className="text-xs text-[var(--blog-ink-secondary)] italic mb-8">449 raw survey columns mapped to six functional domains</p>
 
           <div className="flex h-8 rounded-md overflow-hidden mb-8" style={{ gap: '2px' }}>
             {DOMAINS.map((d, i) => (
@@ -74,7 +95,7 @@ export default function BlogPart1() {
                 whileInView={{ opacity: 1, scaleX: 1 }}
                 transition={{ duration: 0.5, delay: i * 0.07, ease: 'easeOut' }}
                 viewport={{ once: true }}
-                style={{ background: d.color, width: `${(d.cols / 448 * 100).toFixed(1)}%`, originX: 0 }}
+                style={{ background: d.color, width: `${(d.cols / 449 * 100).toFixed(1)}%`, originX: 0 }}
                 className="h-full shrink-0"
                 title={`${d.label}: ${d.cols} columns`}
               />
@@ -168,7 +189,7 @@ holds = {k: _contains(row.get("Q22A"), v) for k, v in Q22A_HOLDS.items()}`}
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-10">
           <p>
             Rather than loading everything into one wide table, we decomposed the survey into
-            <strong className="text-[var(--blog-ink-muted)]"> 17 purpose-built PostgreSQL tables</strong>, each
+            <strong className="text-[var(--blog-ink-muted)]"> 18 purpose-built PostgreSQL tables</strong>, each
             representing one semantic domain. A normalized schema means dashboard queries only touch
             the tables they need — no full-table scans on a 109k-row, 449-column monolith.
             Every child table uses <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm">respondent_id REFERENCES respondents ON DELETE CASCADE</code>,

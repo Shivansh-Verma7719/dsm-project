@@ -13,10 +13,10 @@ import { StateMetricsPanel } from "@/components/state-metrics-panel";
 // Odds ratio strip — the paper's headline logistic regression findings
 function OddsRatioStrip() {
   const ratios = [
-    { label: "Education", ratio: 1.83, note: "per SD increase", color: "var(--data-1)" },
-    { label: "Income",    ratio: 1.80, note: "per SD increase", color: "var(--data-2)" },
-    { label: "Urban",     ratio: 1.56, note: "vs Rural",        color: "var(--data-3)" },
-    { label: "Male",      ratio: 1.56, note: "vs Female",       color: "var(--data-5)" },
+    { label: "Product Awareness", ratio: 2.22, note: "per SD increase", color: "var(--data-1)" },
+    { label: "Log-Income", ratio: 1.60, note: "per SD increase", color: "var(--data-2)" },
+    { label: "Education",  ratio: 1.56, note: "per SD increase", color: "var(--data-3)" },
+    { label: "Male",       ratio: 1.53, note: "vs Female",       color: "var(--data-5)" },
   ];
 
   return (
@@ -58,7 +58,7 @@ export default function Home() {
 
       {/* ── Hero ───────────────────────────────────────────────────────── */}
       <section className="animate-fade-up" style={{ paddingTop: "clamp(1rem, 3vw, 2rem)" }}>
-        <p className="section-eyebrow mb-3">Empirical Research, India, 2024</p>
+        <p className="section-eyebrow mb-3">Empirical Research, India, Spring 2026</p>
         <h1 className="section-title" style={{ maxWidth: "22ch" }}>
           Who participates in India's securities market?
         </h1>

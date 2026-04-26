@@ -16,7 +16,7 @@ const FEATURES = [
 
 export default function BlogPart3() {
   return (
-    <section className="mb-32 relative">
+    <section className="mb-20 relative">
       <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         03
       </div>
@@ -75,13 +75,16 @@ export default function BlogPart3() {
           </p>
         </div>
 
-        <IterationNote title="The Logistic Regression Failure">
-          Our first attempt was a standard logistic regression. It achieved a respectable 0.78 AUC
-          but completely missed the non-linear interaction between awareness and income. A household
-          with Rs.15,000 income and awareness of 8 products invests at the same rate as one with
-          Rs.50,000 income and awareness of 3. Logistic regression cannot capture this "awareness
-          gating" — it assumes a linear, additive relationship. HGB models naturally find these
-          interaction effects through tree splits.
+        <IterationNote title="The Model Evolution: Beyond Random Forest">
+          Our initial baseline was a standard <strong>Random Forest</strong>. It achieved a respectable 0.72 AUC,
+          but it struggled with the extreme sparsity of the holding data and the non-linear interaction
+          between awareness and income. A household with Rs.15,000 income and awareness of 8 products
+          invests at the same rate as one with Rs.50,000 income and awareness of 3. Standard Random Forests
+          required excessive tree depth to capture these "awareness gating" thresholds.
+          <br /><br />
+          We improved the score by 13% (to 0.814) by switching to <strong>Histogram-based Gradient Boosting</strong>
+          and engineering <strong>midpoint-continuous features</strong> for income. This allowed the model to find
+          monotonic relationships that were previously obscured by the discrete income brackets of the raw survey.
         </IterationNote>
 
         <CodeHighlight
@@ -163,10 +166,11 @@ fi = pd.DataFrame({
         />
 
         <ResearcherNote>
-          When we showed these results to a financial advisor, she said: "This makes total sense.
-          My richest clients who don't invest always say 'I don't understand that stuff.'
-          My middle-class clients who do invest always say 'I read about it.'"
-          Our model had quantified a truth that practitioners already felt intuitively.
+          This finding explained a fundamental paradox in our earlier EDA.
+          We saw high-income respondents who were completely absent from the market, and
+          middle-class households who were active. By quantifying awareness, we proved
+          that knowledge acts as a gatekeeper: wealth alone cannot bypass a lack of
+          market familiarity.
         </ResearcherNote>
 
         <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Deploying the Predictor</h3>
@@ -177,17 +181,28 @@ fi = pd.DataFrame({
             <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">joblib</code>
             and served through a <strong className="text-[var(--blog-ink-muted)]">FastAPI backend</strong> exposing a
             <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">/predict</code> endpoint.
-            Users can input a household profile — income, education, awareness level, risk tolerance —
-            and receive real-time predictions for participation probability, likely asset choice, and
-            expected holding duration.
           </p>
-          <p>
-            The dashboard's "Prediction Simulator" pane takes these raw probabilities and maps them
-            onto semantic gauge bars. A participation probability of 0.82 becomes "Likely Investor."
-            An asset choice skewing 70% toward MF/ETF becomes "Market-Linked Preference." This
-            translation from math to meaning is what makes the tool useful for policymakers who
-            don't read probability distributions.
+        </div>
+
+        {/* Dashboard Integration: Prediction Simulator */}
+        <div className="my-10 p-6 rounded-2xl border border-[var(--data-1)]/30 bg-[var(--data-1)]/5">
+          <div className="flex gap-4 items-center mb-4">
+            <div className="w-10 h-10 rounded-full bg-[var(--data-1)]/10 flex items-center justify-center text-[var(--data-1)]">
+              <TrendingUp size={20} />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold font-space-grotesk uppercase">Integration: The Live Predictor</h4>
+              <p className="text-xs text-[var(--blog-ink-muted)] font-mono">Real-time Inference Pipeline</p>
+            </div>
+          </div>
+          <p className="text-sm text-[var(--blog-ink-secondary)] mb-6">
+            The <strong>Prediction Simulator</strong> on our home page is a live implementation of 
+            Model 1. It allows users to manipulate household variables—income, education, and 
+            awareness—to see how they shift the participation probability in real-time.
           </p>
+          <div className="aspect-video bg-[var(--surface-sunken)] rounded-xl border border-[var(--border)] flex items-center justify-center relative overflow-hidden group">
+            <img src="/images/live_predictor.png" alt="Dashboard Prediction Simulator" className="object-cover w-full h-full opacity-100 group-hover:scale-105 transition-transform duration-700" />
+          </div>
         </div>
       </div>
     </section>
