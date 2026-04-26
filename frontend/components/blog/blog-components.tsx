@@ -50,7 +50,7 @@ export const ResearcherNote = ({ children }: { children: React.ReactNode }) => (
     <div className="absolute -left-12 top-0 text-7xl font-serif text-[var(--data-1)]/20 select-none group-hover:text-[var(--data-1)]/40 transition-colors">
       &ldquo;
     </div>
-    <div className="font-fraunces italic text-2xl text-[var(--ink-2)] leading-tight pl-4 border-l-2 border-[var(--data-1)]/30">
+    <div className="font-fraunces italic text-2xl text-[var(--blog-ink)] leading-tight pl-4 border-l-2 border-[var(--data-1)]/30">
       {children}
     </div>
   </motion.div>
@@ -59,15 +59,15 @@ export const ResearcherNote = ({ children }: { children: React.ReactNode }) => (
 export const ETLStep = ({ number, title, description, icon: Icon }: { number: string, title: string, description: string, icon: any }) => (
   <div className="flex gap-8 group">
     <div className="flex flex-col items-center">
-      <div className="w-10 h-10 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center text-[var(--ink-3)] group-hover:border-[var(--data-1)] group-hover:text-[var(--data-1)] transition-colors duration-500">
+      <div className="w-10 h-10 rounded-xl bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center text-[var(--blog-ink-secondary)] group-hover:border-[var(--data-1)] group-hover:text-[var(--data-1)] transition-colors duration-500">
         <Icon size={18} />
       </div>
       <div className="w-px h-full bg-[var(--border)] my-4 group-last:hidden" />
     </div>
     <div className="pb-10">
-      <span className="font-mono text-[0.6rem] uppercase tracking-tighter text-[var(--ink-4)]">{number}</span>
+      <span className="font-mono text-[0.6rem] uppercase tracking-tighter text-[var(--blog-ink-muted)]">{number}</span>
       <h3 className="text-xl font-bold mb-2 font-space-grotesk">{title}</h3>
-      <p className="text-sm text-[var(--ink-3)] leading-relaxed max-w-xl">{description}</p>
+      <p className="text-sm text-[var(--blog-ink-secondary)] leading-relaxed max-w-xl">{description}</p>
     </div>
   </div>
 );
@@ -75,8 +75,8 @@ export const ETLStep = ({ number, title, description, icon: Icon }: { number: st
 export const CodeHighlight = ({ title, code, language = "python" }: { title: string, code: string, language?: string }) => (
   <div className="my-10 rounded-xl overflow-hidden border border-[var(--border)] bg-[#ffffff] dark:bg-[#0A0A0B] backdrop-blur-sm">
     <div className="px-4 py-2 bg-[#ffffff] dark:bg-[#18181B] border-b border-[var(--border)] flex items-center justify-between">
-      <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--ink-4)]">{title}</span>
-      <Terminal size={12} className="text-[var(--ink-4)]" />
+      <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--blog-ink-muted)]">{title}</span>
+      <Terminal size={12} className="text-[var(--blog-ink-muted)]" />
     </div>
     <div className="text-[0.8rem] font-mono overflow-x-auto">
       <SyntaxHighlighter 
@@ -97,8 +97,8 @@ export const CodeHighlight = ({ title, code, language = "python" }: { title: str
 export const DataStat = ({ label, value, sub }: { label: string, value: string, sub?: string }) => (
   <div className="p-6 rounded-2xl border-b-2 border-transparent hover:border-[var(--data-1)] bg-[var(--surface)] transition-all duration-300">
     <div className="text-4xl font-bold mb-1 font-space-grotesk tracking-tight">{value}</div>
-    <div className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--ink-4)]">{label}</div>
-    {sub && <div className="text-[0.65rem] text-[var(--ink-4)] mt-2 italic">{sub}</div>}
+    <div className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--blog-ink-muted)]">{label}</div>
+    {sub && <div className="text-[0.65rem] text-[var(--blog-ink-muted)] mt-2 italic">{sub}</div>}
   </div>
 );
 
@@ -110,12 +110,12 @@ export const InsightCard = ({ title, children, icon: Icon }: { title: string, ch
     className="py-10 border-t border-[var(--border)] group"
   >
     <div className="flex gap-6 items-start">
-      <div className="w-10 h-10 rounded-lg bg-[var(--surface-sunken)] text-[var(--ink-4)] group-hover:text-[var(--data-1)] flex items-center justify-center transition-colors">
+      <div className="w-10 h-10 rounded-lg bg-[var(--surface-sunken)] text-[var(--blog-ink-muted)] group-hover:text-[var(--data-1)] flex items-center justify-center transition-colors">
         <Icon size={20} />
       </div>
       <div>
         <h3 className="text-xl font-bold mb-3 font-space-grotesk uppercase tracking-tight">{title}</h3>
-        <div className="text-[var(--ink-3)] text-sm leading-relaxed font-sans">
+        <div className="text-[var(--blog-ink-secondary)] text-sm leading-relaxed font-sans">
           {children}
         </div>
       </div>
@@ -128,9 +128,9 @@ export const IterationNote = ({ title, children }: { title: string, children: Re
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
         <div className="w-1.5 h-1.5 rounded-full bg-[var(--data-1)] animate-pulse" />
-        <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--ink-4)]">Iteration {title}</span>
+        <span className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--blog-ink-muted)]">Iteration {title}</span>
       </div>
-      <div className="text-[var(--ink-3)] text-sm leading-relaxed italic pl-4 border-l border-[var(--border)]">
+      <div className="text-[var(--blog-ink-secondary)] text-sm leading-relaxed italic pl-4 border-l border-[var(--border)]">
         {children}
       </div>
     </div>

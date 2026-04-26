@@ -17,14 +17,14 @@ const DOMAIN_CARDS = [
 export default function BlogPart2() {
   return (
     <section className="mb-32 relative">
-      <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[#2c3340]/10 select-none pointer-events-none leading-none">
+      <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         02
       </div>
       <div className="relative z-10">
         <h2 className="text-4xl font-bold font-space-grotesk mb-3 tracking-tight">The Data Blueprint</h2>
-        <p className="font-mono text-[0.6rem] text-[#5a6374] uppercase tracking-widest mb-12">Multi-source synthesis · Census 2011 · NSE Pulse · SEBI Microdata</p>
+        <p className="font-mono text-[0.6rem] text-[var(--blog-ink-secondary)] uppercase tracking-widest mb-12">Multi-source synthesis · Census 2011 · NSE Pulse · SEBI Microdata</p>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-16">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-16">
           <p>
             With the ETL complete, we had a clean relational database. But a database is not a dataset.
             To answer the question "Why don't Indians invest?", we needed to understand <em>what</em> we
@@ -37,26 +37,26 @@ export default function BlogPart2() {
         {/* Domain cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
           {DOMAIN_CARDS.map((d) => (
-            <div key={d.label} className="p-5 rounded-xl border border-[#2c3340] bg-[var(--surface-sunken)] group hover:border-[#5a6374] transition-colors">
+            <div key={d.label} className="p-5 rounded-xl border border-[var(--blog-ink)] bg-[var(--surface-sunken)] group hover:border-[var(--blog-ink-secondary)] transition-colors">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-2 h-2 rounded-full" style={{ background: d.color }} />
                 <strong className="text-sm font-space-grotesk uppercase tracking-wider" style={{ color: d.color }}>{d.label}</strong>
               </div>
-              <p className="text-xs text-[#8a93a3] leading-relaxed">{d.desc}</p>
+              <p className="text-xs text-[var(--blog-ink-secondary)] leading-relaxed">{d.desc}</p>
             </div>
           ))}
         </div>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            Notice the <strong className="text-[#c2c7d0]">asymmetry in our data</strong>. Portfolio-level
+            Notice the <strong className="text-[var(--blog-ink-muted)]">asymmetry in our data</strong>. Portfolio-level
             tables (holdings, allocation, duration) only exist for the ~28,000 investors. But
             barriers and market perception tables exist for <em>all</em> 109k respondents — including
             the 80k non-investors. This asymmetry is a feature, not a bug. It means we can study
             non-investors with the same granularity as investors, which is rare in financial surveys.
           </p>
           <p>
-            The barrier table alone contains <strong className="text-[#c2c7d0]">18 binary flags</strong> per non-investor,
+            The barrier table alone contains <strong className="text-[var(--blog-ink-muted)]">18 binary flags</strong> per non-investor,
             from "Fear of losing money" to "Lack of availability of investment platform in local language."
             This is the raw material we later used to discover the three non-investor archetypes.
           </p>
@@ -70,7 +70,7 @@ export default function BlogPart2() {
 
         <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Multi-Source Synthesis</h3>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
             The SEBI survey tells us <em>who</em> invests. But it doesn't tell us <em>where</em> the financial
             infrastructure exists. To add geographic context, we merged two additional data sources:
@@ -78,23 +78,23 @@ export default function BlogPart2() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          <div className="p-6 rounded-xl border border-[#2c3340] bg-[var(--surface-sunken)]">
+          <div className="p-6 rounded-xl border border-[var(--blog-ink)] bg-[var(--surface-sunken)]">
             <div className="flex items-center gap-3 mb-4">
               <Layers size={20} className="text-[var(--data-1)]" />
               <h4 className="text-sm font-space-grotesk font-bold uppercase tracking-widest">Census 2011</h4>
             </div>
-            <p className="text-sm text-[#8a93a3] leading-relaxed">
+            <p className="text-sm text-[var(--blog-ink-secondary)] leading-relaxed">
               District-level population, urbanisation rate, literacy rate, and banking penetration
               metrics. We used this to calculate a "Financial Infrastructure Score" — a proxy for
               how accessible formal financial services are in the respondent's locality.
             </p>
           </div>
-          <div className="p-6 rounded-xl border border-[#2c3340] bg-[var(--surface-sunken)]">
+          <div className="p-6 rounded-xl border border-[var(--blog-ink)] bg-[var(--surface-sunken)]">
             <div className="flex items-center gap-3 mb-4">
               <GitBranch size={20} className="text-[var(--data-1)]" />
               <h4 className="text-sm font-space-grotesk font-bold uppercase tracking-widest">NSE Pulse Data</h4>
             </div>
-            <p className="text-sm text-[#8a93a3] leading-relaxed">
+            <p className="text-sm text-[var(--blog-ink-secondary)] leading-relaxed">
               State-level demat account density, trading volume, and unique investor counts.
               This gives us a macro-level "market enthusiasm" signal that complements the
               micro-level survey responses. States with high demat density but low survey

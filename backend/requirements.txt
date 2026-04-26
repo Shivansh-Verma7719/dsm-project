@@ -11,6 +11,7 @@ psycopg2-binary
 # AI & Agentic Workflow
 langchain
 langchain-core
+langchain-community
 langchain-google-genai
 langgraph
 

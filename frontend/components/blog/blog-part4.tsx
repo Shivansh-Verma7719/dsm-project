@@ -19,14 +19,14 @@ const DK_DATA = [
 export default function BlogPart4() {
   return (
     <section className="mb-32 relative">
-      <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[#2c3340]/10 select-none pointer-events-none leading-none">
+      <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         04
       </div>
       <div className="relative z-10">
         <h2 className="text-4xl font-bold font-space-grotesk mb-3 tracking-tight">The Behavioral Reveal</h2>
-        <p className="font-mono text-[0.6rem] text-[#5a6374] uppercase tracking-widest mb-12">Dunning-Kruger · Barrier Archetypes · The Say-Do Paradox</p>
+        <p className="font-mono text-[0.6rem] text-[var(--blog-ink-secondary)] uppercase tracking-widest mb-12">Dunning-Kruger · Barrier Archetypes · The Say-Do Paradox</p>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-16">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-16">
           <p>
             Beyond prediction, we wanted to understand <em>who</em> the Indian investor really is —
             and more importantly, who the non-investor is. This section presents three behavioral
@@ -37,13 +37,13 @@ export default function BlogPart4() {
         {/* Finding 1: Dunning-Kruger */}
         <h3 className="text-2xl font-bold font-space-grotesk mt-4 mb-6 tracking-tight">Finding 1: The Dunning-Kruger Effect in Finance</h3>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
             We constructed a "calibration gap" metric: the difference between self-reported market
             familiarity (1-5 scale) and actual performance on our 9-item knowledge quiz. Investors
             who rated themselves 5/5 ("Very Familiar") but scored below 4/9 on the quiz were
-            classified as <strong className="text-[#c2c7d0]">overconfident</strong>. Those whose
-            self-assessment matched their quiz score were <strong className="text-[#c2c7d0]">calibrated</strong>.
+            classified as <strong className="text-[var(--blog-ink-muted)]">overconfident</strong>. Those whose
+            self-assessment matched their quiz score were <strong className="text-[var(--blog-ink-muted)]">calibrated</strong>.
           </p>
           <p>
             The results were stark. Overconfident investors didn't just behave differently — they
@@ -52,8 +52,8 @@ export default function BlogPart4() {
         </div>
 
         {/* Custom Dunning-Kruger chart */}
-        <div className="my-12 p-8 rounded-xl border border-[#2c3340] bg-[var(--surface-sunken)]">
-          <h4 className="font-space-grotesk text-xs uppercase tracking-widest text-[#5a6374] mb-8">
+        <div className="my-12 p-8 rounded-xl border border-[var(--blog-ink)] bg-[var(--surface-sunken)]">
+          <h4 className="font-space-grotesk text-xs uppercase tracking-widest text-[var(--blog-ink-secondary)] mb-8">
             Speculative Asset Penetration: Overconfident vs. Calibrated Investors
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -66,7 +66,7 @@ export default function BlogPart4() {
                       <span>Cryptocurrency</span>
                       <span className="font-mono">{group.crypto}%</span>
                     </div>
-                    <div className="h-3 bg-[#1a1f2b] rounded-full overflow-hidden">
+                    <div className="h-2 bg-[var(--paper-3)] rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${group.crypto}%` }}
@@ -82,7 +82,7 @@ export default function BlogPart4() {
                       <span>Futures &amp; Options</span>
                       <span className="font-mono">{group.fo}%</span>
                     </div>
-                    <div className="h-3 bg-[#1a1f2b] rounded-full overflow-hidden">
+                    <div className="h-2 bg-[var(--paper-3)] rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${group.fo}%` }}
@@ -97,7 +97,7 @@ export default function BlogPart4() {
               </div>
             ))}
           </div>
-          <p className="text-[0.6rem] text-[#5a6374] mt-6 italic">
+          <p className="text-[0.6rem] text-[var(--blog-ink-secondary)] mt-6 italic">
             Overconfident investors are 4x more likely to hold crypto and 3x more likely to trade F&amp;O.
           </p>
         </div>
@@ -112,11 +112,11 @@ export default function BlogPart4() {
         {/* Finding 2: Barrier Archetypes */}
         <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 2: Three Faces of Non-Participation</h3>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
             The standard approach to barriers is a frequency bar chart: "Fear of loss" tops the list,
             "Lack of knowledge" comes second. But this flattens a rich, multidimensional signal. We
-            instead applied <strong className="text-[#c2c7d0]">K-Means clustering</strong> on all 18
+            instead applied <strong className="text-[var(--blog-ink-muted)]">K-Means clustering</strong> on all 18
             barrier variables to discover latent profiles among the ~80,000 non-investors.
           </p>
           <p>
@@ -125,8 +125,8 @@ export default function BlogPart4() {
         </div>
 
         {/* Archetype chart */}
-        <div className="my-12 p-8 rounded-xl border border-[#2c3340] bg-[var(--surface-sunken)]">
-          <h4 className="font-space-grotesk text-xs uppercase tracking-widest text-[#5a6374] mb-8">
+        <div className="my-12 p-8 rounded-xl border border-[var(--blog-ink)] bg-[var(--surface-sunken)]">
+          <h4 className="font-space-grotesk text-xs uppercase tracking-widest text-[var(--blog-ink-secondary)] mb-8">
             Non-Investor Archetypes (K-Means, k=3)
           </h4>
           <div className="space-y-6">
@@ -135,11 +135,11 @@ export default function BlogPart4() {
                 <div className="flex justify-between items-baseline mb-2">
                   <div>
                     <span className="text-sm font-space-grotesk font-bold" style={{ color: b.color }}>{b.label}</span>
-                    <span className="text-xs text-[#5a6374] ml-3">{b.desc}</span>
+                    <span className="text-xs text-[var(--blog-ink-secondary)] ml-3">{b.desc}</span>
                   </div>
                   <span className="text-2xl font-bold font-space-grotesk" style={{ color: b.color }}>{b.pct}%</span>
                 </div>
-                <div className="h-2 bg-[#1a1f2b] rounded-full overflow-hidden">
+                <div className="h-2 bg-[var(--paper-3)] rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${b.pct}%` }}
@@ -172,7 +172,7 @@ centroids = pd.DataFrame(
 )`}
         />
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 my-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 my-12">
           <p>
             The <strong style={{ color: 'var(--data-1)' }}>Trust-Deficient</strong> cluster is the most
             counterintuitive: these are often urban, higher-income households who <em>could</em> invest
@@ -196,7 +196,7 @@ centroids = pd.DataFrame(
         {/* Finding 3: Say-Do Paradox */}
         <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 3: The Say-Do Paradox</h3>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
             Our goal-alignment analysis cross-referenced <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm">respondent_goal_ranks</code> with
             <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">respondent_holdings</code>.
@@ -204,7 +204,7 @@ centroids = pd.DataFrame(
             speculative instruments?
           </p>
           <p>
-            The answer: overwhelmingly, no. <strong className="text-[#c2c7d0]">92.7%</strong> of
+            The answer: overwhelmingly, no. <strong className="text-[var(--blog-ink-muted)]">92.7%</strong> of
             households ranking "Daily Trading" as their primary financial goal hold zero F&amp;O or
             crypto positions. The stated intent exists, but the execution is absent. This "Say-Do Gap"
             is largest in the lower income deciles, suggesting that aspiration for active trading may be
@@ -229,14 +229,14 @@ centroids = pd.DataFrame(
         {/* Finding 4: IEP */}
         <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 4: What Investor Education Actually Does</h3>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            Among the 27,882 active investors, 2,768 — just <strong className="text-[#c2c7d0]">9.9%</strong> —
+            Among the 27,882 active investors, 2,768 — just <strong className="text-[var(--blog-ink-muted)]">9.9%</strong> —
             cite SEBI or industry Investor Education Programmes (IEP) as a top information source.
             Small as that share is, the behavioral delta it predicts is substantial.
           </p>
           <p>
-            IEP-exposed investors score <strong className="text-[#c2c7d0]">5.30 out of 9</strong> on
+            IEP-exposed investors score <strong className="text-[var(--blog-ink-muted)]">5.30 out of 9</strong> on
             an objective financial literacy quiz, against 3.75 for the broader non-IEP investor
             population — a 41% gap. The notable detail: product awareness is near-identical between
             both groups (10.23 instruments known). IEP doesn't broaden what people know
@@ -244,44 +244,44 @@ centroids = pd.DataFrame(
           </p>
         </div>
 
-        <div className="my-12 p-8 rounded-xl border border-[#2c3340] bg-[var(--surface-sunken)]">
-          <h4 className="font-space-grotesk text-xs uppercase tracking-widest text-[#5a6374] mb-8">
+        <div className="my-12 p-8 rounded-xl border border-[var(--blog-ink)] bg-[var(--surface-sunken)]">
+          <h4 className="font-space-grotesk text-xs uppercase tracking-widest text-[var(--blog-ink-secondary)] mb-8">
             IEP-Exposed vs. Non-IEP Investors
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-5">
-              <p className="text-xs font-mono uppercase tracking-widest text-[#5a6374]">Knowledge and Motives</p>
+              <p className="text-xs font-mono uppercase tracking-widest text-[var(--blog-ink-secondary)]">Knowledge and Motives</p>
               {[
                 { label: "Objective literacy score", iep: "5.30", non: "3.75 (all non-IEP)", color: "var(--data-1)" },
-                { label: "Products aware (breadth)", iep: "10.23", non: "10.23", color: "#8a93a3" },
+                { label: "Products aware (breadth)", iep: "10.23", non: "10.23", color: "var(--blog-ink-muted)" },
                 { label: "Goal-based motivation", iep: "30.2%", non: "22.8%", color: "var(--data-1)" },
                 { label: "Quick-gains motivation", iep: "21.7%", non: "23.3%", color: "var(--data-1)" },
               ].map((row) => (
-                <div key={row.label} className="flex justify-between items-center text-sm border-b border-[#2c3340] pb-3">
-                  <span className="text-[#8a93a3]">{row.label}</span>
+                <div key={row.label} className="flex justify-between items-center text-sm border-b border-[var(--blog-ink)] pb-3">
+                  <span className="text-[var(--blog-ink-secondary)]">{row.label}</span>
                   <div className="flex gap-4 font-mono text-xs">
                     <span style={{ color: row.color }}>{row.iep} IEP</span>
-                    <span className="text-[#5a6374]">{row.non} non</span>
+                    <span className="text-[var(--blog-ink-secondary)]">{row.non} non</span>
                   </div>
                 </div>
               ))}
             </div>
             <div className="space-y-5">
-              <p className="text-xs font-mono uppercase tracking-widest text-[#5a6374]">Portfolio Tilt</p>
+              <p className="text-xs font-mono uppercase tracking-widest text-[var(--blog-ink-secondary)]">Portfolio Tilt</p>
               {[
                 { label: "Holds Fixed Deposits", iep: "49.3%", non: "55.1%", color: "var(--data-1)" },
-                { label: "Holds MF / ETF", iep: "34.4%", non: "31.2%", color: "#8a93a3" },
-                { label: "Holds Derivatives (F&O)", iep: "2.8%", non: "2.1%", color: "#8a93a3" },
+                { label: "Holds MF / ETF", iep: "34.4%", non: "31.2%", color: "var(--blog-ink-muted)" },
+                { label: "Holds Derivatives (F&O)", iep: "2.8%", non: "2.1%", color: "var(--blog-ink-muted)" },
               ].map((row) => (
-                <div key={row.label} className="flex justify-between items-center text-sm border-b border-[#2c3340] pb-3">
-                  <span className="text-[#8a93a3]">{row.label}</span>
+                <div key={row.label} className="flex justify-between items-center text-sm border-b border-[var(--blog-ink)] pb-3">
+                  <span className="text-[var(--blog-ink-secondary)]">{row.label}</span>
                   <div className="flex gap-4 font-mono text-xs">
                     <span style={{ color: row.color }}>{row.iep} IEP</span>
-                    <span className="text-[#5a6374]">{row.non} non</span>
+                    <span className="text-[var(--blog-ink-secondary)]">{row.non} non</span>
                   </div>
                 </div>
               ))}
-              <p className="text-xs text-[#5a6374] italic mt-2">
+              <p className="text-xs text-[var(--blog-ink-secondary)] italic mt-2">
                 IEP investors hold fewer FDs (49.3% vs 55.1%), consistent with a modest tilt away
                 from traditional savings.
               </p>
@@ -289,7 +289,7 @@ centroids = pd.DataFrame(
           </div>
         </div>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
             The motivational shift is the more interesting signal. IEP-exposed investors are more
             likely to cite <em>financial goals</em> as a primary investment motive (30.2% vs. 22.8%)

@@ -15,6 +15,11 @@
   --border:   #d4d0c9;
   --border-2: #c7c3bb;
 
+  /* Blog specific tokens — darkened for readability */
+  --blog-ink:           #0f172a; /* obsidian */
+  --blog-ink-secondary: #1e293b; /* deep slate */
+  --blog-ink-muted:     #334155; /* strong slate */
+
   /* Accent — amber, precise, restrained */
   --accent:   #c9852a;
   --accent-2: #e8a04a;
@@ -50,6 +55,11 @@
   --paper-3:  #252320;
   --border:   #302e2a;
   --border-2: #3d3b37;
+  
+  /* Blog specific tokens — dark mode */
+  --blog-ink:           #f8fafc;
+  --blog-ink-secondary: #f1f5f9;
+  --blog-ink-muted:     #cbd5e1;
 
   --accent:   #d4943a;
   --accent-2: #b87928;

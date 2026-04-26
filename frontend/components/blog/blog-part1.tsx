@@ -9,7 +9,7 @@ const DOMAINS = [
   { label: "Demographics", cols: 95, color: "var(--data-1)", desc: "income, education, occupation, NCCS, family type" },
   { label: "Motivations & Barriers", cols: 85, color: "#a78bfa", desc: "18 barriers, 14 motives, 12 ranked goals" },
   { label: "Knowledge & Behavior", cols: 75, color: "#10b981", desc: "literacy quiz, risk perception, market views" },
-  { label: "Survey Metadata", cols: 40, color: "#4a5568", desc: "identifiers, weights, routing flags" },
+  { label: "Survey Metadata", cols: 40, color: "var(--blog-ink-muted)", desc: "identifiers, weights, routing flags" },
   { label: "Awareness & Media", cols: 23, color: "#fbbf24", desc: "15 product awareness booleans, media frequency" },
 ];
 
@@ -37,14 +37,14 @@ const SCHEMA_ROWS = [
 export default function BlogPart1() {
   return (
     <section className="mb-32 relative">
-      <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[#2c3340]/10 select-none pointer-events-none leading-none">
+      <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         01
       </div>
       <div className="relative z-10">
         <h2 className="text-4xl font-bold font-space-grotesk mb-3 tracking-tight">Archaeology &amp; the Raw Data Problem</h2>
-        <p className="font-mono text-[0.6rem] text-[#5a6374] uppercase tracking-widest mb-12">SEBI Household Survey 2025 · 109,430 respondents · 449 columns</p>
+        <p className="font-mono text-[0.6rem] text-[var(--blog-ink-secondary)] uppercase tracking-widest mb-12">SEBI Household Survey 2025 · 109,430 respondents · 449 columns</p>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
             Data scientists love talking about "cleaning data." What that phrase hides is the actual experience:
             opening a 450MB Excel file at 11pm and watching your laptop fan spin up while Pandas chokes on
@@ -62,9 +62,9 @@ export default function BlogPart1() {
         </div>
 
         {/* Column taxonomy visualization */}
-        <div className="my-12 p-8 rounded-2xl border border-[#2c3340] bg-[var(--surface-sunken)]">
-          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-[#5a6374] mb-1">Fig. 1 — Column Taxonomy</p>
-          <p className="text-xs text-[#5a6374] italic mb-8">448 raw survey columns mapped to six functional domains</p>
+        <div className="my-12 p-8 rounded-2xl border border-[var(--blog-ink)] bg-[var(--surface-sunken)]">
+          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-[var(--blog-ink-secondary)] mb-1">Fig. 1 — Column Taxonomy</p>
+          <p className="text-xs text-[var(--blog-ink-secondary)] italic mb-8">448 raw survey columns mapped to six functional domains</p>
 
           <div className="flex h-8 rounded-md overflow-hidden mb-8" style={{ gap: '2px' }}>
             {DOMAINS.map((d, i) => (
@@ -87,18 +87,18 @@ export default function BlogPart1() {
                 <div className="w-2 h-2 rounded-sm mt-1.5 shrink-0" style={{ background: d.color }} />
                 <div>
                   <p className="text-xs font-space-grotesk font-semibold leading-tight" style={{ color: d.color }}>
-                    {d.label} <span className="font-mono font-normal text-[#5a6374]">({d.cols})</span>
+                    {d.label} <span className="font-mono font-normal text-[var(--blog-ink-secondary)]">({d.cols})</span>
                   </p>
-                  <p className="text-[0.6rem] text-[#5a6374] leading-snug mt-0.5">{d.desc}</p>
+                  <p className="text-[0.6rem] text-[var(--blog-ink-secondary)] leading-snug mt-0.5">{d.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            The second obstacle was <strong className="text-[#c2c7d0]">encoding</strong>. The XLSX was generated
+            The second obstacle was <strong className="text-[var(--blog-ink-muted)]">encoding</strong>. The XLSX was generated
             with Windows-1252 characters — specifically the en-dash appearing in income labels like
             "Rs.10,001–Rs.15,000". Visually identical to a hyphen, it broke every string-match lookup
             we tried. We wrote a normalizer that stripped these before any comparison:
@@ -133,7 +133,7 @@ def map_inc(val):
           and let the model find the actual monotonic income–participation relationship.
         </IterationNote>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 my-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 my-12">
           <p>
             Multi-select fields were the deepest challenge. Questions like "Which instruments do you hold?"
             allowed multiple selections stored as a single comma-separated cell. We built a
@@ -165,10 +165,10 @@ holds = {k: _contains(row.get("Q22A"), v) for k, v in Q22A_HOLDS.items()}`}
 
         <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">The 17-Table Relational Schema</h3>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-10">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-10">
           <p>
             Rather than loading everything into one wide table, we decomposed the survey into
-            <strong className="text-[#c2c7d0]"> 17 purpose-built PostgreSQL tables</strong>, each
+            <strong className="text-[var(--blog-ink-muted)]"> 17 purpose-built PostgreSQL tables</strong>, each
             representing one semantic domain. A normalized schema means dashboard queries only touch
             the tables they need — no full-table scans on a 109k-row, 449-column monolith.
             Every child table uses <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm">respondent_id REFERENCES respondents ON DELETE CASCADE</code>,
@@ -177,22 +177,22 @@ holds = {k: _contains(row.get("Q22A"), v) for k, v in Q22A_HOLDS.items()}`}
         </div>
 
         {/* Schema reference table */}
-        <div className="my-10 overflow-hidden rounded-xl border border-[#2c3340]">
+        <div className="my-10 overflow-hidden rounded-xl border border-[var(--blog-ink)]">
           <table className="w-full text-sm font-mono">
             <thead>
-              <tr className="bg-[var(--surface)] border-b border-[#2c3340]">
+              <tr className="bg-[var(--surface)] border-b border-[var(--blog-ink)]">
                 {["#", "Table", "~Rows", "Key Columns"].map(h => (
-                  <th key={h} className="text-left px-4 py-3 text-[0.6rem] uppercase tracking-widest text-[#5a6374] font-normal">{h}</th>
+                  <th key={h} className="text-left px-4 py-3 text-[0.6rem] uppercase tracking-widest text-[var(--blog-ink-secondary)] font-normal">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#2c3340]">
+            <tbody className="divide-y divide-[var(--blog-ink)]">
               {SCHEMA_ROWS.map(([num, tbl, rows, cols]) => (
                 <tr key={tbl} className="hover:bg-[var(--surface)]/50 transition-colors">
-                  <td className="px-4 py-3 text-[#5a6374] text-xs">{num}</td>
+                  <td className="px-4 py-3 text-[var(--blog-ink-secondary)] text-xs">{num}</td>
                   <td className="px-4 py-3 text-[var(--data-1)] text-xs">{tbl}</td>
-                  <td className="px-4 py-3 text-[#c2c7d0] text-xs">{rows}</td>
-                  <td className="px-4 py-3 text-[#8a93a3] text-xs leading-snug">{cols}</td>
+                  <td className="px-4 py-3 text-[var(--blog-ink-muted)] text-xs">{rows}</td>
+                  <td className="px-4 py-3 text-[var(--blog-ink-secondary)] text-xs leading-snug">{cols}</td>
                 </tr>
               ))}
             </tbody>
@@ -201,22 +201,22 @@ holds = {k: _contains(row.get("Q22A"), v) for k, v in Q22A_HOLDS.items()}`}
 
         <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Index Strategy</h3>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-10">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-10">
           <p>
             With 109k rows, full-table scans are fast enough for batch analysis. But this schema also
-            powers a <strong className="text-[#c2c7d0]">live dashboard with sub-100ms filtering</strong>.
+            powers a <strong className="text-[var(--blog-ink-muted)]">live dashboard with sub-100ms filtering</strong>.
             A user selecting "Female, Urban, Maharashtra" must get near-instant responses. We designed
             a two-tier index strategy:
           </p>
           <p>
-            <strong className="text-[#c2c7d0]">Tier 1 — Composite indexes on common join paths.</strong>{" "}
+            <strong className="text-[var(--blog-ink-muted)]">Tier 1 — Composite indexes on common join paths.</strong>{" "}
             Dashboard queries almost always start with <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm">is_investor</code> then
             filter by geography or income. A composite index on
             <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">(survey_year, is_investor)</code>
             lets Postgres skip 80k non-investors immediately when computing investor-only charts.
           </p>
           <p>
-            <strong className="text-[#c2c7d0]">Tier 2 — Partial indexes on sparse boolean columns.</strong>{" "}
+            <strong className="text-[var(--blog-ink-muted)]">Tier 2 — Partial indexes on sparse boolean columns.</strong>{" "}
             Only ~6% of respondents hold crypto, ~8% hold F&amp;O. A full B-tree index on
             <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">holds_crypto</code>
             still scans 94% false rows. A partial index with
@@ -249,7 +249,7 @@ CREATE INDEX idx_awr_n ON respondent_awareness(n_products_aware);`}
           dropped it to 12ms. Sometimes database design is more impactful than machine learning.
         </ResearcherNote>
 
-        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mt-12">
+        <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mt-12">
           <p>
             The entire ETL — reading the XLSX, transforming all 109,430 rows, and loading 18 tables —
             runs in a single Psycopg2 transaction with <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm">execute_values</code> batched
