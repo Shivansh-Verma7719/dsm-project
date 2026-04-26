@@ -2,10 +2,7 @@
 ETL: Respondent Data.XLSX → normalized Postgres schema (db/schema_respondents.sql)
 
 Inserts into 17 sub-tables in a single transaction.  All output columns are
-numeric or boolean — no free text stored.
-
-Run:
-    python src/etl_respondents.py
+numeric or boolean
 """
 from pathlib import Path
 import os
