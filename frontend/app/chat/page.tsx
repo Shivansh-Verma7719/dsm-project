@@ -42,78 +42,8 @@ export default function ChatPage() {
   const toolsRef = useRef<string[]>([]);
 
   useEffect(() => {
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const backendHost = process.env.NEXT_PUBLIC_BACKEND_URL?.replace(/^https?:\/\//, "") || "127.0.0.1:8000";
-    const wsUrl = `${protocol}//${backendHost}/ai/ws`;
-    
-    console.log("Connecting to AI WS:", wsUrl);
-    ws.current = new WebSocket(wsUrl);
-
-    ws.current.onopen = () => {
-      console.log("AI WS Connected");
-      setConnected(true);
-    };
-    ws.current.onclose = () => {
-      console.log("AI WS Disconnected");
-      setConnected(false);
-    };
-    ws.current.onerror = (err) => console.error("AI WS Error:", err);
-    
-    ws.current.onmessage = (event) => {
-      try {
-        const data: StreamEvent = JSON.parse(event.data);
-        console.log("WS Message:", data.type, data);
-
-        if (data.type === "token" && typeof data.content === "string") {
-          contentRef.current += data.content;
-          setStreamContent(contentRef.current);
-        } else if (data.type === "tool_start") {
-          setActiveTools(prev => {
-            if (prev.includes(data.tool!)) return prev;
-            return [...prev, data.tool!];
-          });
-        } else if (data.type === "tool_end") {
-          setActiveTools(prev => prev.filter(t => t !== data.tool));
-          setCompletedTools(prev => {
-            if (prev.includes(data.tool!)) return prev;
-            return [...prev, data.tool!];
-          });
-          if (!toolsRef.current.includes(data.tool!)) {
-            toolsRef.current = [...toolsRef.current, data.tool!];
-          }
-        } else if (data.type === "done") {
-          console.log("Stream Done. Final length:", contentRef.current.length);
-          const finalContent = contentRef.current;
-          const finalTools = [...toolsRef.current];
-          
-          if (finalContent || finalTools.length > 0) {
-            setMessages(prev => [...prev, { 
-              role: "assistant", 
-              content: finalContent,
-              tools: finalTools
-            }]);
-          }
-          
-          // Reset live states
-          setLoading(false);
-          setStreamContent("");
-          contentRef.current = "";
-          toolsRef.current = [];
-          setCompletedTools([]);
-          setActiveTools([]);
-        } else if (data.type === "error") {
-          console.error("Agent Error:", data.content);
-          setStreamContent(prev => prev + `\n\n[Error: ${data.content}]`);
-          setLoading(false);
-        }
-      } catch (err) {
-        console.error("Failed to parse WS message:", err);
-      }
-    };
-
-    return () => {
-      ws.current?.close();
-    };
+    // We now use HTTP POST /ai/stream for Vercel compatibility
+    setConnected(true);
   }, []);
 
   useEffect(() => {
@@ -122,11 +52,11 @@ export default function ChatPage() {
     }
   }, [streamContent, activeTools, messages]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim() || loading) return;
     
     const userMsg = input.trim();
-    console.log("Sending message:", userMsg);
+    console.log("Sending message via Stream:", userMsg);
     
     setInput("");
     setMessages(prev => [...prev, { role: "user", content: userMsg }]);
@@ -137,11 +67,77 @@ export default function ChatPage() {
     setActiveTools([]);
     setCompletedTools([]);
 
-    if (ws.current?.readyState === WebSocket.OPEN) {
-      ws.current.send(JSON.stringify({ message: userMsg }));
-    } else {
-      console.error("WS not open. ReadyState:", ws.current?.readyState);
-      setStreamContent("Error: Agent is disconnected. Please wait for the 'Connected' status.");
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000"}/ai/stream`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMsg }),
+      });
+
+      if (!response.ok) throw new Error("Stream connection failed");
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) throw new Error("No reader available");
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        const lines = chunk.split("\n");
+
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            try {
+              const data: StreamEvent = JSON.parse(line.slice(6));
+              
+              if (data.type === "token" && typeof data.content === "string") {
+                contentRef.current += data.content;
+                setStreamContent(contentRef.current);
+              } else if (data.type === "tool_start") {
+                setActiveTools(prev => {
+                  if (prev.includes(data.tool!)) return prev;
+                  return [...prev, data.tool!];
+                });
+              } else if (data.type === "tool_end") {
+                setActiveTools(prev => prev.filter(t => t !== data.tool));
+                setCompletedTools(prev => {
+                  if (prev.includes(data.tool!)) return prev;
+                  return [...prev, data.tool!];
+                });
+                if (!toolsRef.current.includes(data.tool!)) {
+                  toolsRef.current = [...toolsRef.current, data.tool!];
+                }
+              } else if (data.type === "done") {
+                const finalContent = contentRef.current;
+                const finalTools = [...toolsRef.current];
+                
+                setMessages(prev => [...prev, { 
+                  role: "assistant", 
+                  content: finalContent,
+                  tools: finalTools
+                }]);
+                
+                setLoading(false);
+                setStreamContent("");
+                contentRef.current = "";
+                toolsRef.current = [];
+                setCompletedTools([]);
+                setActiveTools([]);
+              } else if (data.type === "error") {
+                throw new Error(data.content);
+              }
+            } catch (e) {
+              console.error("Parse Error:", e);
+            }
+          }
+        }
+      }
+    } catch (err: any) {
+      console.error("Agent Error:", err);
+      setStreamContent(`[Connection Error: ${err.message}]`);
       setLoading(false);
     }
   };
