@@ -1,14 +1,21 @@
-# Optimized requirements for Vercel (East) - iad1
-# Bumped versions to match model training environment (1.7.2)
-
-# API
+# API & Server
 fastapi
+uvicorn
 pydantic
+python-dotenv
 
-# Inference (Heavier, but necessary for unpickling)
+# Database & ORM
+sqlalchemy
+psycopg2-binary
+
+# AI & Agentic Workflow
+langchain
+langchain-core
+langchain-google-genai
+langgraph
+
+# ML Inference (Versions matched to training env 1.7.2)
 scikit-learn>=1.6.0
 numpy>=1.26.4
 joblib
-
-# Data Structures
 pandas>=2.2.0
