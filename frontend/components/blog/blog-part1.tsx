@@ -37,7 +37,7 @@ const SCHEMA_ROWS = [
 
 export default function BlogPart1() {
   return (
-    <section className="mb-20 relative">
+    <section id="raw-data" className="mb-20 relative">
       <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         01
       </div>

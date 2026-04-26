@@ -18,7 +18,7 @@ const DK_DATA = [
 
 export default function BlogPart4() {
   return (
-    <section className="mb-20 relative">
+    <section id="what-we-found" className="mb-20 relative">
       <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         04
       </div>
@@ -237,7 +237,7 @@ centroids = pd.DataFrame(
         </div>
 
         <IterationNote title="Reconciling Dunning-Kruger with Say-Do">
-          A reviewer asked: "If overconfident investors hold more crypto, but daily-trading aspirants
+          We initally asked: "If overconfident investors hold more crypto, but daily-trading aspirants
           don't, is there a contradiction?" No. These are different populations. Dunning-Kruger
           measures a <strong>psychological trait</strong> (miscalibrated confidence) among existing
           investors. The Say-Do Gap measures an <strong>execution gap</strong> between stated intent

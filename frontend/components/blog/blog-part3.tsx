@@ -16,7 +16,7 @@ const FEATURES = [
 
 export default function BlogPart3() {
   return (
-    <section className="mb-20 relative">
+    <section id="the-models" className="mb-20 relative">
       <div className="absolute -left-24 top-0 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         03
       </div>
@@ -127,7 +127,7 @@ auc = roc_auc_score(y_test, clf.predict_proba(X_test)[:, 1])
                   <span className="text-[var(--blog-ink-muted)] font-space-grotesk">{f.label}</span>
                   <span className="font-mono text-[var(--blog-ink-secondary)]">{f.raw}</span>
                 </div>
-                <div className="h-2 bg-[#1a1f2b] rounded-full overflow-hidden">
+                <div className="h-2 bg-[var(--paper-3)] rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${f.val}%` }}

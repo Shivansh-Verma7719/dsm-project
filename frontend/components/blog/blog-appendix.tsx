@@ -5,7 +5,7 @@ import { CodeHighlight } from './blog-components';
 
 export default function BlogAppendix() {
   return (
-    <section className="mb-20 relative pt-16 border-t border-[#2c3340]">
+    <section id="appendix" className="mb-20 relative pt-16 border-t border-[#2c3340]">
       <div className="absolute -left-24 top-16 text-[10rem] font-space-grotesk font-bold text-[var(--blog-ink)]/10 select-none pointer-events-none leading-none">
         APPX
       </div>

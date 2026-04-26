@@ -8,10 +8,13 @@ import BlogPart2 from '@/components/blog/blog-part2';
 import BlogPart3 from '@/components/blog/blog-part3';
 import BlogPart4 from '@/components/blog/blog-part4';
 import BlogAppendix from '@/components/blog/blog-appendix';
+import { BlogTOC } from '@/components/blog/blog-toc';
 
 export default function BlogPage() {
   return (
-    <article className="max-w-3xl mx-auto py-12 px-6 selection:bg-[var(--data-1)] selection:text-white relative">
+    <div className="max-w-6xl mx-auto flex flex-row-reverse gap-16 relative">
+      <BlogTOC />
+      <article className="max-w-3xl flex-1 py-12 px-6 selection:bg-[var(--data-1)] selection:text-white relative">
       <ReadingProgressBar />
 
       {/* Editorial Header */}
@@ -44,7 +47,7 @@ export default function BlogPage() {
             </div>
             <div className="pr-4">
               <p className="text-[0.65rem] font-bold font-space-grotesk uppercase tracking-widest text-[var(--ink)]">Shivansh Verma & Sashwat Dhanuka</p>
-              <p className="text-[0.6rem] text-[#8a93a3] font-mono">Data Science Methods • Spring 2026</p>
+              <p className="text-[0.6rem] text-[#8a93a3] font-mono">Data Science & Management • Spring 2026</p>
             </div>
           </div>
         </motion.div>
@@ -118,6 +121,7 @@ export default function BlogPage() {
       <footer className="mt-32 pt-8 border-t border-[#2c3340] text-[0.6rem] font-mono text-[#5a6374] uppercase tracking-[0.4em] text-center">
         Deep-Dive Securities Market Project • 2025
       </footer>
-    </article>
+      </article>
+    </div>
   );
 }
