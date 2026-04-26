@@ -1,8 +1,3 @@
--- ============================================================
--- SEBI Household Securities Participation — Respondent Microdata
--- Metrics DB: one row per respondent, no free text, all analytic
--- ============================================================
-
 -- ── Lookup: states ───────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS states (
     state_id    smallint PRIMARY KEY,
