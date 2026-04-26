@@ -60,7 +60,6 @@ export default function BlogPage() {
         <p>
           Our initial probe into the 2025 SEBI Household Survey revealed a staggering disconnect: <strong>74.5% of Indian
             households remain completely outside the securities market</strong>. No mutual funds, no equity, no SIPs.
-          The market isn't just a physical exchange; it's a gated psychological garden.
         </p>
       </div>
 
@@ -73,7 +72,7 @@ export default function BlogPage() {
 
       {/* Conclusion */}
       <section className="mt-20 pt-16 border-t border-[#2c3340]">
-        <h2 className="text-4xl font-bold font-space-grotesk mb-10 uppercase tracking-tighter">Synthesis &amp; The Path Forward</h2>
+        <h2 className="text-4xl font-bold font-space-grotesk mb-10 uppercase tracking-tighter">What This Means</h2>
         <div className="prose prose-invert prose-lg max-w-none font-fraunces text-[var(--blog-ink)] leading-relaxed space-y-8 mb-16">
           <p>
             When <strong>we started</strong> this project, we expected to find that wealth was the primary 
@@ -81,25 +80,21 @@ export default function BlogPage() {
             invest because they don't have the money.
           </p>
           <p>
-            Instead, <strong>we discovered</strong> that the primary gatekeeper isn't the wallet, but the mind. 
-            The "Awareness Gating" effect — where product knowledge outpredicts income as a driver 
-            of participation — is our most significant finding. It suggests that India's low participation 
-            rate isn't just a function of economic development, but a massive information asymmetry 
-            that we can actively solve.
+            Instead, <strong>we discovered</strong> that the primary gatekeeper is product awareness, not income.
+            The "Awareness Gating" effect, where knowing more financial products outpredicts wealth
+            as a driver of participation, is our most significant finding. India's low participation
+            rate reflects a massive information gap that policy can actually close.
           </p>
           <p>
             By decomposing the non-investor population into the <strong>Trust-Deficient</strong>, 
             <strong>Knowledge-Gated</strong>, and <strong>Fear-Driven</strong> archetypes, we've moved 
-            beyond broad statistics to actionable profiles. We believe that a one-size-fits-all 
-            approach to financial literacy will fail. A Trust-Deficient urban professional needs 
-            institutional transparency; a Knowledge-Gated rural farmer needs procedural simplicity.
+            beyond broad statistics to actionable profiles. A one-size-fits-all approach to
+            financial literacy will fail. The urban professional who doesn't trust the system needs
+            different outreach than the rural household that simply doesn't know where to start.
           </p>
           <p>
-            This journey taught us that data science is most powerful when it becomes a tool for 
-            structural empathy. We didn't just build a predictor; we mapped the psychological 
-            geography of a nation's financial future. As we move forward, we hope these insights 
-            serve as a blueprint for a more inclusive, calibrated, and goal-oriented Indian 
-            investment landscape.
+            We built a predictor. The more useful thing turned out to be understanding who the
+            non-investors actually are.
           </p>
         </div>
 

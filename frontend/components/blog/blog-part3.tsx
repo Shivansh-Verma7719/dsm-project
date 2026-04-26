@@ -21,15 +21,13 @@ export default function BlogPart3() {
         03
       </div>
       <div className="relative z-10">
-        <h2 className="text-4xl font-bold font-space-grotesk mb-3 tracking-tight">The Predictive Engine</h2>
+        <h2 className="text-4xl font-bold font-space-grotesk mb-3 tracking-tight">The Models</h2>
         <p className="font-mono text-[0.6rem] text-[var(--blog-ink-secondary)] uppercase tracking-widest mb-12">Three models · HistGradientBoosting · Permutation Importance</p>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            With our relational schema in place, we turned to the central modelling question: can we
-            <em> predict</em> whether a household participates in the market — and if so, what drives
-            that prediction? We built three cascading models, each targeting a different depth of
-            the investment decision:
+            Schema done. The actual question: can we <em>predict</em> which households invest,
+            and what is really driving it? We built three models, each asking something harder than the last:
           </p>
         </div>
 
@@ -61,17 +59,16 @@ export default function BlogPart3() {
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
             We chose <strong className="text-[var(--blog-ink-muted)]">Histogram-based Gradient Boosting (HGB)</strong> for
-            all three models. Unlike standard random forests, HGB natively handles missing values —
-            critical when 80k non-investors have NULL portfolio columns. It also handles mixed
-            feature types (boolean, ordinal, continuous) without requiring separate preprocessing
-            pipelines for each.
+            all three models. Unlike standard random forests, HGB natively handles missing values,
+            which matters when 80k non-investors have NULL portfolio columns. And it doesn't care
+            whether a feature is boolean, ordinal, or continuous; no separate preprocessing steps per type.
           </p>
           <p>
-            The key design decision was <strong className="text-[var(--blog-ink-muted)]">class balancing</strong>. With 74.5%
+            The trickier call was <strong className="text-[var(--blog-ink-muted)]">class balancing</strong>. With 74.5%
             of households being non-investors, a naive model can score 74.5% accuracy by predicting
             "No" for everyone. We used <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm">class_weight='balanced'</code> to
-            penalise false negatives and shifted evaluation from accuracy to ROC-AUC, which measures
-            the model's ability to <em>separate</em> investors from non-investors across all threshold values.
+            stop the model from taking that shortcut, and shifted evaluation to ROC-AUC, a metric
+            that rewards actual <em>discrimination</em> rather than majority-class laziness.
           </p>
         </div>
 
@@ -106,22 +103,22 @@ auc = roc_auc_score(y_test, clf.predict_proba(X_test)[:, 1])
 # >>> 0.814`}
         />
 
-        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Feature Importance: The Awareness Surprise</h3>
+        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Feature Importance</h3>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            The most striking finding from Model 1's permutation importance analysis was that
-            <strong className="text-[var(--blog-ink-muted)]"> Product Awareness</strong> — the count of financial
-            instruments a household has heard of — outstripped Income as the single strongest predictor
+            When we ran permutation importance on Model 1, one result stood out:
+            <strong className="text-[var(--blog-ink-muted)]"> Product Awareness</strong>, the count of financial
+            instruments a household has heard of, outstripped Income as the single strongest predictor
             of market entry. This overturns the common assumption that wealth is the primary gate.
-            In India, <em>it's not what you earn; it's what you've been told is possible</em>.
+            In India, knowing about a product predicts market entry more reliably than being able to afford it.
           </p>
         </div>
 
         {/* Custom feature importance chart */}
         <div className="my-12 p-8 rounded-xl border border-[var(--blog-ink)] bg-[var(--surface-sunken)]">
           <h4 className="font-space-grotesk text-xs uppercase tracking-widest text-[var(--blog-ink-secondary)] mb-8">
-            Permutation Importance — Model 1 (Participation)
+            Permutation Importance: Model 1 (Participation)
           </h4>
           <div className="space-y-5">
             {FEATURES.map((f, i) => (
@@ -166,20 +163,19 @@ fi = pd.DataFrame({
         />
 
         <ResearcherNote>
-          This finding explained a fundamental paradox in our earlier EDA.
-          We saw high-income respondents who were completely absent from the market, and
-          middle-class households who were active. By quantifying awareness, we proved
-          that knowledge acts as a gatekeeper: wealth alone cannot bypass a lack of
-          market familiarity.
+          This clicked something we had been puzzled by in the raw numbers. There were high-income
+          households completely absent from the market, and middle-class ones who were actively investing.
+          It wasn't about money. It was about whether they had been told certain things were
+          possible for people like them.
         </ResearcherNote>
 
-        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Deploying the Predictor</h3>
+        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Serving the Models</h3>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            We didn't stop at offline analysis. All three trained models were serialised with
+            All three trained models were serialised with
             <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">joblib</code>
-            and served through a <strong className="text-[var(--blog-ink-muted)]">FastAPI backend</strong> exposing a
+            and served through a <strong className="text-[var(--blog-ink-muted)]">FastAPI backend</strong> with a
             <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">/predict</code> endpoint.
           </p>
         </div>
@@ -197,8 +193,8 @@ fi = pd.DataFrame({
           </div>
           <p className="text-sm text-[var(--blog-ink-secondary)] mb-6">
             The <strong>Prediction Simulator</strong> on our home page is a live implementation of 
-            Model 1. It allows users to manipulate household variables—income, education, and 
-            awareness—to see how they shift the participation probability in real-time.
+            Model 1. It allows users to manipulate household variables (income, education, and
+            awareness) to see how they shift the participation probability in real-time.
           </p>
           <div className="aspect-video bg-[var(--surface-sunken)] rounded-xl border border-[var(--border)] flex items-center justify-center relative overflow-hidden group">
             <img src="/images/live_predictor.png" alt="Dashboard Prediction Simulator" className="object-cover w-full h-full opacity-100 group-hover:scale-105 transition-transform duration-700" />

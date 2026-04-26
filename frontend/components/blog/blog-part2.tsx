@@ -21,16 +21,15 @@ export default function BlogPart2() {
         02
       </div>
       <div className="relative z-10">
-        <h2 className="text-4xl font-bold font-space-grotesk mb-3 tracking-tight">The Data Blueprint</h2>
+        <h2 className="text-4xl font-bold font-space-grotesk mb-3 tracking-tight">What We Measured</h2>
         <p className="font-mono text-[0.6rem] text-[var(--blog-ink-secondary)] uppercase tracking-widest mb-12">Multi-source synthesis · Census 2011 · NSE Pulse · SEBI Microdata</p>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-16">
           <p>
-            With the ETL complete, we had a clean relational database. But a database is not a dataset.
+            The ETL was done. We had a clean relational database. But a database is not a dataset.
             To answer the question "Why don't Indians invest?", we needed to understand <em>what</em> we
-            were actually measuring. We mapped every one of our 449 source columns into six functional
-            domains — each designed to capture a different facet of the household's relationship with
-            the securities market.
+            were actually measuring. We mapped all 449 source columns into six functional
+            domains, each capturing a different angle on how a household relates to money and markets.
           </p>
         </div>
 
@@ -51,9 +50,9 @@ export default function BlogPart2() {
           <p>
             <strong>We noticed</strong> an interesting <strong className="text-[var(--blog-ink-muted)]">asymmetry in our data</strong>. Portfolio-level
             tables (holdings, allocation, duration) only exist for the ~28,000 investors. But
-            barriers and market perception tables exist for <em>all</em> 109k respondents — including
-            the 80k non-investors. This asymmetry is a feature, not a bug. It means we can study
-            non-investors with the same granularity as investors, which is rare in financial surveys.
+            barriers and market perception tables exist for <em>all</em> 109k respondents, including
+            the 80k non-investors. Most surveys only ask investors about their portfolios. This one
+            captured the 80k people who never invested with equal detail, which is rare.
           </p>
           <p>
             The barrier table alone contains <strong className="text-[var(--blog-ink-muted)]">18 binary flags</strong> per non-investor,
@@ -63,17 +62,16 @@ export default function BlogPart2() {
         </div>
 
         <ResearcherNote>
-          By separating "Stated Motivation" from "Actual Holdings," we were able to run delta analysis
-          on the Intent Gap — revealing that 92% of respondents who claim "Daily Trading" as a goal
-          hold zero speculative instruments. Intent rarely translates to action.
+          92% of respondents who say "Daily Trading" is their primary financial goal hold zero F&amp;O
+          or crypto. We called this the Intent Gap. Intent rarely translates to action.
         </ResearcherNote>
 
-        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Multi-Source Synthesis</h3>
+        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Adding Geography</h3>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
             The SEBI survey tells us <em>who</em> invests. But it doesn't tell us <em>where</em> the financial
-            infrastructure exists. To add geographic context, we merged two additional data sources:
+            infrastructure exists. So we pulled in two more sources to fill that gap:
           </p>
         </div>
 
@@ -85,7 +83,7 @@ export default function BlogPart2() {
             </div>
             <p className="text-sm text-[var(--blog-ink-secondary)] leading-relaxed">
               District-level population, urbanisation rate, literacy rate, and banking penetration
-              metrics. We used this to calculate a "Financial Infrastructure Score" — a proxy for
+              metrics. We used this to calculate a "Financial Infrastructure Score", a proxy for
               how accessible formal financial services are in the respondent's locality.
             </p>
           </div>
@@ -96,8 +94,8 @@ export default function BlogPart2() {
             </div>
             <p className="text-sm text-[var(--blog-ink-secondary)] leading-relaxed">
               State-level demat account density, trading volume, and unique investor counts.
-              This gives us a macro-level "market enthusiasm" signal that complements the
-              micro-level survey responses.
+              This gives us a state-by-state picture of actual retail participation to hold up
+              against what the survey reports.
             </p>
           </div>
         </div>

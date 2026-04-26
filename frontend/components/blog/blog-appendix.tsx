@@ -55,7 +55,7 @@ export default function BlogAppendix() {
         </div>
 
         <CodeHighlight
-          title="agent.py — LangGraph ReAct Agent with Custom Tools"
+          title="agent.py: LangGraph ReAct Agent with Custom Tools"
           code={`def get_agent_executor():
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
     

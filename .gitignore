@@ -28,6 +28,8 @@ Respondent Data.xlsx
 *.nav
 *.snm
 *.out
+report/presentation.tex
+report/presentation.pdf
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

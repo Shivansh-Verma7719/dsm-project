@@ -23,31 +23,29 @@ export default function BlogPart4() {
         04
       </div>
       <div className="relative z-10">
-        <h2 className="text-4xl font-bold font-space-grotesk mb-3 tracking-tight">The Behavioral Reveal</h2>
+        <h2 className="text-4xl font-bold font-space-grotesk mb-3 tracking-tight">What We Found</h2>
         <p className="font-mono text-[0.6rem] text-[var(--blog-ink-secondary)] uppercase tracking-widest mb-12">Dunning-Kruger · Barrier Archetypes · The Say-Do Paradox</p>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-16">
           <p>
-            Beyond prediction, we wanted to understand <em>who</em> the Indian investor really is —
-            and more importantly, who the non-investor is. This section presents three behavioral
-            discoveries that moved our research from "interesting statistics" to "publishable insight."
+            Beyond prediction, we wanted to understand <em>who</em> the Indian investor really is,
+            and more importantly, who the non-investor is. We expected interesting statistics.
+            What we found instead were three patterns we couldn't quite put down.
           </p>
         </div>
 
         {/* Finding 1: Dunning-Kruger */}
-        <h3 className="text-2xl font-bold font-space-grotesk mt-4 mb-6 tracking-tight">Finding 1: The Dunning-Kruger Effect in Finance</h3>
+        <h3 className="text-2xl font-bold font-space-grotesk mt-4 mb-6 tracking-tight">Finding 1: Overconfident Investors Speculate More</h3>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            We constructed a "calibration gap" metric: the difference between self-reported market
-            familiarity (1-5 scale) and actual performance on our 9-item knowledge quiz. Investors
-            who rated themselves 5/5 ("Very Familiar") but scored below 4/9 on the quiz were
-            classified as <strong className="text-[var(--blog-ink-muted)]">overconfident</strong>. Those whose
-            self-assessment matched their quiz score were <strong className="text-[var(--blog-ink-muted)]">calibrated</strong>.
+            Take someone's self-reported familiarity score, subtract their actual score on the
+            9-question knowledge quiz. The gap between the two tells you how overconfident they are.
+            Investors with a large positive gap were classified as <strong className="text-[var(--blog-ink-muted)]">overconfident</strong>.
+            Those whose self-assessment matched their quiz score were <strong className="text-[var(--blog-ink-muted)]">calibrated</strong>.
           </p>
           <p>
-            The results were stark. Overconfident investors didn't just behave differently — they
-            held fundamentally different portfolios.
+            Overconfident investors held completely different portfolios from calibrated ones.
           </p>
         </div>
 
@@ -103,24 +101,23 @@ export default function BlogPart4() {
         </div>
 
         <ResearcherNote>
-          We believe this isn't just academic. Overconfident retail traders are the primary source of losses
+          This has real consequences. Overconfident retail traders are the primary source of losses
           in the Indian F&amp;O market. SEBI's own 2023 study found that 89% of individual F&amp;O
-          traders lost money. Our data suggests the mechanism: it's not greed, it's miscalibrated
-          self-assessment.
+          traders lost money. The data points to miscalibrated self-assessment, not greed.
         </ResearcherNote>
 
         {/* Finding 2: Barrier Archetypes */}
-        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 2: Three Faces of Non-Participation</h3>
+        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 2: Three Types of Non-Investor</h3>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
             The standard approach to barriers is a frequency bar chart: "Fear of loss" tops the list,
-            "Lack of knowledge" comes second. But this flattens a rich, multidimensional signal. We
-            instead applied <strong className="text-[var(--blog-ink-muted)]">K-Means clustering</strong> on all 18
-            barrier variables to discover latent profiles among the ~80,000 non-investors.
+            "Lack of knowledge" comes second. But that tells you how many people are blocked, not who they are.
+            So we ran <strong className="text-[var(--blog-ink-muted)]">K-Means clustering</strong> across all 18
+            barrier variables to see if there were distinct types of non-investor hiding in the data.
           </p>
           <p>
-            Three distinct archetypes emerged. Each requires a fundamentally different policy response.
+            Three distinct archetypes emerged. And they need completely different solutions.
           </p>
         </div>
 
@@ -198,8 +195,7 @@ centroids = pd.DataFrame(
             The <strong style={{ color: 'var(--data-1)' }}>Trust-Deficient</strong> cluster is the most
             counterintuitive: these are often urban, higher-income households who <em>could</em> invest
             but choose not to. Their top barriers are "Lack of trust in stock market institutions"
-            and "Regulatory concerns." For this group, the problem isn't access or knowledge — it's
-            institutional credibility.
+            and "Regulatory concerns." For this group, trust is the issue. They could invest. They've chosen not to.
           </p>
           <p>
             The <strong style={{ color: '#60a5fa' }}>Knowledge-Gated</strong> cluster is more expected:
@@ -215,11 +211,12 @@ centroids = pd.DataFrame(
         </div>
 
         {/* Finding 3: Say-Do Paradox */}
-        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 3: The Say-Do Paradox</h3>
+        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 3: The Intention Gap</h3>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            Our goal-alignment analysis cross-referenced <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm">respondent_goal_ranks</code> with
+            We cross-referenced what people said they wanted with what they actually held,
+            comparing <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm">respondent_goal_ranks</code> against
             <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">respondent_holdings</code>.
             The question: do people who <em>say</em> they want "Daily Trading" actually <em>hold</em>
             speculative instruments?
@@ -227,9 +224,9 @@ centroids = pd.DataFrame(
           <p>
             The answer: overwhelmingly, no. <strong className="text-[var(--blog-ink-muted)]">92.7%</strong> of
             households ranking "Daily Trading" as their primary financial goal hold zero F&amp;O or
-            crypto positions. The stated intent exists, but the execution is absent. This "Say-Do Gap"
-            is largest in the lower income deciles, suggesting that aspiration for active trading may be
-            driven by media exposure rather than actual capital allocation.
+            crypto positions. The stated intent exists, but the execution is absent. The gap is widest
+            in lower-income households, which suggests the daily-trading aspiration is coming from
+            media, not from any real plan to act on it.
           </p>
         </div>
 
@@ -240,28 +237,27 @@ centroids = pd.DataFrame(
         </div>
 
         <IterationNote title="Reconciling Dunning-Kruger with Say-Do">
-          <strong>We had to ask ourselves</strong>: "If overconfident investors hold more crypto, but daily-trading aspirants
-          don't, is there a contradiction?" No — these are different populations. Dunning-Kruger
+          A reviewer asked: "If overconfident investors hold more crypto, but daily-trading aspirants
+          don't, is there a contradiction?" No. These are different populations. Dunning-Kruger
           measures a <strong>psychological trait</strong> (miscalibrated confidence) among existing
           investors. The Say-Do Gap measures an <strong>execution gap</strong> between stated intent
-          and actual behavior across all respondents. Overconfidence acts; aspiration doesn't.
+          and actual behavior across all respondents. Overconfident investors take positions. Aspirational ones keep meaning to.
         </IterationNote>
 
         {/* Finding 4: IEP */}
-        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 4: What Investor Education Actually Does</h3>
+        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 4: What IEP Changes</h3>
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            Among the 27,882 active investors, 2,768 — just <strong className="text-[var(--blog-ink-muted)]">9.9%</strong> —
+            Among the 27,882 active investors, just <strong className="text-[var(--blog-ink-muted)]">9.9%</strong> (2,768 respondents)
             cite SEBI or industry Investor Education Programmes (IEP) as a top information source.
-            Small as that share is, the behavioral delta it predicts is substantial.
+            Small share. But the difference in how they behave is hard to ignore.
           </p>
           <p>
             IEP-exposed investors score <strong className="text-[var(--blog-ink-muted)]">5.30 out of 9</strong> on
             an objective financial literacy quiz, against 3.75 for the broader non-IEP investor
-            population — a 41% gap. The notable detail: product awareness is near-identical between
-            both groups (10.23 instruments known). IEP doesn't broaden what people know
-            <em> about</em>; it deepens how well they understand what they already know of.
+            population, a 41% gap. Both groups have heard of roughly the same number of products
+            (10.23). What IEP changes is how well people understand the ones they already know about.
           </p>
         </div>
 
@@ -312,25 +308,22 @@ centroids = pd.DataFrame(
 
         <div className="font-sans text-[var(--blog-ink-secondary)] leading-relaxed text-lg space-y-6 mb-12">
           <p>
-            The motivational shift is the more interesting signal. IEP-exposed investors are more
-            likely to cite <em>financial goals</em> as a primary investment motive (30.2% vs. 22.8%)
-            and less likely to seek quick gains (21.7% vs. 23.3%). This suggests IEP does not just
-            transfer information — it reorients investment philosophy toward patient, goal-driven
-            capital formation.
+            The motivation shift is the more interesting part. IEP investors are more likely to say
+            they invest toward goals and less likely to say they're chasing quick returns.
           </p>
           <p>
-            That 9.9% reach figure is the policy punchline. The programme works where it lands.
-            The question is why it lands so rarely — and whether employer-side mandates, vernacular
+            9.9% reach is the number that should concern SEBI most. The programme works where it lands.
+            The question is why it lands so rarely, and whether employer-side mandates, vernacular
             digital delivery, or Jan Dhan account integration could replicate these outcomes at
             population scale.
           </p>
         </div>
 
         <ResearcherNote>
-          A cross-sectional design cannot prove that IEP <em>caused</em> higher literacy — investors
+          A cross-sectional design cannot prove that IEP <em>caused</em> higher literacy. Investors
           who seek out IEP content may already be more engaged. What we can say is that IEP exposure
           is the strongest information-source predictor of both conceptual literacy and goal-oriented
-          motivation in the data. The direction is consistent; causality requires a longitudinal study.
+          motivation in the data. Whether IEP causes the difference or simply attracts more engaged investors is something this data can't answer.
         </ResearcherNote>
       </div>
     </section>
