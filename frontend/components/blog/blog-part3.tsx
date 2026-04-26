@@ -39,21 +39,21 @@ export default function BlogPart3() {
             <div className="text-xs font-mono uppercase tracking-widest text-[#5a6374] mb-3">Model 1</div>
             <h4 className="text-lg font-bold font-space-grotesk mb-2">Participation</h4>
             <p className="text-xs text-[#8a93a3] mb-4">Does this household invest at all?</p>
-            <div className="text-3xl font-bold text-[var(--data-1)] font-space-grotesk">0.863</div>
+            <div className="text-3xl font-bold text-[var(--data-1)] font-space-grotesk">0.814</div>
             <div className="text-[0.6rem] font-mono text-[#5a6374] uppercase">ROC-AUC</div>
           </div>
           <div className="p-6 rounded-xl border border-[#2c3340] bg-[var(--surface-sunken)]">
             <div className="text-xs font-mono uppercase tracking-widest text-[#5a6374] mb-3">Model 2</div>
             <h4 className="text-lg font-bold font-space-grotesk mb-2">Asset Choice</h4>
             <p className="text-xs text-[#8a93a3] mb-4">Equity/MF or traditional instruments?</p>
-            <div className="text-3xl font-bold text-[#60a5fa] font-space-grotesk">0.792</div>
+            <div className="text-3xl font-bold text-[#60a5fa] font-space-grotesk">0.820</div>
             <div className="text-[0.6rem] font-mono text-[#5a6374] uppercase">ROC-AUC</div>
           </div>
           <div className="p-6 rounded-xl border border-[#2c3340] bg-[var(--surface-sunken)]">
             <div className="text-xs font-mono uppercase tracking-widest text-[#5a6374] mb-3">Model 3</div>
             <h4 className="text-lg font-bold font-space-grotesk mb-2">Time Horizon</h4>
             <p className="text-xs text-[#8a93a3] mb-4">Short-term trader or long-term holder?</p>
-            <div className="text-3xl font-bold text-[#10b981] font-space-grotesk">0.715</div>
+            <div className="text-3xl font-bold text-[#10b981] font-space-grotesk">0.612</div>
             <div className="text-[0.6rem] font-mono text-[#5a6374] uppercase">ROC-AUC</div>
           </div>
         </div>
@@ -100,7 +100,7 @@ clf = HistGradientBoostingClassifier(
 clf.fit(X_train, y_train)
 
 auc = roc_auc_score(y_test, clf.predict_proba(X_test)[:, 1])
-# >>> 0.863`}
+# >>> 0.814`}
         />
 
         <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Feature Importance: The Awareness Surprise</h3>
@@ -175,10 +175,11 @@ fi = pd.DataFrame({
           <p>
             We didn't stop at offline analysis. All three trained models were serialised with
             <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">joblib</code>
-            and deployed as a <strong className="text-[#c2c7d0]">live prediction API</strong> on Vercel
-            serverless functions. Users can input a household profile — income, education, awareness
-            level, risk tolerance — and receive real-time predictions for participation probability,
-            likely asset choice, and expected holding duration.
+            and served through a <strong className="text-[#c2c7d0]">FastAPI backend</strong> exposing a
+            <code className="text-[var(--data-1)] bg-[var(--surface)] px-1 py-0.5 rounded text-sm mx-1">/predict</code> endpoint.
+            Users can input a household profile — income, education, awareness level, risk tolerance —
+            and receive real-time predictions for participation probability, likely asset choice, and
+            expected holding duration.
           </p>
           <p>
             The dashboard's "Prediction Simulator" pane takes these raw probabilities and maps them

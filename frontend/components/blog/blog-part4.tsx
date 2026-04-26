@@ -214,7 +214,7 @@ centroids = pd.DataFrame(
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           <DataStat label="Say-Do Gap" value="92.7%" sub="Trading goal but no speculative holdings" />
-          <DataStat label="IEP Leverage" value="3.7x" sub="IEP-exposed cite long-term growth" />
+          <DataStat label="IEP Knowledge Gap" value="+41%" sub="Higher literacy vs. non-IEP investors" />
           <DataStat label="Overconfidence Gap" value="4x" sub="Higher speculative asset adoption" />
         </div>
 
@@ -225,6 +225,92 @@ centroids = pd.DataFrame(
           investors. The Say-Do Gap measures an <strong>execution gap</strong> between stated intent
           and actual behavior across all respondents. Overconfidence acts; aspiration doesn't.
         </IterationNote>
+
+        {/* Finding 4: IEP */}
+        <h3 className="text-2xl font-bold font-space-grotesk mt-20 mb-6 tracking-tight">Finding 4: What Investor Education Actually Does</h3>
+
+        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+          <p>
+            Among the 27,882 active investors, 2,768 — just <strong className="text-[#c2c7d0]">9.9%</strong> —
+            cite SEBI or industry Investor Education Programmes (IEP) as a top information source.
+            Small as that share is, the behavioral delta it predicts is substantial.
+          </p>
+          <p>
+            IEP-exposed investors score <strong className="text-[#c2c7d0]">5.30 out of 9</strong> on
+            an objective financial literacy quiz, against 3.75 for the broader non-IEP investor
+            population — a 41% gap. The notable detail: product awareness is near-identical between
+            both groups (10.23 instruments known). IEP doesn't broaden what people know
+            <em> about</em>; it deepens how well they understand what they already know of.
+          </p>
+        </div>
+
+        <div className="my-12 p-8 rounded-xl border border-[#2c3340] bg-[var(--surface-sunken)]">
+          <h4 className="font-space-grotesk text-xs uppercase tracking-widest text-[#5a6374] mb-8">
+            IEP-Exposed vs. Non-IEP Investors
+          </h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-5">
+              <p className="text-xs font-mono uppercase tracking-widest text-[#5a6374]">Knowledge and Motives</p>
+              {[
+                { label: "Objective literacy score", iep: "5.30", non: "3.75 (all non-IEP)", color: "var(--data-1)" },
+                { label: "Products aware (breadth)", iep: "10.23", non: "10.23", color: "#8a93a3" },
+                { label: "Goal-based motivation", iep: "30.2%", non: "22.8%", color: "var(--data-1)" },
+                { label: "Quick-gains motivation", iep: "21.7%", non: "23.3%", color: "var(--data-1)" },
+              ].map((row) => (
+                <div key={row.label} className="flex justify-between items-center text-sm border-b border-[#2c3340] pb-3">
+                  <span className="text-[#8a93a3]">{row.label}</span>
+                  <div className="flex gap-4 font-mono text-xs">
+                    <span style={{ color: row.color }}>{row.iep} IEP</span>
+                    <span className="text-[#5a6374]">{row.non} non</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="space-y-5">
+              <p className="text-xs font-mono uppercase tracking-widest text-[#5a6374]">Portfolio Tilt</p>
+              {[
+                { label: "Holds Fixed Deposits", iep: "49.3%", non: "55.1%", color: "var(--data-1)" },
+                { label: "Holds MF / ETF", iep: "34.4%", non: "31.2%", color: "#8a93a3" },
+                { label: "Holds Derivatives (F&O)", iep: "2.8%", non: "2.1%", color: "#8a93a3" },
+              ].map((row) => (
+                <div key={row.label} className="flex justify-between items-center text-sm border-b border-[#2c3340] pb-3">
+                  <span className="text-[#8a93a3]">{row.label}</span>
+                  <div className="flex gap-4 font-mono text-xs">
+                    <span style={{ color: row.color }}>{row.iep} IEP</span>
+                    <span className="text-[#5a6374]">{row.non} non</span>
+                  </div>
+                </div>
+              ))}
+              <p className="text-xs text-[#5a6374] italic mt-2">
+                IEP investors hold fewer FDs (49.3% vs 55.1%), consistent with a modest tilt away
+                from traditional savings.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="font-sans text-[#8a93a3] leading-relaxed text-lg space-y-6 mb-12">
+          <p>
+            The motivational shift is the more interesting signal. IEP-exposed investors are more
+            likely to cite <em>financial goals</em> as a primary investment motive (30.2% vs. 22.8%)
+            and less likely to seek quick gains (21.7% vs. 23.3%). This suggests IEP does not just
+            transfer information — it reorients investment philosophy toward patient, goal-driven
+            capital formation.
+          </p>
+          <p>
+            That 9.9% reach figure is the policy punchline. The programme works where it lands.
+            The question is why it lands so rarely — and whether employer-side mandates, vernacular
+            digital delivery, or Jan Dhan account integration could replicate these outcomes at
+            population scale.
+          </p>
+        </div>
+
+        <ResearcherNote>
+          A cross-sectional design cannot prove that IEP <em>caused</em> higher literacy — investors
+          who seek out IEP content may already be more engaged. What we can say is that IEP exposure
+          is the strongest information-source predictor of both conceptual literacy and goal-oriented
+          motivation in the data. The direction is consistent; causality requires a longitudinal study.
+        </ResearcherNote>
       </div>
     </section>
   );

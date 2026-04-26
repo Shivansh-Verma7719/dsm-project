@@ -1,8 +1,17 @@
-"use client";
+  "use client";
 
 import React from 'react';
-import { Database } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { ResearcherNote, CodeHighlight, IterationNote } from './blog-components';
+
+const DOMAINS = [
+  { label: "Portfolio & Holdings", cols: 130, color: "#f43f5e", desc: "holdings, allocation, status, duration across 21 instruments" },
+  { label: "Demographics", cols: 95, color: "var(--data-1)", desc: "income, education, occupation, NCCS, family type" },
+  { label: "Motivations & Barriers", cols: 85, color: "#a78bfa", desc: "18 barriers, 14 motives, 12 ranked goals" },
+  { label: "Knowledge & Behavior", cols: 75, color: "#10b981", desc: "literacy quiz, risk perception, market views" },
+  { label: "Survey Metadata", cols: 40, color: "#4a5568", desc: "identifiers, weights, routing flags" },
+  { label: "Awareness & Media", cols: 23, color: "#fbbf24", desc: "15 product awareness booleans, media frequency" },
+];
 
 const SCHEMA_ROWS = [
   ["1", "respondents", "109,430", "respondent_id, is_investor, survey_weight"],
@@ -52,14 +61,38 @@ export default function BlogPart1() {
           </p>
         </div>
 
-        {/* Placeholder: column taxonomy */}
-        <div className="my-12 rounded-2xl border border-dashed border-[#2c3340] bg-[var(--surface-sunken)] aspect-video flex flex-col items-center justify-center gap-4 text-[#5a6374]">
-          <div className="w-12 h-12 rounded-xl border border-[#2c3340] flex items-center justify-center">
-            <Database size={24} />
+        {/* Column taxonomy visualization */}
+        <div className="my-12 p-8 rounded-2xl border border-[#2c3340] bg-[var(--surface-sunken)]">
+          <p className="font-mono text-[0.65rem] uppercase tracking-widest text-[#5a6374] mb-1">Fig. 1 — Column Taxonomy</p>
+          <p className="text-xs text-[#5a6374] italic mb-8">448 raw survey columns mapped to six functional domains</p>
+
+          <div className="flex h-8 rounded-md overflow-hidden mb-8" style={{ gap: '2px' }}>
+            {DOMAINS.map((d, i) => (
+              <motion.div
+                key={d.label}
+                initial={{ opacity: 0, scaleX: 0 }}
+                whileInView={{ opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.07, ease: 'easeOut' }}
+                viewport={{ once: true }}
+                style={{ background: d.color, width: `${(d.cols / 448 * 100).toFixed(1)}%`, originX: 0 }}
+                className="h-full shrink-0"
+                title={`${d.label}: ${d.cols} columns`}
+              />
+            ))}
           </div>
-          <div className="text-center">
-            <p className="font-mono text-[0.65rem] uppercase tracking-widest">Fig. 1 — Column Taxonomy Heatmap</p>
-            <p className="text-xs mt-1 italic">Six functional domains across 449 raw survey columns</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+            {DOMAINS.map((d) => (
+              <div key={d.label} className="flex items-start gap-2.5">
+                <div className="w-2 h-2 rounded-sm mt-1.5 shrink-0" style={{ background: d.color }} />
+                <div>
+                  <p className="text-xs font-space-grotesk font-semibold leading-tight" style={{ color: d.color }}>
+                    {d.label} <span className="font-mono font-normal text-[#5a6374]">({d.cols})</span>
+                  </p>
+                  <p className="text-[0.6rem] text-[#5a6374] leading-snug mt-0.5">{d.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

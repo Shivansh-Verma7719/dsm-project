@@ -121,12 +121,13 @@ LEFT JOIN respondent_awareness a  ON r.respondent_id = a.respondent_id
 df = pd.read_sql(query, engine)`}
         />
 
-        <IterationNote title="The Vercel 500MB Lambda Limit">
-          Our backend runs on Vercel serverless functions. Scikit-learn + NumPy alone exceed
-          400MB uncompressed. We had to pin <strong>scikit-learn&ge;1.6.0</strong> and
-          <strong> numpy&ge;1.26.4</strong> to stay under the 500MB deployment limit. This
-          constraint forced us to use HistGradientBoosting (which is built into sklearn) rather
-          than XGBoost or LightGBM, which would have added another 50-100MB to the bundle.
+        <IterationNote title="Why HistGradientBoosting and Not XGBoost?">
+          Our FastAPI backend serialises trained models with joblib and loads them at startup.
+          Scikit-learn + NumPy already push the deployment footprint past 400MB uncompressed.
+          We pinned <strong>scikit-learn&ge;1.6.0</strong> and <strong>numpy&ge;1.26.4</strong>
+          to keep the bundle lean. XGBoost or LightGBM would have added another 50-100MB each
+          with no meaningful accuracy gain on this dataset. HistGradientBoosting is built into
+          sklearn, natively handles missing values, and matched their performance on all three tasks.
         </IterationNote>
       </div>
     </section>
