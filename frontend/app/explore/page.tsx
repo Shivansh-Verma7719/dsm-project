@@ -25,7 +25,7 @@ import {
   IconX
 } from "@tabler/icons-react";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
 function SortableColumnHeader({
   children,
