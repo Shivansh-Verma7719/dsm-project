@@ -34,32 +34,65 @@ def main():
     df_engaged = df[df['total_barriers'] > 0].copy()
     X = df_engaged[barrier_cols].astype(int)
     
+    # Optimization: Multi-Metric Cluster Validation
+    from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
+    metrics = {'inertia': [], 'silhouette': [], 'davies_bouldin': [], 'calinski_harabasz': []}
+    K = range(2, 11)
+    
+    for k in K:
+        km = KMeans(n_clusters=k, random_state=42, n_init=10)
+        labels = km.fit_predict(X)
+        metrics['inertia'].append(km.inertia_)
+        metrics['silhouette'].append(silhouette_score(X, labels, sample_size=5000, random_state=42))
+        metrics['davies_bouldin'].append(davies_bouldin_score(X, labels))
+        metrics['calinski_harabasz'].append(calinski_harabasz_score(X, labels))
+    
+    # Create a 2x2 diagnostic plot
+    fig, axes = plt.subplots(2, 2, figsize=(15, 12))
+    
+    # 1. Inertia (Elbow)
+    axes[0, 0].plot(K, metrics['inertia'], 'bx-')
+    axes[0, 0].set_title('Inertia (Elbow Method)')
+    axes[0, 0].axvline(x=3, color='r', linestyle='--')
+    
+    # 2. Silhouette (Higher is better)
+    axes[0, 1].plot(K, metrics['silhouette'], 'ro-')
+    axes[0, 1].set_title('Silhouette Score')
+    axes[0, 1].axvline(x=3, color='g', linestyle='--')
+    
+    # 3. Davies-Bouldin (Lower is better)
+    axes[1, 0].plot(K, metrics['davies_bouldin'], 'go-')
+    axes[1, 0].set_title('Davies-Bouldin Index (Lower is Better)')
+    axes[1, 0].axvline(x=3, color='r', linestyle='--')
+    
+    # 4. Calinski-Harabasz (Higher is better)
+    axes[1, 1].plot(K, metrics['calinski_harabasz'], 'mo-')
+    axes[1, 1].set_title('Calinski-Harabasz Index')
+    axes[1, 1].axvline(x=3, color='g', linestyle='--')
+    
+    for ax in axes.flat:
+        ax.set_xlabel('k')
+        ax.grid(True, alpha=0.3)
+        
+    plt.suptitle('Multi-Metric Cluster Optimization: Validation of k=3', fontsize=16)
+    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+    plt.savefig('figures/fig14_elbow_plot.pdf')
+    plt.close()
+
     # 3 clusters for latent profiles
     kmeans = KMeans(n_clusters=3, random_state=42, n_init=20)
     df_engaged['archetype_id'] = kmeans.fit_predict(X)
     centroids = pd.DataFrame(kmeans.cluster_centers_, columns=barrier_cols)
     
-    # Strategic naming based on clear separations
-    # 1. Fear-Driven (High Fear of Loss)
-    # 2. Knowledge-Gated (High Lack Knowledge / Don't Know How)
-    # 3. Trust-Deficient (High Lack Trust)
-    
+    # Strategic naming based on absolute peaks
+    # We identify Fear and Trust clusters by their perfect 1.0 centroids
     fear_idx = centroids['barrier_fear_of_loss'].idxmax()
-    know_idx = centroids['barrier_lack_knowledge'].idxmax()
+    trust_idx = centroids['barrier_lack_trust'].idxmax()
     
-    # The remaining one
+    # The remaining one is Knowledge-Gated
     all_indices = set([0, 1, 2])
-    remaining = list(all_indices - {fear_idx, know_idx})
-    
-    # If fear and know are the same (unlikely but check)
-    if fear_idx == know_idx:
-        # Re-sort
-        fear_idx = centroids['barrier_fear_of_loss'].argsort()[2]
-        know_idx = centroids['barrier_lack_knowledge'].argsort()[2]
-        if fear_idx == know_idx: know_idx = centroids['barrier_lack_knowledge'].argsort()[1]
-        remaining = list(all_indices - {fear_idx, know_idx})
-
-    trust_idx = remaining[0]
+    remaining = list(all_indices - {fear_idx, trust_idx})
+    know_idx = remaining[0]
     
     archetype_names = {
         fear_idx: "Fear-Driven",
@@ -101,6 +134,20 @@ def main():
     plt.savefig('figures/fig11_archetype_demographics.pdf')
     plt.close()
     
+    # 6. Archetype Peaks (Defining Barriers)
+    plt.figure(figsize=(15, 5))
+    for i, name in enumerate([archetype_names[0], archetype_names[1], archetype_names[2]]):
+        plt.subplot(1, 3, i+1)
+        top_barriers = plot_centroids.loc[name].sort_values(ascending=False).head(5)
+        top_barriers.plot(kind='barh', color=colors[i])
+        plt.title(f'Top Barriers: {name}')
+        plt.xlabel('Probability')
+        plt.gca().invert_yaxis()
+    
+    plt.tight_layout()
+    plt.savefig('figures/fig15_archetype_peaks.pdf')
+    plt.close()
+
     # Save stats
     summary = df_engaged['archetype'].value_counts(normalize=True) * 100
     summary.to_csv('report/data/barrier_archetype_summary.csv')

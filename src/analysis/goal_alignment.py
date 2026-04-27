@@ -99,8 +99,9 @@ def main():
     
     # Plot 2: Internal Consistency Bar Chart
     plt.figure(figsize=(10, 5))
-    colors = ['#2a3f6b' if g != 'Daily Trading' else '#c9852a' for g in alignment_summary.index]
-    alignment_summary.sort_values().plot(kind='barh', color=colors)
+    sorted_summary = alignment_summary.sort_values()
+    colors = ['#c9852a' if g == 'Daily Trading' else '#2a3f6b' for g in sorted_summary.index]
+    sorted_summary.plot(kind='barh', color=colors)
     plt.title('Portfolio Internal Consistency Score by Goal', fontsize=14)
     plt.xlabel('Percentage of Aligned Portfolios (%)', fontsize=12)
     plt.ylabel('Primary Goal', fontsize=12)
