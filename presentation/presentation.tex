@@ -128,19 +128,36 @@
 
 % ── SLIDE 7: EDA — Participation landscape ────────────────────────────────────
 \begin{frame}{EDA: Who Participates?}
-  \textbf{Steepest univariate signals:}
-  \begin{itemize}
-    \item \alert{Income gradient:} 10.7\% (Q1, $<$Rs.\,12,500/mo)
-          to 47.6\% (Q5, $>$Rs.\,35,000/mo): a \textbf{4.5$\times$} spread
-    \item \alert{Gender gap:} 30.8\% (male) vs 15.8\% (female),
-          persists across all income levels
-    \item \alert{Urban premium:} 28.8\% vs 17.6\% (rural)
-    \item Millennials (28--43) lead cohorts at 28.1\%,
-          exceeding both Gen Z (24.3\%) and Gen X (22.9\%)
-  \end{itemize}
-  \vspace{0.8em}
-  These univariate signals motivate the multivariate regression:
-  which factors survive joint controls?
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Income Gradient}
+        \centering
+        {\large\bfseries 10.7\% $\to$ 47.6\%}\\[0.3em]
+        \small Q1 ($<$Rs.\,12,500) to Q5 ($>$Rs.\,35,000): a \textbf{4.5$\times$} spread
+      \end{block}
+      \vspace{0.4em}
+      \begin{block}{Urban Premium}
+        \centering
+        {\large\bfseries 28.8\% vs 17.6\%}\\[0.3em]
+        \small Urban vs Rural households
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Gender Gap}
+        \centering
+        {\large\bfseries 30.8\% vs 15.8\%}\\[0.3em]
+        \small Male vs Female — gap persists across all income levels
+      \end{block}
+      \vspace{0.4em}
+      \begin{block}{Generational Peak}
+        \centering
+        {\large\bfseries Millennials: 28.1\%}\\[0.3em]
+        \small Ahead of Gen Z (24.3\%) and Gen X (22.9\%)
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{0.5em}
+  \small Which factors survive joint controls? $\to$ Finding 1.
 \end{frame}
 
 \begin{frame}{EDA: Participation Demographics}
@@ -152,23 +169,28 @@
 
 % ── SLIDE 9: EDA — Awareness and holdings ─────────────────────────────────────
 \begin{frame}{EDA: Awareness Gap and Holdings}
-  \textbf{Awareness gradient (all 109,430 respondents):}
-  \begin{itemize}
-    \item Fixed Deposits: \textbf{99.1\%}
-    \item Mutual Funds / ETFs: 67.0\%
-    \item Direct Equity: 62.0\%
-    \item Derivatives: \textbf{17.9\%}
-  \end{itemize}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \textbf{Awareness (all 109,430 respondents):}\\[0.6em]
+      \begin{tabular}{lr}
+        Fixed Deposits    & \textbf{99.1\%} \\[0.3em]
+        Mutual Funds/ETFs & 67.0\%          \\[0.3em]
+        Direct Equity     & 62.0\%          \\[0.3em]
+        Derivatives       & \alert{17.9\%}  \\
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \textbf{Top holdings among investors:}\\[0.6em]
+      \begin{tabular}{lr}
+        Mutual Funds/ETFs & 66.5\% \\[0.3em]
+        Fixed Deposits    & 57.2\% \\[0.3em]
+        Direct Equity     & 49.3\% \\
+      \end{tabular}
+    \end{column}
+  \end{columns}
   \vspace{0.8em}
-  \textbf{Holdings among investors:}
-  \begin{itemize}
-    \item MF/ETF: 66.5\% \quad FD/RD: 57.2\%
-    \item Direct equity: 49.3\%
-  \end{itemize}
-  \vspace{0.8em}
-  MFs and FDs \emph{co-dominate}: Indian retail investors layer
-  market-linked products on top of traditional savings rather than
-  replacing them.
+  MFs and FDs co-dominate: investors layer market products on top of
+  savings rather than replacing them.
 \end{frame}
 
 \begin{frame}{EDA: Instrument Awareness and Holdings}
@@ -209,22 +231,24 @@
 
 % ── SLIDE 11: Finding 2 — Barrier archetypes ───────────────────────────────────
 \begin{frame}{Finding 2: Three Archetypes of Non-Participation}
-  K-means on 18 self-reported barriers identifies three profiles:
-  \vspace{0.4em}
+  K-means clustering on 18 self-reported barriers identifies three distinct profiles:
+  \vspace{0.5em}
   \begin{block}{Trust-Deficient (46.3\%)}
-    Persistent across income levels and urban cohorts.
-    Requires institutional accountability: grievance redressal,
-    IPF promotion, broker transparency.
-  \end{block}
-  \begin{block}{Knowledge-Gated (29.0\%)}
-    Concentrated in rural areas and lowest income quartile.
-    Needs geographically targeted vernacular literacy delivery.
-  \end{block}
-  \begin{block}{Fear-Driven (24.8\%)}
-    Responds to loss-framing education and first-loss protection
-    onramps (SGB, RBI Floating Rate Bonds).
+    Urban, higher-income households who \emph{could} invest but choose not to.
+    Top barriers: lack of trust in institutions and regulatory concerns.
+    Requires accountability measures — grievance redressal, broker transparency.
   \end{block}
   \vspace{0.3em}
+  \begin{block}{Knowledge-Gated (29.0\%)}
+    Rural, lowest income quartile. Top barrier: ``I don't know how to start.''
+    Needs geographically targeted literacy programs in local languages.
+  \end{block}
+  \vspace{0.3em}
+  \begin{block}{Fear-Driven (24.8\%)}
+    Spread across all demographics. Top barrier: fear of losing money.
+    Responds to low-risk entry points that reduce perceived downside.
+  \end{block}
+  \vspace{0.4em}
   A single awareness campaign cannot address all three.
 \end{frame}
 
@@ -268,26 +292,26 @@
 
 % ── SLIDE 17: Finding 4 — IEP ──────────────────────────────────────────────────
 \begin{frame}{Finding 4: Investor Education Programme Impact}
-  \textbf{2,768 investors (9.9\%)} cite SEBI or industry IEP as a
-  top information source.\\[0.6em]
+  \textbf{Only 2,768 investors (9.9\%)} cite SEBI or industry IEP as a
+  top information source. Yet the difference in behaviour is striking:
+  \vspace{0.6em}
   \begin{center}
     \begin{tabular}{lcc}
       \toprule
       Metric & IEP & Non-IEP \\
       \midrule
-      Knowledge score & \textbf{5.30} & 3.75 \\
-      Products aware  & 10.23 & 10.23 \\
-      Goal-based (\%) & \textbf{30.2} & 22.8 \\
-      Quick gains (\%)& 21.7 & 23.3 \\
-      Holds FDs (\%)  & 49.3 & \textbf{55.1} \\
+      Knowledge score (out of 9) & \textbf{5.30} & 3.75 \\
+      Products aware             & 10.23 & 10.23 \\
+      Goal-based motivation      & \textbf{30.2\%} & 22.8\% \\
+      Quick-gains motivation     & 21.7\% & 23.3\% \\
+      Holds Fixed Deposits       & 49.3\% & \textbf{55.1\%} \\
       \bottomrule
     \end{tabular}
   \end{center}
   \vspace{0.6em}
-  The 41\% knowledge advantage is specific to \emph{conceptual depth},
-  not product breadth (awareness is near-identical).\\[0.4em]
-  IEP functions as both a knowledge-deepening and a
-  philosophical-reorientation intervention. Current reach: \alert{9.9\%}.
+  The 41\% knowledge advantage is in \emph{depth}, not breadth: both groups
+  are aware of the same number of products. IEP changes how well people
+  understand what they already know. Current reach: \alert{9.9\%}.
 \end{frame}
 
 \begin{frame}{Finding 4: IEP Analysis}
@@ -341,36 +365,34 @@
 \begin{frame}{Policy Recommendations}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \textbf{A. Prioritize product awareness}\\
-      OR = 2.22; campaigns should name specific instruments
-      (MF, ETF, SIP) for North and South zones.\\[0.4em]
+      \textbf{A. Prioritise Product Awareness}\\
+      \small Awareness predicts participation more than income.
+      Campaigns should mention MFs, ETFs, SIPs by name.\\[0.5em]
 
-      \textbf{B. Segment non-investor interventions}\\
-      Trust-Deficient: regulatory transparency.
-      Knowledge-Gated: vernacular rural delivery.
-      Fear-Driven: first-loss protection onramps.\\[0.4em]
+      \normalsize\textbf{B. Tailor outreach by non-investor type}\\
+      \small Trust-Deficient: institutional accountability.\\
+      Knowledge-Gated: vernacular rural delivery.\\
+      Fear-Driven: low-risk entry points.\\[0.5em]
 
-      \textbf{C. Scale IEP reach}\\
-      From 9.9\% to employer mandates and Jan Dhan partnerships.
-      Content should emphasize conceptual depth, not procedural literacy
-      (KYC awareness is already high). Goal-aligned investors show
-      72--77\% portfolio consistency, confirming goal-based framing works.
+      \normalsize\textbf{C. Expand investor education}\\
+      \small SEBI's programs reach only 9.9\% of investors.
+      Scale via workplaces and Jan Dhan accounts.
     \end{column}
     \begin{column}{0.48\textwidth}
       \textbf{D. Close the gender gap}\\
-      OR = 1.53 for male gender after full controls. SHG-linked
-      investment collectives, women-targeted IEP content,
-      lower minimum investment thresholds.\\[0.4em]
+      \small Women invest at half the rate of men even after
+      controlling for income. Women-only groups and lower
+      minimum amounts would help.\\[0.5em]
 
-      \textbf{E. Regulate finfluencers}\\
-      5\% usage associated with quick-gains orientation.
-      Mandatory qualification disclosure, prohibited performance claims,
-      platform liability for unregistered advice.\\[0.4em]
+      \normalsize\textbf{E. Regulate financial influencers}\\
+      \small Social media advice is linked to speculative
+      behaviour. Require qualification disclosure and
+      ban unverified return claims.\\[0.5em]
 
-      \textbf{F. Gate derivatives on objective literacy}\\
-      Overconfident investors and aspirational daily traders (7.3\%
-      consistency) reach leveraged instruments without adequate knowledge.
-      Replace self-certification with a brief objective literacy assessment.
+      \normalsize\textbf{F. Test knowledge before derivatives}\\
+      \small Many investors overestimate their understanding
+      and end up in high-risk products. Replace
+      self-declaration with a short knowledge test.
     \end{column}
   \end{columns}
 \end{frame}
@@ -386,6 +408,13 @@
   \end{figure}
 \end{frame}
 
+\begin{frame}{Appendix: Goal-Portfolio Consistency}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{../figures/fig9_consistency_score.pdf}
+    \caption*{Consistency score by stated primary goal. Daily Trading cohort: 7.3\%.}
+  \end{figure}
+\end{frame}
 \begin{frame}{Appendix: Investment Horizons by Asset Class}
   \begin{figure}
     \centering
